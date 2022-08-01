@@ -5,13 +5,13 @@ import SignIn from '../screens/SingIn';
 import Home from '../screens/HomeScreen';
 import Details from '../screens/Details/';
 const Router = () => {
-    const [isLogged, setIsLogged] = useState(true);
+    const [isLogged, setIsLogged] = useState(false);
     
     const AuthStack = createNativeStackNavigator();
     // setIsLogged(false)
     useEffect(() => {
         //mudar de rota é só editar esse setIsLogged pra true.
-      setIsLogged(true);  
+      setIsLogged(false);  
     }, [])
     ;
     return (
@@ -19,14 +19,14 @@ const Router = () => {
             {
             isLogged 
             ?
-            <AuthStack.Navigator>
-                <AuthStack.Screen name="Login" component={SignIn} />
-            </AuthStack.Navigator>
+                <AuthStack.Navigator>
+                    <AuthStack.Screen name="Login" component={SignIn} />
+                </AuthStack.Navigator>
             : 
-            <AuthStack.Navigator>
-                <AuthStack.Screen name="Home" component={Home}/>
-                <AuthStack.Screen name="Details" component={Details}/>
-            </AuthStack.Navigator>
+                <AuthStack.Navigator>
+                    <AuthStack.Screen name="Home" component={Home}/>
+                    <AuthStack.Screen name="Details" component={Details}/>
+                </AuthStack.Navigator>
             }
         </NavigationContainer>
     )
