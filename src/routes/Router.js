@@ -24,7 +24,8 @@ const Router = () => {
                 </AuthStack.Navigator>
             : 
                 <AuthStack.Navigator>
-                    <AuthStack.Screen name="Home" component={Home}/>
+                    <AuthStack.Screen name="Home" component={Home}
+                    options={{title: null, headerTransparent: true, headerShown: false}}/>
                     <AuthStack.Screen name="Details" component={Details}/>
                 </AuthStack.Navigator>
             }
