@@ -20,7 +20,7 @@ const Router = () => {
             isLogged 
             ?
             <AuthStack.Navigator>
-                <AuthStack.Screen name="Login" component={SignIn} />
+                <AuthStack.Screen name="Login" component={SignIn} options={{headerShown: false,}}/>
             </AuthStack.Navigator>
             : 
             <AuthStack.Navigator>
