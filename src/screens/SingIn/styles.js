@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
       textentrar: {
         color: 'white',
         alignSelf: 'center',
+        top: -30,
       },
       logo: {
         position: 'absolute',
@@ -43,7 +44,7 @@ export const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'white',
         // position: 'absolute',
-        top: -10,
+        top: -30,
         fontWeight: 'bold',
         fontFamily: 'Open Sans',
         fontSize: 24,
