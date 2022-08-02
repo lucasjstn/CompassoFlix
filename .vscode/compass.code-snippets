@@ -24,5 +24,13 @@
 				"</View>",
 			],
 			"description": "View com style"
+		},
+		"Print to console": {
+			"scope": "javascript,typescript",
+			"prefix": "ichave",
+			"body": [
+				"={$0}",
+			],
+			"description": "View com style"
 		}
 }
