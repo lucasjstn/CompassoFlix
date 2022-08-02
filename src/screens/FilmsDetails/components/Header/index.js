@@ -1,13 +1,19 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
-import styles from './style';
+import styles from './style'
 
 export default FilmsDetails = () => {
     return (
         <View>
-            <View style={styles.poster}></View>
-            <View style={styles.frontCover}></View>
+            <Image
+                source={{uri: 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg'}}
+                
+                style={styles.poster} />
+            <Image
+                source={{ uri: 'https://www.themoviedb.org/t/p/w220_and_h330_face/cKNxg77ll8caX3LulREep4C24Vx.jpg' }}
+                style={styles.frontCover}
+            />
             <View style={styles.mainWrapper}>
                 <View style={styles.mainTextWrapper}>
                     <Text style={styles.frontCoverTitle}>The Batman <Text style={styles.frontCoverLaunch}>2022</Text></Text>
@@ -21,8 +27,9 @@ export default FilmsDetails = () => {
                         <Icon
                             name='heart'
                             size={30}
+                            color='red'
                         />
-                        <Text STYLE={styles.votesText}>30k</Text>
+                        <Text style={styles.votesText}>30k</Text>
                     </View>
                 </View>
             </View>
