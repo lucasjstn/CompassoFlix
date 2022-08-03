@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignIn from '../screens/SingIn';
 import Home from '../screens/HomeScreen';
-import Details from '../screens/Details/';
+import FilmsDetails from '../screens/FilmsDetails/';
 const Router = () => {
     const [isLogged, setIsLogged] = useState(false);
     
@@ -25,7 +25,7 @@ const Router = () => {
             : 
                 <AuthStack.Navigator>
                     <AuthStack.Screen name="Home" component={Home}/>
-                    <AuthStack.Screen name="Details" component={Details}/>
+                    <AuthStack.Screen name="FilmsDetails" component={FilmsDetails}/>
                 </AuthStack.Navigator>
             }
         </NavigationContainer>
