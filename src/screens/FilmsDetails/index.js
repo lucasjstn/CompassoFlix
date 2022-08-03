@@ -5,7 +5,7 @@ import Synopsis from './components/Synopsis';
 import Cast from './components/Cast';
 import styles from './style';
 
-export default FilmsDetails = () => {
+const FilmsDetails = () => {
     return(
         <SafeAreaView style={styles.container}>
             <Header />
@@ -14,3 +14,5 @@ export default FilmsDetails = () => {
         </SafeAreaView>
     );
 }
+
+export default FilmsDetails;
