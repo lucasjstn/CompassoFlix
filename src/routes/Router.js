@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignIn from '../screens/SingIn';
 import Home from '../screens/HomeScreen';
 import FilmsDetails from '../screens/FilmsDetails';
+import SignIn from '../screens/SingIn';
+
 const Router = () => {
     const [isLogged, setIsLogged] = useState(false);
     
@@ -11,7 +12,7 @@ const Router = () => {
     // setIsLogged(false)
     useEffect(() => {
         //mudar de rota é só editar esse setIsLogged pra true.
-      setIsLogged(true);  
+      setIsLogged(false);  
     }, [])
     ;
     return (
@@ -25,7 +26,7 @@ const Router = () => {
                 </AuthStack.Navigator>
             : 
                 <AuthStack.Navigator>
-                         <AuthStack.Screen name="SignIn" options={{headerShown: false,}} component={SignIn} />
+                    <AuthStack.Screen name="SignIn" options={{headerShown: false,}} component={SignIn} />
                 </AuthStack.Navigator>
             }
         </NavigationContainer>
