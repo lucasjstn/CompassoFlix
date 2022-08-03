@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
-    }, conteinerFlatList:{
+    },
+    conteinerFlatList:{
         width: width/0.84,
         height: height/1.3,
         position: 'absolute',
@@ -18,4 +19,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default styles
+export default styles;
