@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style'
 
 export default FilmsDetails = () => {
@@ -25,7 +25,7 @@ export default FilmsDetails = () => {
                     <Text style={styles.rating}>8.5/10</Text>
                     <View style={styles.votesWrapper}>
                         <Icon
-                            name='heart'
+                            name='favorite'
                             size={30}
                             color='red'
                         />
