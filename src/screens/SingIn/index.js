@@ -1,6 +1,6 @@
 
 import React from "react";
-import { TextInput, Image, Text, View, TouchableOpacity } from "react-native";
+import { TextInput, Image, Text, View, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import styles from '../SingIn/styles';
@@ -8,8 +8,7 @@ import Banner from "./components/Banner/index";
 const SignIn = () => {
 
     return(
-
-  <View style={styles.container}>
+<KeyboardAvoidingView style={styles.container} behavior="position" enabled={true}>
       <Banner />
       <Image style={styles.logo} width={231} height={228} source={require('../../../assets/logo.png')}/>
       <Text style={styles.textlogin}>Login</Text>
@@ -25,9 +24,8 @@ const SignIn = () => {
       <TouchableOpacity style={styles.botaologin}>
         <Text style={styles.botaotexto}>Entrar</Text>
       </TouchableOpacity>
-    
-     
-  </View> 
+</KeyboardAvoidingView>
+
     
     )
 }

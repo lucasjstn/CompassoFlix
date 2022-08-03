@@ -16,14 +16,15 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
       emailinput: {
-        paddingTop: 10,
+        padding: -10,
         paddingLeft: 50,
-        fontSize: 12,
+        fontSize: 13,
         height: 33,
         borderRadius: 20,
         margin: 7,
         alignSelf: 'center',
-        // color: '#ffffff80',
+        color: 'white',
+        // fontWeight: 'bold',
         backgroundColor: '#c4c4c4',
         opacity: 0.40,
         width: 243,
