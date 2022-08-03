@@ -7,6 +7,7 @@ import BtnGoBack from '../../components/BtnGoBack';
 import styles from './style';
 
 export default FilmsDetails = ({navigation}) => {
+
     return(
         <SafeAreaView style={styles.container}>
             <BtnGoBack nav={navigation}/>
@@ -16,3 +17,4 @@ export default FilmsDetails = ({navigation}) => {
         </SafeAreaView>
     );
 }
+
