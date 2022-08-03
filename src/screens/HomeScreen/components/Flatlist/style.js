@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
     },
     conteinerFlatList:{
         width: width/0.84,
-        height: height/1.3,
+        height: '100%',
         position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center',
+        top: 1
     }
 })
 

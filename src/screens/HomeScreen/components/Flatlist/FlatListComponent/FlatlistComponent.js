@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, Text, View, Image} from 'react-native';
 import  Icon  from 'react-native-vector-icons/AntDesign';
 import styles from './style';
+import { useNavigation } from '@react-navigation/native';
 
 export default function FilmesCP({image, rating}){
     const navigation = useNavigation()
