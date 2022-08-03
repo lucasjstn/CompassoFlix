@@ -61,4 +61,3 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
-android/app/build.gradle

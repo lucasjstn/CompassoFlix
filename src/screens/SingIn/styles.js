@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     botaotexto: {
       color: '#1F1D36',
       fontWeight: 'bold',
@@ -43,16 +43,16 @@ export const styles = StyleSheet.create({
       textlogin: {
         alignSelf: 'center',
         color: 'white',
-        // position: 'absolute',
         top: -30,
         fontWeight: 'bold',
         fontFamily: 'Open Sans',
         fontSize: 24,
        },
       container: {
-          // justifyContent: 'center',
-          // alignItems: 'center',
           backgroundColor: 'black',
-          flex: 1,
+          // flex: 1,
+          height: '100%',
       },
   })
+
+  export default styles;

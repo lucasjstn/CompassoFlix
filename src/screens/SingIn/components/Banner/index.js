@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { SafeAreaView, Pressable, StyleSheet, Text, View } from "react-native";
-import Svg, { Circle, ClipPath, Defs, Image, Polygon, Rect, SvgUri, Use } from "react-native-svg";
-import { Dimensions } from "react-native";
-import { alturaPrimeiroContainer, height, width } from "./consts";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import Svg, { ClipPath, Image, Polygon } from "react-native-svg";
+import {  height, width } from "../../consts";
 
 const Banner = () => {
     return (
@@ -27,7 +26,7 @@ const Banner = () => {
 
               
               opacity = '0.8'
-              href={require('../../assets/18.png')}
+              href={require('../../../../../assets/18.png')}
               clipPath='url(#carafumando)'
             />
           </Svg>
@@ -50,7 +49,7 @@ const Banner = () => {
               preserveAspectRatio = 'xMinYMin slice'
               
               opacity = '0.8'
-              href={require('../../assets/14.png')}
+              href={require('../../../../../assets/14.png')}
               clipPath='url(#minadevermelho)'
             />
           </Svg>
@@ -74,7 +73,7 @@ const Banner = () => {
               preserveAspectRatio = 'xMaxYMax meet'
               
               opacity = '0.8'
-              href={require('../../assets/166.png')}
+              href={require('../../../../../assets/166.png')}
               clipPath='url(#doutorestranho)'
             />
 
@@ -99,7 +98,7 @@ const Banner = () => {
               preserveAspectRatio = 'xMaxYMax meet'
               
               opacity = '0.8'
-              href={require('../../assets/15.jpg')}
+              href={require('../../../../../assets/15.jpg')}
               clipPath='url(#bradpitt)'
             />
        
@@ -123,30 +122,16 @@ const Banner = () => {
               preserveAspectRatio = 'xMidYMid meet'
               
               opacity = '0.8'
-              href={require('../../assets/17.png')}
+              href={require('../../../../../assets/17.png')}
               clipPath='url(#mecbeth)'
             />
         </Svg>
-        {/* <Svg width={width} height={height * 0.20} style={{borderColor: 'black', borderWidth: 1,}}>
-          <Circle r ={20} cx ={'50%'} cy ={'50%'} fill='black' />
-          
-        </Svg> */}
-
-{/*         
-        <Text style={{fontSize: 40,}}>{(width).toFixed(2)}</Text>
-        <Text style={{fontSize: 40,}}>{(height.toFixed(2))}</Text>
-        <Text style={{fontSize: 40,}}>x= {x} , y = {y}</Text> */}
       </View>
     )
 }
 
 const styles = StyleSheet.create({
     containerbanner: {
-        // width: width,
-        // height: height * 0.5,
-        backgroundColor: 'black',
-        // position: 'absolute',
-        // fontWeight: '900',
         backgroundColor: 'black',
         opacity: 0.6
     }
