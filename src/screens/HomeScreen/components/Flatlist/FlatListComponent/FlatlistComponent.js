@@ -1,12 +1,13 @@
 import React from 'react';
-import {TouchableOpacity, Text, View, Image, StyleSheet } from 'react-native';
+import {TouchableOpacity, Text, View, Image} from 'react-native';
 import  Icon  from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 
 export default function FilmesCP({image, rating}){
+    const navigation = useNavigation()
     return(
         <View style={styles.conteinerImage}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Details')}>
                 <Image source={image} style={styles.Img}/>
             </TouchableOpacity>
             <Icon name='star' color={'red'} size={10} style={styles.icon}/>
