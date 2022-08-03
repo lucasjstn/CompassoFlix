@@ -9,9 +9,9 @@ const SignIn = () => {
 
     return(
 
-  <View style={/* styles.container */null}>
+  <View style={styles.container}>
       <Banner />
-        {/* <Image style={styles.logo} width={231} height={228} source={require('../../../assets/logo.png')}/>
+      <Image style={styles.logo} width={231} height={228} source={require('../../../assets/logo.png')}/>
       <Text style={styles.textlogin}>Login</Text>
       <Text style={styles.textentrar}>Entre na sua conta para continuar.</Text>
       <View style={{alignItems: 'center', justifyContent: 'center', }}>
@@ -24,8 +24,9 @@ const SignIn = () => {
       </View>
       <TouchableOpacity style={styles.botaologin}>
         <Text style={styles.botaotexto}>Entrar</Text>
-      </TouchableOpacity> */}
-      
+      </TouchableOpacity>
+    
+     
   </View> 
     
     )
