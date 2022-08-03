@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Text, View, ScrollView} from "react-native";
+import { FlatList, View, ScrollView} from "react-native";
 import data from "../../../../services/mocks/data";
 import FilmesCP from "./FlatListComponent/FlatlistComponent";
 import styles from './style'

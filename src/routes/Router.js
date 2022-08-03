@@ -28,9 +28,9 @@ const Router = () => {
                     options={{title: null, headerTransparent: true, headerShown: false}}/>
                     <AuthStack.Screen name="Details" component={Details}/>
                 </AuthStack.Navigator>
-            }
+            } 
         </NavigationContainer>
-    )
+    )   
 }
 
 export default Router;
