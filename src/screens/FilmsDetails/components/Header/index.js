@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style'
 
-export default FilmsDetails = () => {
+export default FilmsDetails = ({ title }) => {
     return (
         <View>
             <Image
@@ -16,7 +16,7 @@ export default FilmsDetails = () => {
             />
             <View style={styles.mainWrapper}>
                 <View style={styles.mainTextWrapper}>
-                    <Text style={styles.frontCoverTitle}>The Batman <Text style={styles.frontCoverLaunch}>2022</Text></Text>
+                    <Text style={styles.frontCoverTitle}>{title} <Text style={styles.frontCoverLaunch}>2022</Text></Text>
                     <Text style={styles.frontCoverMin}>176 min</Text>
                 </View>
                 <Text style={styles.directorText}>Direção por <Text style={{ fontWeight: '700' }}>Matt Reeves</Text></Text>

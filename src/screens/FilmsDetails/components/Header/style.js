@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderRadius: 10
     },
     mainWrapper: {
-        marginLeft: relativeWidth(136),//soma do marginLeft + width do frontCover
+        marginLeft: relativeWidth(20) + relativeWidth(116), //soma do marginLeft + width do frontCover
         marginTop: relativeHeight(10)
     },
     mainTextWrapper: {
