@@ -1,11 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import TabBar from '../../routes/HomeStack';
 
 const Home = () => {
     return (
-        <View>
-            <Text style={{flex: 1, color: 'orange', justifyContent: 'center'}}>Home Screen</Text>
-        </View>
+        <TabBar/> 
     )
 }
 
