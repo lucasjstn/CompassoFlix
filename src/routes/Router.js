@@ -21,7 +21,7 @@ const Router = () => {
             isLogged 
             ?
                 <AuthStack.Navigator initialRouteName='Home'>
-                    <AuthStack.Screen name="Home" component={Home}/>
+                    <AuthStack.Screen name="Home" options={{headerShown: false,}} component={Home}/>
                     <AuthStack.Screen name="Details" options={{headerShown: false,}} component={FilmsDetails}/>
                 </AuthStack.Navigator>
             : 
