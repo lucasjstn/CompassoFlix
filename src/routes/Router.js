@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignIn from '../screens/SingIn';
 import Home from '../screens/HomeScreen';
-import Details from '../screens/Details/';
+import Details from '../screens/Details';
 
 const Router = () => {
     const [isLogged, setIsLogged] = useState(false);

@@ -16,13 +16,13 @@ export default function FlatFilmes(){
 
     return (
         <View style={styles.conteinerBackGround}>
+            <FilmesHeader/>
             <View style={styles.conteinerFlatList}>
                 <FlatList
                 data={data}
                 renderItem={renderItem}
                 keyExtractor={item => item.id}
                 numColumns={numColumns}
-                ListHeaderComponent={FilmesHeader}
                 />
             </View>
         </View>

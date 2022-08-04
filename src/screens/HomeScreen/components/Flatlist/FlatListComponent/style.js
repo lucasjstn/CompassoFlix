@@ -4,9 +4,8 @@ const {width, height} = Dimensions.get('screen')
 
 const styles = StyleSheet.create({
     conteinerImage: {
-        paddingBottom: 25,
-        paddingHorizontal: 8,
-        top: 90,
+        marginHorizontal: 8,
+        marginTop: 16,
         left: -5
     },
     Img: {
