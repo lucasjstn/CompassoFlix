@@ -2,7 +2,7 @@ const data = [
     {
         id: 1,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/spider.png'),
+        image: require('../assets/spider.png'),
         rating: '8.3/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -12,7 +12,7 @@ const data = [
     {
         id: 2,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/batman.png'),
+        image: require('../assets/batman.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -23,7 +23,7 @@ const data = [
     {
         id: 3,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/uncharted.png'),
+        image: require('../assets/uncharted.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -34,7 +34,7 @@ const data = [
     {
         id: 4,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/divertidamente.png'),
+        image: require('../assets/divertidamente.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -44,7 +44,7 @@ const data = [
     },{
         id: 5,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/spider.png'),
+        image: require('../assets/spider.png'),
         rating: '8.3/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -54,7 +54,7 @@ const data = [
     {
         id: 6,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/batman.png'),
+        image: require('../assets/batman.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -65,7 +65,7 @@ const data = [
     {
         id: 7,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/uncharted.png'),
+        image: require('../assets/uncharted.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -76,7 +76,7 @@ const data = [
     {
         id: 8,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/divertidamente.png'),
+        image: require('../assets/divertidamente.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -86,7 +86,7 @@ const data = [
     },{
         id: 9,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/spider.png'),
+        image: require('../assets/spider.png'),
         rating: '8.3/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -96,7 +96,7 @@ const data = [
     {
         id: 10,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/batman.png'),
+        image: require('../assets/batman.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -107,7 +107,7 @@ const data = [
     {
         id: 11,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/uncharted.png'),
+        image: require('../assets/uncharted.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -118,7 +118,7 @@ const data = [
     {
         id: 12,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/divertidamente.png'),
+        image: require('../assets/divertidamente.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -128,7 +128,7 @@ const data = [
     },{
         id: 13,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/spider.png'),
+        image: require('../assets/spider.png'),
         rating: '8.3/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -138,7 +138,7 @@ const data = [
     {
         id: 14,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/batman.png'),
+        image: require('../assets/batman.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -149,7 +149,7 @@ const data = [
     {
         id: 15,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/uncharted.png'),
+        image: require('../assets/uncharted.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -160,7 +160,7 @@ const data = [
     {
         id: 16,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/divertidamente.png'),
+        image: require('../assets/divertidamente.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -170,7 +170,7 @@ const data = [
     },{
         id: 17,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/spider.png'),
+        image: require('../assets/spider.png'),
         rating: '8.3/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -180,7 +180,7 @@ const data = [
     {
         id: 18,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/batman.png'),
+        image: require('../assets/batman.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -191,7 +191,7 @@ const data = [
     {
         id: 19,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/uncharted.png'),
+        image: require('../assets/uncharted.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
@@ -202,7 +202,7 @@ const data = [
     {
         id: 20,
         name: 'Spiderman Sem Volta Para Casa',
-        image: require('../../assets/divertidamente.png'),
+        image: require('../assets/divertidamente.png'),
         rating: '8.5/10',
         sinopse: {
             textup: 'Embarque nessa aventura.',
