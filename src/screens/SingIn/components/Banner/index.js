@@ -1,9 +1,39 @@
-import React from 'react';
+/* eslint-disable no-lone-blocks */
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Svg, {ClipPath, Image, Polygon} from 'react-native-svg';
 import {height, width} from '../../consts';
 
-const Banner = () => {
+const Banner = ({loading}) => {
+  const [count, setCount] = useState(0);
+  const [imageLoad, setImageLoad] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+  const [opacity, setOpacity] = useState(5);
+  // useEffect(() => {
+  //   console.log('   :', imageLoad);
+  //   // checkOpacity(loading);
+  //   // console.log('   :', imageLoad);
+  // }, []);
+
+  {
+    loading
+      ? setTimeout(() => {
+          if (count < 4) {
+            setCount(count + 1);
+            console.log('   :', count);
+          } else {
+            setCount(0);
+          }
+        }, 100)
+      : null;
+  }
+  // console.log('   :', typeof imageLoad);
+
   return (
     <View>
       <Svg width={width} height={height / 2} style={{}}>
@@ -24,7 +54,7 @@ const Banner = () => {
           width={width * 0.66}
           height={height * 0.255}
           preserveAspectRatio="xMinYMin slice"
-          opacity="0.6"
+          opacity={count === 0 ? '0.6' : '0.55'}
           href={require('../../../../../assets/18.png')}
           clipPath="url(#carafumando)"
         />
@@ -49,7 +79,7 @@ const Banner = () => {
           width={width}
           height={height * 0.24}
           preserveAspectRatio="xMinYMin slice"
-          opacity="0.6"
+          opacity={count === 1 ? '0.6' : '0.55'}
           href={require('../../../../../assets/14.png')}
           clipPath="url(#minadevermelho)"
         />
@@ -74,7 +104,7 @@ const Banner = () => {
           width={width}
           height={height * 0.27}
           preserveAspectRatio="xMaxYMax meet"
-          opacity="0.6"
+          opacity={count === 2 ? '0.6' : '0.55'}
           href={require('../../../../../assets/166.png')}
           clipPath="url(#doutorestranho)"
         />
@@ -99,7 +129,7 @@ const Banner = () => {
           width={width * 0.72}
           height={height * 0.39}
           preserveAspectRatio="xMidYMid meet"
-          opacity="0.6"
+          opacity={count === 3 ? '0.6' : '0.55'}
           href={require('../../../../../assets/15.jpg')}
           clipPath="url(#bradpitt)"
         />
@@ -123,7 +153,7 @@ const Banner = () => {
           width={width * 0.754}
           height={height * 0.48}
           preserveAspectRatio="xMidYMid meet"
-          opacity="0.6"
+          opacity={count === 4 ? '0.6' : '0.55'}
           href={require('../../../../../assets/17.png')}
           clipPath="url(#mecbeth)"
         />
@@ -135,7 +165,7 @@ const Banner = () => {
 const styles = StyleSheet.create({
   containerbanner: {
     backgroundColor: 'black',
-    opacity: 0.6,
+    opacity: 0.61,
   },
 });
 

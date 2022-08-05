@@ -2,6 +2,9 @@ import {StyleSheet} from 'react-native';
 import {height} from './consts';
 
 const styles = StyleSheet.create({
+  loadingIndicator: {
+    top: '25%',
+  },
   botaotexto: {
     color: '#1F1D36',
     fontWeight: 'bold',
