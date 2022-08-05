@@ -1,5 +1,5 @@
 /* eslint-disable no-lone-blocks */
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import Svg, {ClipPath, Image, Polygon} from 'react-native-svg';
 import {height, width} from '../../consts';
@@ -25,7 +25,7 @@ const Banner = ({loading}) => {
       ? setTimeout(() => {
           if (count < 4) {
             setCount(count + 1);
-            console.log('   :', count);
+            // console.log('   :', count);
           } else {
             setCount(0);
           }

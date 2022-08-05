@@ -9,28 +9,46 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {api, apikey} from '../../service/api';
 import styles from '../SingIn/styles';
 import Banner from './components/Banner/index';
 import {height, width} from './consts';
 const SignIn = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [color, setColor] = useState(false);
   const [view, setView] = useState(0);
+  const [requestToken, setRequestToken] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   useEffect(() => {
     setTimeout(() => {
       setColor(!color);
     }, 2000);
-  });
-
-  useEffect(() => {
     if (view < 1 && isLoading === false) {
       setTimeout(() => {
         setView(view + 0.07);
-        console.log(view);
       }, 0);
     }
-    console.log(view);
   });
+
+  useEffect(() => {
+    if (requestToken === null) {
+      RequestToken();
+    } else {
+      setIsLoading(false);
+    }
+  }, [requestToken]);
+
+  const RequestToken = async () => {
+    await api
+      .get(`/authentication/token/new?api_key=${apikey}`)
+      .then(res => {
+        setRequestToken(res?.data.request_token);
+        console.log(res?.data.request_token);
+      })
+      .catch(err => console.log(err));
+  };
 
   return (
     <KeyboardAvoidingView
