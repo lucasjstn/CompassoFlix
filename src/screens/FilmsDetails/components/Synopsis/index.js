@@ -6,7 +6,7 @@ import styles from "./style";
 export default Synopsis = ({ overView, tagLine }) => {
     return(
         <View style={styles.container}>
-            <Text style={styles.synopsisTitle}>{ tagLine }</Text> 
+            <Text style={styles.synopsisTitle}>{ tagLine || 'Sinopse' }</Text> 
             <Text style={styles.synopsisContent}>{ overView }</Text>
         </View>
     );
