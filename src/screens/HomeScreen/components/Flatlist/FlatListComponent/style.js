@@ -12,9 +12,10 @@ const styles = StyleSheet.create({
         width: width*0.20,
         height: height*0.12,
         left: 7,
+        borderRadius: 10
     },
     icon: {
-        top: 7,
+        top: 4.5,
         left: 6,
     },
     note: {
