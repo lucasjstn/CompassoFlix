@@ -54,7 +54,7 @@ const Banner = ({loading}) => {
           width={width * 0.66}
           height={height * 0.255}
           preserveAspectRatio="xMinYMin slice"
-          opacity={count === 0 ? '0.6' : '0.55'}
+          opacity={count === 0 ? '0.70' : '0.55'}
           href={require('../../../../../assets/18.png')}
           clipPath="url(#carafumando)"
         />
@@ -79,7 +79,7 @@ const Banner = ({loading}) => {
           width={width}
           height={height * 0.24}
           preserveAspectRatio="xMinYMin slice"
-          opacity={count === 1 ? '0.6' : '0.55'}
+          opacity={count === 1 ? '0.70' : '0.55'}
           href={require('../../../../../assets/14.png')}
           clipPath="url(#minadevermelho)"
         />
@@ -104,7 +104,7 @@ const Banner = ({loading}) => {
           width={width}
           height={height * 0.27}
           preserveAspectRatio="xMaxYMax meet"
-          opacity={count === 2 ? '0.6' : '0.55'}
+          opacity={count === 2 ? '0.70' : '0.55'}
           href={require('../../../../../assets/166.png')}
           clipPath="url(#doutorestranho)"
         />
@@ -129,7 +129,7 @@ const Banner = ({loading}) => {
           width={width * 0.72}
           height={height * 0.39}
           preserveAspectRatio="xMidYMid meet"
-          opacity={count === 3 ? '0.6' : '0.55'}
+          opacity={count === 3 ? '0.70' : '0.55'}
           href={require('../../../../../assets/15.jpg')}
           clipPath="url(#bradpitt)"
         />
@@ -153,7 +153,7 @@ const Banner = ({loading}) => {
           width={width * 0.754}
           height={height * 0.48}
           preserveAspectRatio="xMidYMid meet"
-          opacity={count === 4 ? '0.6' : '0.55'}
+          opacity={count === 4 ? '0.70' : '0.55'}
           href={require('../../../../../assets/17.png')}
           clipPath="url(#mecbeth)"
         />

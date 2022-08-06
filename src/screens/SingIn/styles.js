@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {height} from './consts';
+import {height, width} from './consts';
 
 const styles = StyleSheet.create({
   loadingIndicator: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: 35,
     borderRadius: 30,
-    top: 40,
+    top: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
