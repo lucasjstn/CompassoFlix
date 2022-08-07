@@ -1,5 +1,6 @@
 import {api} from '../api';
 
+//primeira requisicao pra request token
 export const RequestToken = async () => {
   try {
     const response = await api.get(`/authentication/token/new?`);
@@ -32,7 +33,7 @@ export const CreateSession = async requestToken => {
     });
     return sessionResult?.data.session_id;
   } catch (error) {
-    console.log('   :', error);
+    // console.log('   :', error);
   }
 };
 

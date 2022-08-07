@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   TextInput,
   Image,
@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import {AuthContext} from '../../context/AuthContext';
 import {
   isEmptyChecker,
   isValidPasswordChecker,
@@ -21,6 +22,7 @@ import {
   LoginRequest,
   RequestToken,
 } from '../../service/requests/LoginRequest';
+import {KeepToken} from '../../service/storage';
 import styles from '../SingIn/styles';
 import Banner from './components/Banner/index';
 import {height, width} from './consts';
@@ -29,11 +31,12 @@ const SignIn = () => {
   const [color, setColor] = useState(false);
   const [view, setView] = useState(0);
   const [requestToken, setRequestToken] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('lucasjstn');
+  const [password, setPassword] = useState('192810');
   const [errorMessage, setErrorMessage] = useState('');
   const [loginAttempting, setLoginAttempt] = useState(false);
-  const [sessionId, setSessionId] = useState(null);
+  const {valor, isLogged, setIsLogged, sessionId, setSessionId} =
+    useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -56,20 +59,20 @@ const SignIn = () => {
 
   async function getLoginRequest() {
     var createdSessionId = '';
-    const validatedToken = await LoginRequest(email, password, requestToken);
+    const validatedToken = await LoginRequest(username, password, requestToken);
     if (validatedToken) {
       createdSessionId = await CreateSession(requestToken);
-      setEmail('');
+      setUsername('');
       setPassword('');
       setRequestToken(validatedToken);
-      // console.log('   :', validatedToken);
-      setErrorMessage('logado');
       setLoginAttempt(false);
       setSessionId(createdSessionId);
-      console.log(sessionId);
+      KeepToken('@token', validatedToken);
+      setIsLogged(true);
     } else {
-      setErrorMessage('Email ou senha inválidos');
+      setErrorMessage('Usuário ou senha inválidos');
       setLoginAttempt(false);
+      return ClearMessage();
     }
   }
 
@@ -79,7 +82,7 @@ const SignIn = () => {
       //settimeout so pra garantir que vai mostrar o tratamento do usuário
       if (resultado) {
         setRequestToken(resultado);
-        console.log(resultado);
+        // console.log(resultado);
       } else {
       }
     }, 2000); //settimeout so pra garantir que vai mostrar o tratamento do usuário
@@ -92,10 +95,10 @@ const SignIn = () => {
   };
 
   const LoginHandler = () => {
-    const isEmpty = isEmptyChecker(email, password);
-    const isValidUsername = isValidUsernameChecker(email);
+    const isEmpty = isEmptyChecker(username, password);
+    const isValidUsername = isValidUsernameChecker(username);
     const isValidPassword = isValidPasswordChecker(password);
-    console.log(isEmpty);
+    // console.log(isEmpty);
     if (isEmpty === false) {
       ClearMessage();
       setErrorMessage('Nenhum dos campos podem estar vazios :(');
@@ -104,7 +107,7 @@ const SignIn = () => {
       setErrorMessage('Insira um usuário válido');
       return ClearMessage();
     } else if (isValidPassword === false) {
-      setErrorMessage('O campo de senha deve ter no mínimo x caracteres.');
+      setErrorMessage('O campo de senha deve ter no mínimo 5 caracteres.');
       return ClearMessage();
     }
 
@@ -116,7 +119,7 @@ const SignIn = () => {
     <KeyboardAwareScrollView
       enableOnAndroid
       keyboardShouldPersistTaps="handled"
-      behavior="padding">
+      behavior="height">
       <View style={[styles.container, {width: width, height: height}]}>
         <Banner loading={isLoading} />
 
@@ -155,10 +158,11 @@ const SignIn = () => {
                 <TextInput
                   placeholderTextColor="#ffffff"
                   placeholder="e-mail"
-                  style={styles.emailinput}
+                  style={styles.entriesInput}
                   autoCapitalize="none"
-                  value={email}
-                  onChangeText={setEmail}
+                  value={username}
+                  onChangeText={setUsername}
+                  maxLength={20}
                 />
                 <EvilIcons
                   style={{position: 'absolute', left: 100}}
@@ -172,7 +176,7 @@ const SignIn = () => {
                   placeholderTextColor="#ffffff"
                   placeholder="senha"
                   secureTextEntry={true}
-                  style={styles.emailinput}
+                  style={styles.entriesInput}
                   autoCapitalize="none"
                   value={password}
                   onChangeText={setPassword}

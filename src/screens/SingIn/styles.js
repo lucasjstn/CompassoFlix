@@ -3,7 +3,7 @@ import {height, width} from './consts';
 
 const styles = StyleSheet.create({
   loadingIndicator: {
-    top: '25%',
+    top: '15%',
   },
   botaotexto: {
     color: '#1F1D36',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  emailinput: {
+  entriesInput: {
     padding: -10,
     paddingLeft: 50,
     fontSize: 13,
