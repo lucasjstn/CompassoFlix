@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     frontCover: {
         width: relativeWidth(116),
         height: relativeHeight(182),
-        position: 'absolute',
         marginTop: relativeHeight(100),
         marginLeft: relativeWidth(20),
         borderRadius: 10
