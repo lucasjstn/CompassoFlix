@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     lineBottom: {
-        borderBottomWidth:StyleSheet.hairlineWidth + 1,
+        borderBottomWidth: StyleSheet.hairlineWidth + 1,
         borderBottomColor: '#9C4A8B',
         width: relativeWidth(30),
         marginTop:-12,
@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
     },
     actorWrapper: {
         flexDirection: 'row',
-        paddingVertical: relativeHeight(11),
-        alignItems: 'center'
+        paddingVertical: relativeHeight(9),
+        alignItems: 'center',
+        marginHorizontal: relativeWidth(20)
     },
     imgWrapper:{
         height: 40,

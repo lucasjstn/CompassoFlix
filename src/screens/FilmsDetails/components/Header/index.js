@@ -1,38 +1,108 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style'
+import { apiImage } from '../../../../service/api';
+import transformInAround from './transformInAround';
+import ImgWindow from './imgWindow';
+const baseUrl = apiImage.defaults.baseURL;
 
-export default FilmsDetails = ({ title }) => {
+export default FilmsDetails = ({ title, runtime, backdrop_path, poster_path, popularity, vote_average, release_date, director, min, directorBy, directorDefault }) => {
+
+    const [information, setInformation] = useState(0);
+    const [press, setPress] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false)
+
+    const searchPeople = (array) => {
+        return array?.filter(obj => obj?.job === 'Director')
+    }
+
+    useEffect(() => {
+        if (title?.length > 14) {
+            setInformation(1)
+            setTimeout(() => setInformation(0), 1500)
+        }
+    }, [title])
+
     return (
-        <View>
-            <Image
-                source={{uri: 'https://www.themoviedb.org/t/p/w533_and_h300_bestv2/b0PlSFdDwbyK0cf5RxwDpaOJQvQ.jpg'}}
-                
-                style={styles.poster} />
-            <Image
-                source={{ uri: 'https://www.themoviedb.org/t/p/w220_and_h330_face/cKNxg77ll8caX3LulREep4C24Vx.jpg' }}
-                style={styles.frontCover}
-            />
-            <View style={styles.mainWrapper}>
-                <View style={styles.mainTextWrapper}>
-                    <Text style={styles.frontCoverTitle}>{title} <Text style={styles.frontCoverLaunch}>2022</Text></Text>
-                    <Text style={styles.frontCoverMin}>176 min</Text>
-                </View>
-                <Text style={styles.directorText}>Direção por <Text style={{ fontWeight: '700' }}>Matt Reeves</Text></Text>
+        <>
 
-                <View style={styles.ratingWrapper}>
-                    <Text style={styles.rating}>8.5/10</Text>
-                    <View style={styles.votesWrapper}>
-                        <Icon
-                            name='favorite'
-                            size={30}
-                            color='red'
-                        />
-                        <Text style={styles.votesText}>30k</Text>
+            <ImgWindow
+                poster_path={poster_path}
+                visible={modalVisible}
+                setVisible={setModalVisible}
+            />
+
+            <View>
+
+                <Image
+                    source={{ uri: `${baseUrl}/original${backdrop_path}` }}
+
+                    style={styles.poster} />
+
+                <TouchableOpacity 
+                    style={{
+                        position: 'absolute'
+                    }}
+                    activeOpacity={0.6}
+                    onPress={() => setModalVisible(true)}
+                >
+                    <Image
+                        source={{ uri: `${baseUrl}/w500${poster_path}` }}
+                        style={styles.frontCover}
+                    />
+                </TouchableOpacity>
+
+
+                <View style={styles.mainWrapper}>
+
+                    <View style={styles.mainTextWrapper}>
+
+                        <View style={{ flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'center' }}>
+
+
+                            <View style={[styles.popUpWrapper, { opacity: information }]}>
+
+                                <Text style={styles.popUpTitle}>Pressione para mostrar o título completo</Text>
+                                <View style={styles.bottomPopUp}></View>
+                            </View>
+
+                            <View style={[styles.popUpWrapper, { opacity: press ? 1 : 0 }]}>
+                                <Text style={styles.popUpTitle}>{title}</Text>
+                                <View style={styles.bottomPopUp}></View>
+                            </View>
+
+                            <Text
+                                onLongPress={() => setPress(true)}
+                                onPressOut={() => setPress(false)}
+                                style={styles.frontCoverTitle}>{
+                                    title?.length < 14
+                                        ? title
+                                        : `${title?.slice(0, 14)}...`
+                                }<Text style={styles.frontCoverLaunch}> {release_date?.slice(0, 4)}</Text></Text>
+                        </View>
+
+                        <Text style={styles.frontCoverMin}>{runtime} {min}</Text>
+                    </View>
+
+                    <Text style={styles.directorText}>{directorBy} <Text style={{ fontWeight: '700' }}>{searchPeople(director)?.[0]?.name || directorDefault}</Text></Text>
+
+                    <View style={styles.ratingWrapper}>
+
+                        <Text style={styles.rating}>{vote_average?.toFixed(1)}/10</Text>
+
+                        <View style={styles.votesWrapper}>
+                            <Icon
+                                name='favorite'
+                                size={30}
+                                color='red'
+                            />
+
+                            <Text style={styles.votesText}>{transformInAround(popularity)}</Text>
+                        </View>
                     </View>
                 </View>
             </View>
-        </View>
+        </>
     );
 }
