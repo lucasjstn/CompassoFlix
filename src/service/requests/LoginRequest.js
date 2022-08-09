@@ -28,12 +28,14 @@ export const LoginRequest = async (username, password, requestToken) => {
 
 export const CreateSession = async requestToken => {
   try {
-    const sessionResult = await api.post('/authentication/session/new?', {
-      request_token: requestToken,
-    });
-    return sessionResult?.data.session_id;
+    const sessionResult = await api
+      .post('/authentication/session/new?', {
+        request_token: requestToken,
+      })
+      .then(res => res?.data.session_id);
+    return sessionResult;
   } catch (error) {
-    // console.log('   :', error);
+    console.log('   :', error);
   }
 };
 

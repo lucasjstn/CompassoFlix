@@ -35,8 +35,7 @@ const SignIn = () => {
   const [password, setPassword] = useState('192810');
   const [errorMessage, setErrorMessage] = useState('');
   const [loginAttempting, setLoginAttempt] = useState(false);
-  const {valor, isLogged, setIsLogged, sessionId, setSessionId} =
-    useContext(AuthContext);
+  const {valor, isLogged, setIsLogged} = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -58,16 +57,15 @@ const SignIn = () => {
   }, [requestToken, loginAttempting]);
 
   async function getLoginRequest() {
-    var createdSessionId = '';
     const validatedToken = await LoginRequest(username, password, requestToken);
-    if (validatedToken) {
-      createdSessionId = await CreateSession(requestToken);
+    const createdSessionId = await CreateSession(validatedToken);
+    if (validatedToken && createdSessionId) {
       setUsername('');
       setPassword('');
       setRequestToken(validatedToken);
       setLoginAttempt(false);
-      setSessionId(createdSessionId);
       KeepToken('@token', validatedToken);
+      KeepToken('@session', createdSessionId);
       setIsLogged(true);
     } else {
       setErrorMessage('Usuário ou senha inválidos');
@@ -82,7 +80,6 @@ const SignIn = () => {
       //settimeout so pra garantir que vai mostrar o tratamento do usuário
       if (resultado) {
         setRequestToken(resultado);
-        // console.log(resultado);
       } else {
       }
     }, 2000); //settimeout so pra garantir que vai mostrar o tratamento do usuário
@@ -98,7 +95,6 @@ const SignIn = () => {
     const isEmpty = isEmptyChecker(username, password);
     const isValidUsername = isValidUsernameChecker(username);
     const isValidPassword = isValidPasswordChecker(password);
-    // console.log(isEmpty);
     if (isEmpty === false) {
       ClearMessage();
       setErrorMessage('Nenhum dos campos podem estar vazios :(');
@@ -110,7 +106,6 @@ const SignIn = () => {
       setErrorMessage('O campo de senha deve ter no mínimo 5 caracteres.');
       return ClearMessage();
     }
-
     getLoginRequest();
     setLoginAttempt(true);
   };
@@ -156,7 +151,7 @@ const SignIn = () => {
               </Text>
               <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput
-                  placeholderTextColor="#ffffff"
+                  placeholderTextColor="#a2a2a2"
                   placeholder="e-mail"
                   style={styles.entriesInput}
                   autoCapitalize="none"
@@ -173,7 +168,7 @@ const SignIn = () => {
               </View>
               <View style={{alignItems: 'center', justifyContent: 'center'}}>
                 <TextInput
-                  placeholderTextColor="#ffffff"
+                  placeholderTextColor="#a2a2a2"
                   placeholder="senha"
                   secureTextEntry={true}
                   style={styles.entriesInput}
