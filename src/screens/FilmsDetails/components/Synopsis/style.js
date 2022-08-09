@@ -25,7 +25,14 @@ const styles = StyleSheet.create({
         fontSize:12,
         lineHeigth: 16,
         marginTop: relativeHeight(15),
-        color:'white'
+        color:'white',
+        width: relativeWidth(320),
+        textAlign:'left'
+    },
+    about: {
+        fontSize:12,
+        lineHeigth: 16,
+        color: '#999',
     }
 })
 
