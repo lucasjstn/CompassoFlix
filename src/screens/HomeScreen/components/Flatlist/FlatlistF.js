@@ -26,12 +26,26 @@ export default function FlatFilmes(){
     }, [])
 
     const [name, setName] = useState('')
+    const [userName, setUserName] = useState('')
+    const [sessionId, setSessionId] = useState('')
+
+    const getData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('@session')
+          if(value !== null) {
+            setSessionId(value)
+          }
+        } catch(e) {
+          console.log(e)
+        }
+      }
 
     const getUser = async () => {
         await api.get(`/account?&session_id=${sessionId}`).then(
             response => {
                 //console.log(response.data)
-                setName(response.data)
+                setName(response?.data?.name)
+                setUserName(response?.data?.username)
             }
         ).catch(error => {
             console.log(error)
@@ -55,7 +69,7 @@ export default function FlatFilmes(){
 
     return (
         <View style={styles.conteinerBackGround}>
-            <FilmesHeader/>
+            <FilmesHeader name={name} userName={userName}/>
             <View style={styles.conteinerFlatList}>
                 <FlatList
                 data={movies}
