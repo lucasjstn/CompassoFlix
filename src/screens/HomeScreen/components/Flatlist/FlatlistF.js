@@ -16,10 +16,27 @@ export default function FlatFilmes(){
     .then((res) => {
         SetMovies(res.data.results)
     }).catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-    }
+    } 
 
     useEffect(() => {
         getMovies()
+    }, [])
+
+    const [name, setName] = useState('')
+
+    const getUser = async () => {
+        await api.get(`/account?&session_id=${sessionId}`).then(
+            response => {
+                //console.log(response.data)
+                setName(response.data)
+            }
+        ).catch(error => {
+            console.log(error)
+        })
+    }
+
+    useEffect(() => {
+        getUser()
     }, [])
 
     const renderItem = ({ item }) => (
