@@ -7,7 +7,7 @@ import transformInAround from './transformInAround';
 import ImgWindow from './ImgWindow';
 const baseUrl = apiImage.defaults.baseURL;
 
-export default FilmsDetails = ({ title, runtime, backdrop_path, poster_path, popularity, vote_average, release_date, director, min, directorBy, directorDefault }) => {
+export default FilmsDetails = ({ id, title, runtime, backdrop_path, poster_path, popularity, vote_average, release_date, director, min, directorBy, directorDefault }) => {
 
     const [information, setInformation] = useState(0);
     const [press, setPress] = useState(false);
@@ -26,11 +26,11 @@ export default FilmsDetails = ({ title, runtime, backdrop_path, poster_path, pop
 
     return (
         <>
-
             <ImgWindow
                 poster_path={poster_path}
                 visible={modalVisible}
                 setVisible={setModalVisible}
+                id={id}
             />
 
             <View>
@@ -41,9 +41,7 @@ export default FilmsDetails = ({ title, runtime, backdrop_path, poster_path, pop
                     style={styles.poster} />
 
                 <TouchableOpacity 
-                    style={{
-                        position: 'absolute'
-                    }}
+                    style={styles.frontCoverBtn}
                     activeOpacity={0.6}
                     onPress={() => setModalVisible(true)}
                 >

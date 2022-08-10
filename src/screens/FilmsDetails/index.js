@@ -17,7 +17,7 @@ export default FilmsDetails = ({ route, navigation }) => {
     return (
         <SafeAreaView style={styles.container} >
             <BtnGoBack nav={navigation} />
-            <Header {...dataDetails} director={dataCredits?.crew} {...mockFilmsDetails.header} />
+            <Header {...dataDetails} director={dataCredits?.crew} {...mockFilmsDetails.header} id={id} />
             <Synopsis {...dataDetails} {...mockFilmsDetails.synopsis} />
             <Cast cast={dataCredits?.cast} {...mockFilmsDetails.cast} />
         </SafeAreaView>
