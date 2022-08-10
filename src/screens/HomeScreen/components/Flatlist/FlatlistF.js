@@ -5,6 +5,7 @@ import FilmesCP from "./FlatListComponent/FlatlistComponent";
 import styles from './style'
 import { FilmesHeader } from "../HeaderFilms/HeaderCP";
 import { api } from "../../../../service/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function FlatFilmes(){
     const navigation = useNavigation()
@@ -21,39 +22,34 @@ export default function FlatFilmes(){
     }).catch(err => console.log(`Opa, erro nisso aqui ${err}`))
     } 
 
-    useEffect(() => {
-        getMovies()
-    }, [])
-
     const [name, setName] = useState('')
     const [userName, setUserName] = useState('')
-    const [sessionId, setSessionId] = useState('')
 
     const getData = async () => {
         try {
-          const value = await AsyncStorage.getItem('@session')
+          const value = await AsyncStorage?.getItem('@session')
           if(value !== null) {
-            setSessionId(value)
+            getUser(value)
           }
         } catch(e) {
-          console.log(e)
+            console.log('storege :' + e)
         }
       }
 
-    const getUser = async () => {
+    const getUser = async (sessionId) => {
         await api.get(`/account?&session_id=${sessionId}`).then(
             response => {
-                //console.log(response.data)
                 setName(response?.data?.name)
                 setUserName(response?.data?.username)
             }
         ).catch(error => {
-            console.log(error)
+            console.log('api: ' + error)
         })
     }
 
     useEffect(() => {
-        getUser()
+        getMovies()
+        getData()
     }, [])
 
     const renderItem = ({ item }) => (
