@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style'
 import { apiImage } from '../../../../service/api';
 import transformInAround from './transformInAround';
-import ImgWindow from './imgWindow';
+import ImgWindow from './ImgWindow';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default FilmsDetails = ({ title, runtime, backdrop_path, poster_path, popularity, vote_average, release_date, director, min, directorBy, directorDefault }) => {

@@ -5,9 +5,7 @@ export const RequestToken = async () => {
   try {
     const response = await api.get(`/authentication/token/new?`);
     return response.data.request_token;
-  } catch (error) {
-    console.log('   :', error);
-  }
+  } catch (error) {}
 };
 
 export const LoginRequest = async (username, password, requestToken) => {
@@ -21,20 +19,18 @@ export const LoginRequest = async (username, password, requestToken) => {
       },
     );
     return validateToken?.data.request_token;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const CreateSession = async requestToken => {
   try {
-    const sessionResult = await api.post('/authentication/session/new?', {
-      request_token: requestToken,
-    });
-    return sessionResult?.data.session_id;
-  } catch (error) {
-    // console.log('   :', error);
-  }
+    const sessionResult = await api
+      .post('/authentication/session/new?', {
+        request_token: requestToken,
+      })
+      .then(res => res?.data.session_id);
+    return sessionResult;
+  } catch (error) {}
 };
 
 // .then(res => {
