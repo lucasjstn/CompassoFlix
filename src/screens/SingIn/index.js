@@ -25,18 +25,18 @@ import {
 import {KeepToken} from '../../service/storage';
 import styles from '../SingIn/styles';
 import Banner from './components/Banner/index';
+import InputGrey from './components/InputGrey';
 import {height, width} from './consts';
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [color, setColor] = useState(false);
   const [view, setView] = useState(0);
   const [requestToken, setRequestToken] = useState(null);
-  const [username, setUsername] = useState('lucasjstn');
-  const [password, setPassword] = useState('192810');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loginAttempting, setLoginAttempt] = useState(false);
-  const {valor, isLogged, setIsLogged, sessionId, setSessionId} =
-    useContext(AuthContext);
+  const {valor, isLogged, setIsLogged} = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -58,16 +58,15 @@ const SignIn = () => {
   }, [requestToken, loginAttempting]);
 
   async function getLoginRequest() {
-    var createdSessionId = '';
     const validatedToken = await LoginRequest(username, password, requestToken);
-    if (validatedToken) {
-      createdSessionId = await CreateSession(requestToken);
+    const createdSessionId = await CreateSession(validatedToken);
+    if (validatedToken && createdSessionId) {
       setUsername('');
       setPassword('');
       setRequestToken(validatedToken);
       setLoginAttempt(false);
-      setSessionId(createdSessionId);
       KeepToken('@token', validatedToken);
+      KeepToken('@session', createdSessionId);
       setIsLogged(true);
     } else {
       setErrorMessage('Usuário ou senha inválidos');
@@ -82,7 +81,6 @@ const SignIn = () => {
       //settimeout so pra garantir que vai mostrar o tratamento do usuário
       if (resultado) {
         setRequestToken(resultado);
-        // console.log(resultado);
       } else {
       }
     }, 2000); //settimeout so pra garantir que vai mostrar o tratamento do usuário
@@ -98,7 +96,6 @@ const SignIn = () => {
     const isEmpty = isEmptyChecker(username, password);
     const isValidUsername = isValidUsernameChecker(username);
     const isValidPassword = isValidPasswordChecker(password);
-    // console.log(isEmpty);
     if (isEmpty === false) {
       ClearMessage();
       setErrorMessage('Nenhum dos campos podem estar vazios :(');
@@ -110,7 +107,6 @@ const SignIn = () => {
       setErrorMessage('O campo de senha deve ter no mínimo 5 caracteres.');
       return ClearMessage();
     }
-
     getLoginRequest();
     setLoginAttempt(true);
   };
@@ -123,12 +119,6 @@ const SignIn = () => {
       <View style={[styles.container, {width: width, height: height}]}>
         <Banner loading={isLoading} />
 
-        <Image
-          style={[styles.logo]}
-          width={0.54 * width}
-          height={0.25 * height}
-          source={require('../../../assets/logo.png')}
-        />
         {isLoading ? (
           <ActivityIndicator
             style={styles.loadingIndicator}
@@ -154,40 +144,16 @@ const SignIn = () => {
                 ]}>
                 {errorMessage}
               </Text>
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <TextInput
-                  placeholderTextColor="#ffffff"
-                  placeholder="e-mail"
-                  style={styles.entriesInput}
-                  autoCapitalize="none"
-                  value={username}
-                  onChangeText={setUsername}
-                  maxLength={20}
-                />
-                <EvilIcons
-                  style={{position: 'absolute', left: 100}}
-                  name="user"
-                  size={20}
-                  color={'#ffffff80'}
-                />
-              </View>
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <TextInput
-                  placeholderTextColor="#ffffff"
-                  placeholder="senha"
-                  secureTextEntry={true}
-                  style={styles.entriesInput}
-                  autoCapitalize="none"
-                  value={password}
-                  onChangeText={setPassword}
-                />
-                <EvilIcons
-                  style={{position: 'absolute', left: 100}}
-                  name="lock"
-                  size={20}
-                  color={'#ffffff80'}
-                />
-              </View>
+              <InputGrey
+                isPassword={false}
+                value={username}
+                onChangeText={setUsername}
+              />
+              <InputGrey
+                isPassword={true}
+                value={password}
+                onChangeText={setPassword}
+              />
               {!loginAttempting ? (
                 <TouchableOpacity
                   style={styles.botaologin}

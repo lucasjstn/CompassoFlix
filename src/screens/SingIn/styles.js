@@ -27,10 +27,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 7,
     alignSelf: 'center',
-    color: 'white',
+    color: '#a2a2a2',
     // fontWeight: 'bold',
-    backgroundColor: '#c4c4c4',
-    opacity: 0.4,
+    backgroundColor: '#454545',
+    // opacity: 0.4,
     width: 243,
   },
   textentrar: {
@@ -40,15 +40,16 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    alignSelf: 'center',
+    // alignSelf: 'center',
     top: height * 0.25,
+    left: '25%',
   },
   textlogin: {
     alignSelf: 'center',
     color: 'white',
     top: -30,
     fontWeight: 'bold',
-    fontFamily: 'Open Sans',
+    fontFamily: 'OpenSans-Regular',
     fontSize: 24,
   },
   container: {

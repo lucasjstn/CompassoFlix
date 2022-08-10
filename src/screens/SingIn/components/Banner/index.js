@@ -1,8 +1,9 @@
 /* eslint-disable no-lone-blocks */
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import Svg, {ClipPath, Image, Polygon} from 'react-native-svg';
+import Svg, {ClipPath, Image, Polygon, Rect} from 'react-native-svg';
 import {height, width} from '../../consts';
+import styles from '../../styles';
 
 const Banner = ({loading}) => {
   const [count, setCount] = useState(0);
@@ -23,7 +24,7 @@ const Banner = ({loading}) => {
           } else {
             setCount(0);
           }
-        }, 10)
+        }, 50)
       : null;
   }
 
@@ -143,12 +144,33 @@ const Banner = ({loading}) => {
           clipRule="nonzero"
           x={0}
           y={70}
-          width={width * 0.754}
+          width={width * 0.783}
           height={height * 0.48}
           preserveAspectRatio="xMidYMid meet"
           opacity={count === 4 ? '0.70' : '0.50'}
           href={require('../../../../../assets/17.png')}
           clipPath="url(#mecbeth)"
+        />
+      </Svg>
+      <Svg style={styles.logo}>
+        <ClipPath id="logo">
+          <Rect
+            fill={'white'}
+            x={0}
+            y={0}
+            width={0.54 * width}
+            height={0.25 * height}
+          />
+        </ClipPath>
+        <Image
+          preserveAspectRatio="xMidYMid meet"
+          clipPath="url(#logo)"
+          x={0}
+          y={0}
+          // style={[styles.logo]}
+          width={0.54 * width}
+          height={0.25 * height}
+          href={require('../../../../../assets/logo.png')}
         />
       </Svg>
     </View>
