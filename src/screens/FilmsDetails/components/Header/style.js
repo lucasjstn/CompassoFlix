@@ -14,11 +14,16 @@ const styles = StyleSheet.create({
         height: relativeWidth(160),
         opacity: .7
     },
-    frontCover: {
+    frontCoverBtn: {
         width: relativeWidth(116),
         height: relativeHeight(182),
         marginTop: relativeHeight(100),
         marginLeft: relativeWidth(20),
+        position: 'absolute'
+    },
+    frontCover: {
+        width: relativeWidth(116),
+        height: relativeHeight(182),
         borderRadius: 10
     },
     mainWrapper: {
