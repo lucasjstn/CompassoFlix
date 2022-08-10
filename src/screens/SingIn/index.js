@@ -32,8 +32,8 @@ const SignIn = () => {
   const [color, setColor] = useState(false);
   const [view, setView] = useState(0);
   const [requestToken, setRequestToken] = useState(null);
-  const [username, setUsername] = useState('lucasjstn');
-  const [password, setPassword] = useState('192810');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [loginAttempting, setLoginAttempt] = useState(false);
   const {valor, isLogged, setIsLogged} = useContext(AuthContext);
