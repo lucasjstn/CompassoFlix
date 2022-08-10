@@ -25,6 +25,7 @@ import {
 import {KeepToken} from '../../service/storage';
 import styles from '../SingIn/styles';
 import Banner from './components/Banner/index';
+import InputGrey from './components/InputGrey';
 import {height, width} from './consts';
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -118,12 +119,6 @@ const SignIn = () => {
       <View style={[styles.container, {width: width, height: height}]}>
         <Banner loading={isLoading} />
 
-        <Image
-          style={[styles.logo]}
-          width={0.54 * width}
-          height={0.25 * height}
-          source={require('../../../assets/logo.png')}
-        />
         {isLoading ? (
           <ActivityIndicator
             style={styles.loadingIndicator}
@@ -149,40 +144,16 @@ const SignIn = () => {
                 ]}>
                 {errorMessage}
               </Text>
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <TextInput
-                  placeholderTextColor="#a2a2a2"
-                  placeholder="e-mail"
-                  style={styles.entriesInput}
-                  autoCapitalize="none"
-                  value={username}
-                  onChangeText={setUsername}
-                  maxLength={20}
-                />
-                <EvilIcons
-                  style={{position: 'absolute', left: 100}}
-                  name="user"
-                  size={20}
-                  color={'#ffffff80'}
-                />
-              </View>
-              <View style={{alignItems: 'center', justifyContent: 'center'}}>
-                <TextInput
-                  placeholderTextColor="#a2a2a2"
-                  placeholder="senha"
-                  secureTextEntry={true}
-                  style={styles.entriesInput}
-                  autoCapitalize="none"
-                  value={password}
-                  onChangeText={setPassword}
-                />
-                <EvilIcons
-                  style={{position: 'absolute', left: 100}}
-                  name="lock"
-                  size={20}
-                  color={'#ffffff80'}
-                />
-              </View>
+              <InputGrey
+                isPassword={false}
+                value={username}
+                onChangeText={setUsername}
+              />
+              <InputGrey
+                isPassword={true}
+                value={password}
+                onChangeText={setPassword}
+              />
               {!loginAttempting ? (
                 <TouchableOpacity
                   style={styles.botaologin}

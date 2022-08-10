@@ -40,15 +40,16 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    alignSelf: 'center',
+    // alignSelf: 'center',
     top: height * 0.25,
+    left: '25%',
   },
   textlogin: {
     alignSelf: 'center',
     color: 'white',
     top: -30,
     fontWeight: 'bold',
-    fontFamily: 'Open Sans',
+    fontFamily: 'OpenSans-Regular',
     fontSize: 24,
   },
   container: {

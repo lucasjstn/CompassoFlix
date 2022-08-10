@@ -8,11 +8,9 @@ import SignIn from '../screens/SingIn';
 import {AuthContext} from '../context/AuthContext';
 import {ActivityIndicator, Image, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {ClearToken} from '../service/storage';
 import Banner from '../screens/SingIn/components/Banner';
 import {height, width} from '../screens/SingIn/consts';
 import styles from '../screens/SingIn/styles';
-import {CreateSession} from '../service/requests/LoginRequest';
 
 const Router = () => {
   const {isLogged, setIsLogged, color, setColor} = useContext(AuthContext);
@@ -34,13 +32,13 @@ const Router = () => {
     //3. salve o arquivo
     //4. descomente a getPersistedToken e re-abra o app
     // ClearToken('@token');
+    // ClearToken('@session');
   }, []);
 
   const getPersistedToken = async () => {
     try {
       const token = await AsyncStorage.getItem('@token');
       if (token) {
-        CreateSession(token);
         setIsLogged(true);
         setIsLoading(false);
         return;
