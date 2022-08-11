@@ -27,6 +27,6 @@ export default FilmsDetails = ({route, navigation}) => {
       <Cast cast={dataCredits?.cast} {...mockFilmsDetails.cast} />
     </SafeAreaView>
   ) : (
-    <Loading fullScreen={false} />
+    <Loading />
   );
 };
