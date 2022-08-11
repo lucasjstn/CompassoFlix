@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, FlatList, View, LogBox } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import FilmesCP from "./FlatListComponent/FlatlistComponent";
 import styles from './style'
 import { FilmesHeader } from "../HeaderFilms/HeaderCP";
 import { api } from "../../../../service/api";
+
+LogBox.ignoreAllLogs();
 
 export default function FlatFilmes(){
     const navigation = useNavigation()
