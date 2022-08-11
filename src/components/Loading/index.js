@@ -1,20 +1,16 @@
 import React from 'react';
-import {View, ActivityIndicator} from 'react-native';
+import {View} from 'react-native';
+import AnimatedLottieView from 'lottie-react-native';
+import styles from './style';
 
-const Loading = ({fullScreen = true}) => {
-  return fullScreen ? (
-    <View
-      style={{
-        flex: 1,
-        backgroundColor: 'blue',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-      }}>
-      <ActivityIndicator size={'large'} color={'white'} animating={true} />
-    </View>
-  ) : (
-    <ActivityIndicator size={'large'} color={'red'} animating={true}  />
-  );
-};
+const Loading = () => (
+  <View style={styles.container}>
+    <AnimatedLottieView
+      source={require('../../../assets/lottieAnimates/load.json')}
+      autoPlay={true}
+      loop={true}
+    />
+  </View>
+);
+
 export default Loading;
