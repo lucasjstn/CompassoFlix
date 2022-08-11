@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { ActivityIndicator, FlatList, View, LogBox } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import FilmesCP from "./FlatListComponent/FlatlistComponent";
 import styles from './style'
 import { FilmesHeader } from "../HeaderFilms/HeaderCP";
 import { api } from "../../../../service/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+LogBox.ignoreAllLogs();
 
 export default function FlatFilmes(){
     const navigation = useNavigation()
@@ -14,6 +16,7 @@ export default function FlatFilmes(){
     const [pagina, SetPagina] = useState(1)
     
     const getMovies = async () =>{
+
         await api.get(`/movie/popular?&language=pt-BR&page=${pagina}`)
     .then((res) => {
         const current = res.data.results
@@ -45,6 +48,16 @@ export default function FlatFilmes(){
         ).catch(error => {
             console.log('api: ' + error)
         })
+
+        setTimeout(async () => {
+            await api.get(`/movie/popular?&language=pt-BR&page=${pagina}`)
+            .then((res) => {
+                const current = res.data.results
+                SetMovies(prev => [...prev, ...current])
+                SetPagina(prev => prev + 1)
+            }).catch(err => console.log(`Opa, erro nisso aqui ${err}`))
+        }, 2000)
+
     }
 
     useEffect(() => {
