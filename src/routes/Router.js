@@ -62,7 +62,7 @@ const Router = () => {
           style={[styles.logo]}
           width={0.54 * width}
           height={0.25 * height}
-          source={require('./../assets/logo.png')}
+          source={require('../../assets/logo.png')}
         />
       </View>
     );
