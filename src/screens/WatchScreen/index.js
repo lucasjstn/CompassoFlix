@@ -3,8 +3,6 @@ import YoutubePlayer, {getYoutubeMeta} from 'react-native-youtube-iframe';
 import {api} from '../../service/api';
 
 export default function WatchScreen({id}) {
-  console.log('renderizou video');
-  const [hasError, setHasError] = useState(false);
   const [videoKey, setVideoKey] = useState({});
   const [metaRanger, setMetaRanger] = useState({height: 200, width: 200});
   const [playing, setPlaying] = useState(false);
@@ -23,7 +21,6 @@ export default function WatchScreen({id}) {
       const meta = await getYoutubeMeta(videoKey.key);
       setMetaRanger({height: meta?.height, width: meta?.width});
     } catch (error) {
-      setHasError(true);
       console.log(error);
     }
   };

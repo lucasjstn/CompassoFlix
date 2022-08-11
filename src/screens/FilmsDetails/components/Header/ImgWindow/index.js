@@ -7,8 +7,6 @@ import WatchScreen from '../../../../WatchScreen';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default function ImgWindow({id, visible, setVisible}) {
-  console.log('renderizou modal');
-
   return (
     <Modal animationType="fade" transparent={true} visible={visible}>
       <View style={styles.centeredView}>

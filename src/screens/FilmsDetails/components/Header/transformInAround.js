@@ -1,6 +1,5 @@
 export default function transformInAround(number) {
     const numberTrunc = Math?.trunc(number)
-    console.log(numberTrunc)
     let string = String(numberTrunc)
     if (numberTrunc < 1000) {
         return numberTrunc
