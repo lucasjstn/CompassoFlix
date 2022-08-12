@@ -27,13 +27,7 @@ const Router = () => {
 
   useEffect(() => {
     getPersistedToken();
-    //caso queira começar da tela de login novamente após logado,
-    //1. comente a função getPersistedToken,
-    //2. descomente a função ClearToken
-    //3. salve o arquivo
-    //4. descomente a getPersistedToken e re-abra o app
-    //ClearToken('@token');
-    //ClearToken('@session');
+
   }, []);
 
   const getPersistedToken = async () => {

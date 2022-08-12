@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-import { TextBold, TextRegular } from '../../components/Text';
+import {TextBold, TextRegular} from '../../components/Text';
 import {AuthContext} from '../../context/AuthContext';
 import {
   isEmptyChecker,
@@ -78,13 +78,7 @@ const SignIn = () => {
 
   async function getRequestToken() {
     const resultado = await RequestToken();
-    setTimeout(() => {
-      //settimeout so pra garantir que vai mostrar o tratamento do usuário
-      if (resultado) {
-        setRequestToken(resultado);
-      } else {
-      }
-    }, 2000); //settimeout so pra garantir que vai mostrar o tratamento do usuário
+    setRequestToken(resultado);
   }
 
   const ClearMessage = () => {

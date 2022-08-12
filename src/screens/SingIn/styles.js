@@ -39,12 +39,13 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    // alignSelf: 'center',
+    alignSelf: 'center',
     top: height * 0.25,
-    left: '25%',
+    left: width * 0.25,
   },
   textlogin: {
     alignSelf: 'center',
+    left: -3,
     color: 'white',
     top: -30,
     fontSize: 24,

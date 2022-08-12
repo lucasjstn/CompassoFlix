@@ -154,20 +154,13 @@ const Banner = ({loading}) => {
       </Svg>
       <Svg style={styles.logo}>
         <ClipPath id="logo">
-          <Rect
-            fill={'white'}
-            x={0}
-            y={0}
-            width={0.54 * width}
-            height={0.25 * height}
-          />
+          <Rect x={0} y={0} width={0.54 * width} height={0.25 * height} />
         </ClipPath>
         <Image
           preserveAspectRatio="xMidYMid meet"
           clipPath="url(#logo)"
-          x={0}
+          x={-9}
           y={0}
-          // style={[styles.logo]}
           width={0.54 * width}
           height={0.25 * height}
           href={require('../../../../../assets/logo.png')}
