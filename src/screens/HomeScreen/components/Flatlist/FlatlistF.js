@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../../../components/Loading';
 
 export default function FlatFilmes() {
-  const [scroll, setScroll] = useState(true);
+  const [scroll, setScroll] = useState(false);
   const [movies, SetMovies] = useState('');
   const [pagina, SetPagina] = useState(1);
   const [metaNames, setMetaNames] = useState({
