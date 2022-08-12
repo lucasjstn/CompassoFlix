@@ -64,6 +64,7 @@ export default function FlatFilmes() {
 
   useEffect(() => {
     getData();
+    getMovies();
   }, []);
 
   return load ? (
