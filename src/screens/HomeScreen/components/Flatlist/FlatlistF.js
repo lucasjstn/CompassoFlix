@@ -63,7 +63,6 @@ export default function FlatFilmes() {
   }, [pagina]);
 
   useEffect(() => {
-    getMovies();
     getData();
   }, []);
 
