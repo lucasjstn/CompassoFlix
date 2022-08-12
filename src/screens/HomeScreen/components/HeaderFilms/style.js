@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
     txt: {
         fontSize: 18,
         color: '#FFFFFF',
-        top: 40,
-        fontWeight: 'bold'
+        top: 40
     },
     user: {
         color: '#E9A6A6'
