@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import { TextBold, TextRegular } from '../../components/Text';
 import {AuthContext} from '../../context/AuthContext';
 import {
   isEmptyChecker,
@@ -128,11 +129,11 @@ const SignIn = () => {
         ) : (
           <>
             <View style={{opacity: view}}>
-              <Text style={styles.textlogin}>Login</Text>
-              <Text style={styles.textentrar}>
+              <TextBold style={styles.textlogin}>Login</TextBold>
+              <TextRegular style={styles.textentrar}>
                 Entre na sua conta para continuar.
-              </Text>
-              <Text
+              </TextRegular>
+              <TextRegular
                 style={[
                   styles.textentrar,
                   {
@@ -143,7 +144,7 @@ const SignIn = () => {
                   },
                 ]}>
                 {errorMessage}
-              </Text>
+              </TextRegular>
               <InputGrey
                 isPassword={false}
                 value={username}
@@ -160,7 +161,7 @@ const SignIn = () => {
                   onPress={() => {
                     LoginHandler();
                   }}>
-                  <Text style={styles.botaotexto}>Entrar</Text>
+                  <TextBold style={styles.botaotexto}>Entrar</TextBold>
                 </TouchableOpacity>
               ) : (
                 <ActivityIndicator
