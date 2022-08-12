@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   },
   botaotexto: {
     color: '#1F1D36',
-    fontWeight: 'bold',
   },
   botaologin: {
     backgroundColor: '#E9A6A6',
@@ -48,8 +47,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: 'white',
     top: -30,
-    fontWeight: 'bold',
-    fontFamily: 'OpenSans-Regular',
     fontSize: 24,
   },
   container: {
