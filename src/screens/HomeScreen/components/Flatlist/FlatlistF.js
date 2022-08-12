@@ -5,16 +5,17 @@ import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
 import {api} from '../../../../service/api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loading from '../../../../components/Loading';
 
 export default function FlatFilmes() {
-  console.log('renderizou');
-  const [scroll, setScroll] = useState(false);
+  const [scroll, setScroll] = useState(true);
   const [movies, SetMovies] = useState('');
   const [pagina, SetPagina] = useState(1);
   const [metaNames, setMetaNames] = useState({
     name: undefined,
     username: 'none',
   });
+  const [load, setLoad] = useState(false);
 
   const getData = async () => {
     try {
@@ -27,7 +28,7 @@ export default function FlatFilmes() {
     }
   };
 
-  const getUser = async (sessionId) => {
+  const getUser = async sessionId => {
     const res = await api.get(`/account?&session_id=${sessionId}`);
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
@@ -51,7 +52,10 @@ export default function FlatFilmes() {
         SetMovies(prev => [...prev, ...current]);
       })
       .catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-      .finally(() => setScroll(false));
+      .finally(() => {
+        setScroll(false)
+        setLoad(false)
+      });
   };
 
   useEffect(() => {
@@ -63,15 +67,15 @@ export default function FlatFilmes() {
     getData();
   }, []);
 
-  return (
+  return load ? (
+    <Loading />
+  ) : (
     <View style={styles.conteinerBackGround}>
       <FilmesHeader name={metaNames.name} userName={metaNames.username} />
       <View style={styles.conteinerFlatList}>
         <FlatList
           data={movies}
-          renderItem={({item}) => (
-            <FilmesCP {...item} />
-          )}
+          renderItem={({item}) => <FilmesCP {...item} />}
           keyExtractor={(_, index) => index}
           numColumns={4}
           ListFooterComponent={<ActivityIndicator color={'red'} />}
