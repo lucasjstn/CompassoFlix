@@ -15,7 +15,7 @@ export default function FlatFilmes() {
     name: undefined,
     username: 'none',
   });
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
 
   const getData = async () => {
     try {
