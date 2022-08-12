@@ -59,12 +59,6 @@ const Router = () => {
           size={40}
           color={color ? 'red' : 'blue'}
         />
-        <Image
-          style={[styles.logo]}
-          width={0.54 * width}
-          height={0.25 * height}
-          source={require('../../assets/logo.png')}
-        />
       </View>
     );
   }
