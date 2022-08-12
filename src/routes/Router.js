@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Banner from '../screens/SingIn/components/Banner';
 import {height, width} from '../screens/SingIn/consts';
 import styles from '../screens/SingIn/styles';
+import {ClearToken} from '../service/storage';
 
 const Router = () => {
   const {isLogged, setIsLogged, color, setColor} = useContext(AuthContext);
@@ -31,8 +32,8 @@ const Router = () => {
     //2. descomente a função ClearToken
     //3. salve o arquivo
     //4. descomente a getPersistedToken e re-abra o app
-    // ClearToken('@token');
-    // ClearToken('@session');
+    //ClearToken('@token');
+    //ClearToken('@session');
   }, []);
 
   const getPersistedToken = async () => {
@@ -62,7 +63,7 @@ const Router = () => {
           style={[styles.logo]}
           width={0.54 * width}
           height={0.25 * height}
-          source={require('./../assets/logo.png')}
+          source={require('../../assets/logo.png')}
         />
       </View>
     );

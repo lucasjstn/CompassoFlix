@@ -1,86 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, FlatList, View, LogBox } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import FilmesCP from "./FlatListComponent/FlatlistComponent";
-import styles from './style'
-import { FilmesHeader } from "../HeaderFilms/HeaderCP";
-import { api } from "../../../../service/api";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {useEffect, useState, memo} from 'react';
+import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
+import FilmesCP from './FlatListComponent/FlatlistComponent';
+import styles from './style';
+import {FilmesHeader} from '../HeaderFilms/HeaderCP';
+import {api} from '../../../../service/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loading from '../../../../components/Loading';
 
-LogBox.ignoreAllLogs();
+export default function FlatFilmes() {
+  const [scroll, setScroll] = useState(true);
+  const [movies, SetMovies] = useState('');
+  const [pagina, SetPagina] = useState(1);
+  const [metaNames, setMetaNames] = useState({
+    name: undefined,
+    username: 'none',
+  });
+  const [load, setLoad] = useState(false);
 
-export default function FlatFilmes(){
-    const navigation = useNavigation()
-    const numColumns = 4;
-    const [movies, SetMovies] = useState('')
-    const [pagina, SetPagina] = useState(1)
-    
-    const getMovies = async () =>{
-        setTimeout(async () => {
-            await api.get(`/movie/popular?&language=pt-BR&page=${pagina}`)
-            .then((res) => {
-                const current = res.data.results
-                SetMovies(prev => [...prev, ...current])
-                SetPagina(prev => prev + 1)
-            }).catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-        }, 2000)
-    } 
-
-    const [name, setName] = useState('')
-    const [userName, setUserName] = useState('')
-
-    const getData = async () => {
-        try {
-          const value = await AsyncStorage?.getItem('@session')
-          if(value !== null) {
-            getUser(value)
-          }
-        } catch(e) {
-            console.log('storege :' + e)
-        }
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage?.getItem('@session');
+      if (value !== null) {
+        getUser(value);
       }
-
-    const getUser = async (sessionId) => {
-        await api.get(`/account?&session_id=${sessionId}`).then(
-            response => {
-                setName(response?.data?.name)
-                setUserName(response?.data?.username)
-            }
-        ).catch(error => {
-            console.log('api: ' + error)
-        })
+    } catch (e) {
+      console.log('storege: ' + e);
     }
+  };
 
-    useEffect(() => {
-        getMovies()
-        getData()
-    }, [])
+  const getUser = async sessionId => {
+    const res = await api.get(`/account?&session_id=${sessionId}`);
+    try {
+      setMetaNames({name: res?.data?.name, username: res?.data?.username});
+    } catch (error) {
+      console.log('api: ' + error);
+    }
+  };
 
-    const renderItem = ({ item }) => (
-        <FilmesCP onPress={() => {
-            navigation.navigate("Details", { 
-                id: item.id
-            })
-        }}
-        rating={item.vote_average}
-        image={item.poster_path}
+  const scrollLoad = () => {
+    if (scroll) return null;
+
+    setScroll(true);
+    SetPagina(prev => prev + 1);
+  };
+
+  const getMovies = async () => {
+    await api
+      .get(`/movie/popular?&language=pt-BR&page=${pagina}`)
+      .then(res => {
+        const current = res.data.results;
+        SetMovies(prev => [...prev, ...current]);
+      })
+      .catch(err => console.log(`Opa, erro nisso aqui ${err}`))
+      .finally(() => {
+        setScroll(false)
+        setLoad(false)
+      });
+  };
+
+  useEffect(() => {
+    if (scroll) setTimeout(() => getMovies(), 3000);
+  }, [pagina]);
+
+  useEffect(() => {
+    getMovies();
+    getData();
+  }, []);
+
+  return load ? (
+    <Loading />
+  ) : (
+    <View style={styles.conteinerBackGround}>
+      <FilmesHeader name={metaNames.name} userName={metaNames.username} />
+      <View style={styles.conteinerFlatList}>
+        <FlatList
+          data={movies}
+          renderItem={({item}) => <FilmesCP {...item} />}
+          keyExtractor={(_, index) => index}
+          numColumns={4}
+          ListFooterComponent={<ActivityIndicator color={'red'} />}
+          onEndReached={scrollLoad}
+          onEndReachedThreshold={0.2}
         />
-);
-
-    return (
-        <View style={styles.conteinerBackGround}>
-            <FilmesHeader name={name} userName={userName}/>
-            <View style={styles.conteinerFlatList}>
-                <FlatList
-                data={movies}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
-                numColumns={numColumns}
-                ListFooterComponent={<ActivityIndicator color={'red'}/>}
-                onEndReached={getMovies}
-                onEndReachedThreshold={0.01}
-                />
-            </View>
-        </View>
-    );
+      </View>
+    </View>
+  );
 }

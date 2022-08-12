@@ -5,20 +5,21 @@ import styles from './style';
 import {apiImage} from '../../../../service/api';
 import transformInAround from './transformInAround';
 import ImgWindow from './ImgWindow';
+import {TextBold, TextRegular, TextSemiBold} from '../../../../components/Text';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default FilmsDetails = ({
   id,
+  min,
   title,
   runtime,
-  backdrop_path,
-  poster_path,
+  director,
+  directorBy,
   popularity,
+  poster_path,
   vote_average,
   release_date,
-  director,
-  min,
-  directorBy,
+  backdrop_path,
   directorDefault,
 }) => {
   const [information, setInformation] = useState(0);
@@ -29,13 +30,13 @@ export default FilmsDetails = ({
   );
 
   const searchPeople = array => {
-    return array?.filter(obj => obj?.job === 'Director');
+    return array?.find(obj => obj?.job === 'Director');
   };
 
   useEffect(() => {
     if (title?.length > 14) {
       setInformation(1);
-      setTimeout(() => setInformation(0), 1500);
+      setTimeout(() => setInformation(0), 2000);
     }
   }, [title]);
 
@@ -75,50 +76,52 @@ export default FilmsDetails = ({
                 justifyContent: 'center',
               }}>
               <View style={[styles.popUpWrapper, {opacity: information}]}>
-                <Text style={styles.popUpTitle}>
+                <TextBold style={styles.popUpTitle}>
                   Pressione para mostrar o título completo
-                </Text>
+                </TextBold>
                 <View style={styles.bottomPopUp}></View>
               </View>
 
               <View style={[styles.popUpWrapper, {opacity: press ? 1 : 0}]}>
-                <Text style={styles.popUpTitle}>{title}</Text>
+                <TextBold style={styles.popUpTitle}>{title}</TextBold>
                 <View style={styles.bottomPopUp}></View>
               </View>
 
-              <Text
+              <TextBold
                 onLongPress={setPress}
                 onPressOut={setPress}
                 style={styles.frontCoverTitle}>
                 {title?.length < 14 ? title : `${title?.slice(0, 14)}...`}
-                <Text style={styles.frontCoverLaunch}>
+                <TextRegular style={styles.frontCoverLaunch}>
                   {' '}
                   {release_date?.slice(0, 4)}
-                </Text>
-              </Text>
+                </TextRegular>
+              </TextBold>
             </View>
 
-            <Text style={styles.frontCoverMin}>
+            <TextRegular style={styles.frontCoverMin}>
               {runtime} {min}
-            </Text>
+            </TextRegular>
           </View>
 
-          <Text style={styles.directorText}>
+          <TextRegular style={styles.directorText}>
             {directorBy}{' '}
-            <Text style={{fontWeight: '700'}}>
-              {searchPeople(director)?.[0]?.name || directorDefault}
-            </Text>
-          </Text>
+            <TextBold style={{fontFamily: 'OpenSans-Ligth'}}>
+              {searchPeople(director).name || directorDefault}
+            </TextBold>
+          </TextRegular>
 
           <View style={styles.ratingWrapper}>
-            <Text style={styles.rating}>{vote_average?.toFixed(1)}/10</Text>
+            <TextRegular style={styles.rating}>
+              {vote_average?.toFixed(1)}/10
+            </TextRegular>
 
             <View style={styles.votesWrapper}>
               <Icon name="favorite" size={30} color="red" />
 
-              <Text style={styles.votesText}>
+              <TextRegular style={styles.votesText}>
                 {transformInAround(popularity)}
-              </Text>
+              </TextRegular>
             </View>
           </View>
         </View>
