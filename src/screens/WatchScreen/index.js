@@ -18,7 +18,7 @@ export default function WatchScreen({id}) {
 
   const getMetaData = async () => {
     try {
-      const meta = await getYoutubeMeta(videoKey.key);
+      const meta = await getYoutubeMeta(videoKey?.key);
       setMetaRanger({height: meta?.height, width: meta?.width});
     } catch (error) {
       console.log(error);
@@ -26,7 +26,7 @@ export default function WatchScreen({id}) {
   };
 
   useEffect(() => {
-    if (!videoKey.key) return;
+    if (!videoKey?.key) return;
     getMetaData();
   }, [videoKey]);
 
@@ -42,10 +42,10 @@ export default function WatchScreen({id}) {
 
   return (
     <YoutubePlayer
-      height={metaRanger.height * 1.8}
+      height={200}
       width={metaRanger.width * 1.8}
       play={playing}
-      videoId={videoKey.key}
+      videoId={videoKey?.key}
       onChangeState={onStateChange}
     />
   );
