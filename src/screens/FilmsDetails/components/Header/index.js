@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../../../service/api';
 import transformInAround from './transformInAround';
 import ImgWindow from './ImgWindow';
-import {TextBold, TextRegular, TextSemiBold} from '../../../../components/Text';
+import {TextBold, TextRegular} from '../../../../components/Text';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default FilmsDetails = ({

@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import { View, TouchableOpacity} from 'react-native';
 import styles from './style';
 import { TextRegular } from '../../../../components/Text';
 
@@ -18,7 +18,7 @@ export default Synopsis = ({
   return (
     <View style={styles.container}>
       <TextRegular style={styles.synopsisTitle}>{tagline || synopsisTitle}</TextRegular>
-      <TextRegular numberOfLines={aboutName ? 10 : 4} style={styles.synopsisContent}>
+      <TextRegular numberOfLines={aboutName ? 1000 : 4} style={styles.synopsisContent}>
         {overview}
       </TextRegular>
 
