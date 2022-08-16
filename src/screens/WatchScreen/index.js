@@ -39,7 +39,6 @@ export default function WatchScreen({id}) {
       setPlaying(false);
     }
   }, []);
-  <View></View>
 
   return (
     <YoutubePlayer
