@@ -32,11 +32,11 @@ const styles = StyleSheet.create({
     borderBottomColor: '#9C4A8B',
     width: relativeWidth(30),
     marginTop: -12,
-    marginBottom: 8,
+    marginBottom: relativeHeight(16),
   },
   actorWrapper: {
     flexDirection: 'row',
-    paddingVertical: relativeHeight(9),
+    paddingBottom: relativeHeight(16),
     alignItems: 'center',
     marginHorizontal: relativeWidth(20),
   },

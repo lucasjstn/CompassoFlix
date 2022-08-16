@@ -1,9 +1,11 @@
 import React, {memo} from 'react';
-import {TouchableOpacity, Text, View, Image} from 'react-native';
+import {TouchableOpacity, View, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import styles from './style';
 import {apiImage} from '../../../../../service/api';
 import {useNavigation} from '@react-navigation/native';
+import { TextRegular } from '../../../../../components/Text';
+
 
 const FilmesCP = memo(({vote_average, poster_path, id}) => {
   const navigation = useNavigation();
@@ -19,7 +21,7 @@ const FilmesCP = memo(({vote_average, poster_path, id}) => {
         />
       </TouchableOpacity>
       <Icon name="star" color={'red'} size={10} style={styles.icon} />
-      <Text style={styles.note}>{`${vote_average}/10`}</Text>
+      <TextRegular style={styles.note}>{`${vote_average}/10`}</TextRegular>
     </View>
   );
 });

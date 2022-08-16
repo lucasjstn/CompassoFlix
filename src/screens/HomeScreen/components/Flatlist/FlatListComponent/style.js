@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
     note: {
         fontSize: 9, 
         top: -7, 
-        left: 20
+        left: 20,
+        color:'white'
     }
 })
 
