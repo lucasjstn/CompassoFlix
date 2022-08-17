@@ -2,15 +2,12 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from '../screens/HomeScreen';
-import FilmsDetails from '../screens/FilmsDetails';
+import Home from './RouterTabBar';
 import SignIn from '../screens/SingIn';
 import {AuthContext} from '../context/AuthContext';
-import {ActivityIndicator, Image, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Banner from '../screens/SingIn/components/Banner';
-import {height, width} from '../screens/SingIn/consts';
-import styles from '../screens/SingIn/styles';
 import {ClearToken} from '../service/storage';
 
 const Router = () => {
@@ -65,11 +62,6 @@ const Router = () => {
             name="Home"
             options={{headerShown: false}}
             component={Home}
-          />
-          <AuthStack.Screen
-            name="Details"
-            options={{headerShown: false}}
-            component={FilmsDetails}
           />
         </AuthStack.Navigator>
       ) : (
