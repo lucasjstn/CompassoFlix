@@ -1,9 +1,9 @@
 import React from 'react';
-import TabBar from '../../routes/HomeStack';
+import FlatFilmes from './components/Flatlist/FlatlistF';
 
 const Home = () => {
     return (
-        <TabBar/> 
+        <FlatFilmes /> 
     )
 }
 

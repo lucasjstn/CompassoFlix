@@ -1,11 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FlatFilmes from "../screens/HomeScreen/components/Flatlist/FlatlistF";
-import FilmsDetails from "../screens/FilmsDetails/index"
+import SeriesScreen from "../screens/SeriesScreen";
+import SeriesDetails from "../screens/SeriesDetails";
 
 const TelaStack = createNativeStackNavigator();
 
-export default function Tela() {
+export default function SeriesStack() {
     return (
         <TelaStack.Navigator
             screenOptions={{
@@ -14,11 +14,11 @@ export default function Tela() {
         >
             <TelaStack.Screen 
                 name="FlatFilmes" 
-                component={FlatFilmes}
+                component={SeriesScreen}
             />
             <TelaStack.Screen 
                 name="Details" 
-                component={FilmsDetails}
+                component={SeriesDetails}
             />
         </TelaStack.Navigator>
     )
