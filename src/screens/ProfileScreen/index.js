@@ -3,6 +3,7 @@ import {SafeAreaView, View} from 'react-native';
 import TopFiveMovies from './components';
 import styles from './style';
 import getMovies from './getMovies';
+import SupProfile from './headerComponent';
 
 const ProfileScreen = () => {
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
@@ -11,9 +12,10 @@ const ProfileScreen = () => {
   const {data: filmsRated, isLoad: ratedLoad} = getMovies(
     `/account/13768649/rated/movies?&session_id=`,
   );
-
+    console.log(ProfileScreen)
   return (
     <SafeAreaView style={styles.container}>
+      <SupProfile/>
       <TopFiveMovies
         moviesList={filmsFavorite?.results}
         isSerie={false}
