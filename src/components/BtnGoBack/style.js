@@ -8,10 +8,6 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
-        position: 'absolute',
-        zIndex:1000,
-        marginLeft: 25,
-        marginTop: 15
     }
 })
 
