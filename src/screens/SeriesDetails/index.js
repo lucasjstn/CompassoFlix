@@ -1,10 +1,11 @@
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
+import styles from './style';
 
 const SeriesDetails = () => {
   return (
-    <SafeAreaView>
-      <Text>Tela Séries Detalhes</Text>
+    <SafeAreaView style={styles.container}>
+      <Text>asjdajsd</Text>
     </SafeAreaView>
   );
 };

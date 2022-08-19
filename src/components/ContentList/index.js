@@ -4,11 +4,6 @@ import ListOfMoviesComponent from './FlatlistComponent';
 
 export default function ContentList({content, endProp, pageNumber}) {
 
-  // switch(numberOfColumns) {
-  //   case numberOfColumns > 500
-
-  // }
-
   return (
     <>
       <FlatList
