@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     container: {
         width: '93%',
         alignSelf:'center',
-        marginVertical: relativeHeight(16)
+        marginVertical: relativeHeight(16),
+        top: 380
     },
     topTextsWrapper: {
         flexDirection: 'row',
