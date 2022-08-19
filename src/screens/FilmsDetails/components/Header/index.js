@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity, Touchable, Text, TouchableHighlight} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../../../service/api';
@@ -56,16 +56,20 @@ export default FilmsDetails = ({
           source={{uri: `${baseUrl}/original${backdrop_path}`}}
           style={styles.poster}
         />
-
+        {/* <View> */}
         <TouchableOpacity
           style={styles.frontCoverBtn}
-          activeOpacity={0.6}
+          activeOpacity={0.9}
           onPress={setModalVisible}>
           <Image
             source={{uri: `${baseUrl}/w500${poster_path}`}}
             style={styles.frontCover}
           />
         </TouchableOpacity>
+        <TouchableOpacity style={styles.ratingButton} activeOpacity={0.8}>
+          <TextBold style={styles.ratingText}>Avalie agora</TextBold>
+        </TouchableOpacity>
+        {/* </View> */}
 
         <View style={styles.mainWrapper}>
           <View style={styles.mainTextWrapper}>
@@ -79,12 +83,12 @@ export default FilmsDetails = ({
                 <TextBold style={styles.popUpTitle}>
                   Pressione para mostrar o título completo
                 </TextBold>
-                <View style={styles.bottomPopUp}></View>
+                <View style={styles.bottomPopUp} />
               </View>
 
               <View style={[styles.popUpWrapper, {opacity: press ? 1 : 0}]}>
                 <TextBold style={styles.popUpTitle}>{title}</TextBold>
-                <View style={styles.bottomPopUp}></View>
+                <View style={styles.bottomPopUp} />
               </View>
 
               <TextBold
