@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity, Touchable, Text, TouchableHighlight} from 'react-native';
+import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../../../service/api';
@@ -24,6 +24,7 @@ export default FilmsDetails = ({
 }) => {
   const [information, setInformation] = useState(0);
   const [press, setPress] = useReducer(press => !press, false);
+  const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [modalVisible, setModalVisible] = useReducer(
     modalVisible => !modalVisible,
     false,
@@ -66,8 +67,16 @@ export default FilmsDetails = ({
             style={styles.frontCover}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.ratingButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.ratingButton}
+          activeOpacity={0.8}
+          onPress={() => setRatingModalVisible(true)}>
           <TextBold style={styles.ratingText}>Avalie agora</TextBold>
+          {ratingModalVisible ? (
+            <Modal onRequestClose={() => setRatingModalVisible(false)}>
+              <TextRegular>Imma modal</TextRegular>
+            </Modal>
+          ) : null}
         </TouchableOpacity>
         {/* </View> */}
 
