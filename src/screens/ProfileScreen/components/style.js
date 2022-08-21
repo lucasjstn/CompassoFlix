@@ -10,6 +10,51 @@ function relativeWidth(pixel) {
 }
 
 const styles = StyleSheet.create({
+  touchableWrapper: {
+    // backgroundColor: 'red',
+    width: '100%',
+    minHeight: height,
+  },
+  favoriteImageWrapper: {
+    width: relativeWidth(75),
+    height: relativeHeight(110),
+    borderRadius: 10,
+    marginVertical: relativeHeight(12 / 2),
+    marginHorizontal: relativeWidth(7),
+    // alignSelf
+  },
+  favoriteMoviesWrapper: {
+    position: 'absolute',
+    alignItems: 'center',
+    backgroundColor: 'grey',
+    flexDirection: 'row',
+    top: relativeHeight(157),
+    marginHorizontal: relativeWidth(14 / 2),
+    // display: 'flex',
+    // maxWidth: '9%',
+    flexWrap: 'wrap',
+    alignSelf: 'center',
+  },
+  greetingTextUserName: {
+    color: '#E9A6A6',
+    fontSize: relativeHeight(20),
+    lineHeight: relativeHeight(27),
+  },
+  greetingText: {
+    color: 'white',
+    fontSize: relativeHeight(20),
+    lineHeight: relativeHeight(27),
+    // backgroundColor: 'blue',
+
+    // textAlign: 'center',
+  },
+  greetingContainer: {
+    position: 'absolute',
+    top: relativeHeight(80),
+    textAlign: 'justify',
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
   userFavoritesContainer: {
     backgroundColor: 'black',
     flex: 1,

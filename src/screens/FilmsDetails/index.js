@@ -24,11 +24,7 @@ export default FilmsDetails = ({route, navigation}) => {
         id={id}
       />
       <Synopsis {...dataDetails} {...mockFilmsDetails.synopsis} />
-      {true ? (
-        <>
-          <Cast cast={dataCredits?.cast} {...mockFilmsDetails.cast} />
-        </>
-      ) : null}
+      <Cast cast={dataCredits?.cast} {...mockFilmsDetails.cast} />
     </SafeAreaView>
   ) : (
     <Loading />

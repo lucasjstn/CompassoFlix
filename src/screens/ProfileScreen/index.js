@@ -3,6 +3,7 @@ import {SafeAreaView, View} from 'react-native';
 import TopFiveMovies from './components';
 import styles from './style';
 import getMovies from './getMovies';
+import {favoriteMovies} from '../../mocks/favoriteMovies';
 
 const ProfileScreen = () => {
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
@@ -18,6 +19,7 @@ const ProfileScreen = () => {
         moviesList={filmsFavorite?.results}
         isSerie={false}
         isLoad={favoriteLoad}
+        favoriteMovies={true}
       />
       <View style={styles.line} />
       <TopFiveMovies
