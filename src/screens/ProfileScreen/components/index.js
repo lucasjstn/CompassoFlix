@@ -44,6 +44,7 @@ export default function TopFiveMovies({
 
             <BtnGoBack modal={toggle} />
             <View
+              key={'greetingContainer'}
               style={
                 favoriteMovies
                   ? styles.greetingContainer
@@ -53,20 +54,31 @@ export default function TopFiveMovies({
                 {favoriteMovies
                   ? [
                       'Filmes favoritos do  ',
-                      <TextBold style={styles.greetingTextUserName}>
+                      <TextBold
+                        key={'greeting'}
+                        style={styles.greetingTextUserName}>
                         John
                       </TextBold>,
-                      <TextBold style={styles.greetingText}>!</TextBold>,
+                      <TextBold
+                        key={'favoriteRate'}
+                        style={styles.greetingText}>
+                        !
+                      </TextBold>,
                     ]
                   : [
                       'Avaliações de filmes recentes do ',
-                      <TextBold style={styles.greetingTextUserName}>
+                      <TextBold
+                        key={'greetingRate'}
+                        style={styles.greetingTextUserName}>
                         John
                       </TextBold>,
-                      <TextBold style={styles.greetingText}>!</TextBold>,
+                      <TextBold
+                        key={'rateExclamatin'}
+                        style={styles.greetingText}>
+                        !
+                      </TextBold>,
                     ]}
               </TextBold>
-              {/* <TextBold style={styles.greetingTextUserName}>{'Jhon'}</TextBold> */}
             </View>
             <View style={[styles.favoriteMoviesWrapper]}>
               {moviesList?.map((item, index) => (
@@ -78,23 +90,13 @@ export default function TopFiveMovies({
                   {isRated ? (
                     <RatingStarAndAverage vote_average={item.vote_average} />
                   ) : null}
-                  {/*images adicionais so pra teste*/}
-                  {/* <Image
-                    source={{uri: `${baseUrl}/w185${item.poster_path}`}}
-                    style={styles.favoriteImageWrapper}
-                  /> */}
-                  {/* <Image
-                    source={{uri: `${baseUrl}/w185${item.poster_path}`}}
-                    style={styles.favoriteImageWrapper}
-                  /> */}
                 </TouchableOpacity>
               ))}
-
-              {/* <ContentList content={moviesList} favorite={true} /> */}
             </View>
           </ScrollView>
         </View>
       </Modal>
+
       <View style={styles.container}>
         <View style={styles.topTextsWrapper}>
           <TextSemiBold style={styles.title}>
@@ -111,13 +113,14 @@ export default function TopFiveMovies({
             <TextSemiBold style={styles.seeAll}>Ver tudo</TextSemiBold>
           </TouchableOpacity>
         </View>
+
         <View style={styles.listMovies}>
           {isLoad ? (
             <Loading style={styles.load} />
           ) : (
             moviesList?.slice(0, 5)?.map((item, index) => {
               return (
-                <View key={index + 1} style={styles.moviesWrapper}>
+                <View key={index} style={styles.moviesWrapper}>
                   <Image
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.imgWrapper}
