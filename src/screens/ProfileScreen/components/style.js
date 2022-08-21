@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   favoriteMoviesWrapper: {
     position: 'absolute',
     alignItems: 'center',
-    backgroundColor: 'grey',
+    // backgroundColor: 'grey',
     flexDirection: 'row',
     top: relativeHeight(157),
     marginHorizontal: relativeWidth(14 / 2),
@@ -47,6 +47,14 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
 
     // textAlign: 'center',
+  },
+  greetingContainerRated: {
+    position: 'absolute',
+    top: relativeHeight(80),
+    textAlign: 'justify',
+    alignSelf: 'center',
+    flexDirection: 'row',
+    width: relativeWidth(210),
   },
   greetingContainer: {
     position: 'absolute',

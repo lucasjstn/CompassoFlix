@@ -27,6 +27,7 @@ const ProfileScreen = () => {
         isRated={true}
         isSerie={false}
         isLoad={ratedLoad}
+        favoriteMovies={false}
       />
     </SafeAreaView>
   );

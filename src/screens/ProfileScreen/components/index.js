@@ -17,6 +17,7 @@ import Loading from '../../../components/Loading';
 import BtnGoBack from '../../../components/BtnGoBack';
 import ContentList from '../../../components/ContentList';
 import {useNavigation} from '@react-navigation/native';
+import RatingStarAndAverage from '../../../components/ContentList/FlatlistComponent/RatingStarAndAverage';
 const baseUrl = apiImage.defaults.baseURL;
 export default function TopFiveMovies({
   moviesList,
@@ -42,18 +43,30 @@ export default function TopFiveMovies({
               style={styles.touchableWrapper}></TouchableOpacity>
 
             <BtnGoBack modal={toggle} />
-            <View style={styles.greetingContainer}>
-              {favoriteMovies ? (
-                <>
-                  <TextBold style={styles.greetingText}>
-                    {'Filmes favoritos do '}
-                  </TextBold>
-                  <TextBold style={styles.greetingTextUserName}>
-                    {'Jhon'}
-                  </TextBold>
-                  <TextBold style={styles.greetingText}>!</TextBold>
-                </>
-              ) : null}
+            <View
+              style={
+                favoriteMovies
+                  ? styles.greetingContainer
+                  : styles.greetingContainerRated
+              }>
+              <TextBold style={styles.greetingText}>
+                {favoriteMovies
+                  ? [
+                      'Filmes favoritos do  ',
+                      <TextBold style={styles.greetingTextUserName}>
+                        John
+                      </TextBold>,
+                      <TextBold style={styles.greetingText}>!</TextBold>,
+                    ]
+                  : [
+                      'Avaliações de filmes recentes do ',
+                      <TextBold style={styles.greetingTextUserName}>
+                        John
+                      </TextBold>,
+                      <TextBold style={styles.greetingText}>!</TextBold>,
+                    ]}
+              </TextBold>
+              {/* <TextBold style={styles.greetingTextUserName}>{'Jhon'}</TextBold> */}
             </View>
             <View style={[styles.favoriteMoviesWrapper]}>
               {moviesList?.map((item, index) => (
@@ -62,19 +75,18 @@ export default function TopFiveMovies({
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.favoriteImageWrapper}
                   />
+                  {isRated ? (
+                    <RatingStarAndAverage vote_average={item.vote_average} />
+                  ) : null}
                   {/*images adicionais so pra teste*/}
-                  <Image
+                  {/* <Image
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.favoriteImageWrapper}
-                  />
-                  <Image
+                  /> */}
+                  {/* <Image
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.favoriteImageWrapper}
-                  />
-                  {/* <TextRegular style={{color: 'white'}}>
-            {index === 0 ? `${Object.keys(item)} + \n` : null}
-            {item.original_title}
-          </TextRegular> */}
+                  /> */}
                 </TouchableOpacity>
               ))}
 
@@ -105,7 +117,7 @@ export default function TopFiveMovies({
           ) : (
             moviesList?.slice(0, 5)?.map((item, index) => {
               return (
-                <View key={index} style={styles.moviesWrapper}>
+                <View key={index + 1} style={styles.moviesWrapper}>
                   <Image
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.imgWrapper}
@@ -117,7 +129,7 @@ export default function TopFiveMovies({
                     ]}>
                     <Icon name="star" color={'red'} size={13} />
                     <TextSemiBold style={styles.rated}>
-                      {Math.round(item.rating)}/10
+                      {item.rating}/10
                     </TextSemiBold>
                   </View>
                 </View>

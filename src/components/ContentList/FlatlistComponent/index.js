@@ -5,6 +5,7 @@ import styles from './style';
 import {apiImage} from '../../../service/api';
 import {useNavigation} from '@react-navigation/native';
 import {TextRegular} from '../../Text/';
+import RatingStarAndAverage from './RatingStarAndAverage';
 
 const ListOfMoviesComponent = memo(({vote_average, poster_path, id}) => {
   const favoriteMovieScreen = false;
@@ -16,16 +17,13 @@ const ListOfMoviesComponent = memo(({vote_average, poster_path, id}) => {
           navigation.navigate('Details', {id: id});
         }}>
         <Image
-          source={{uri: `${apiImage.defaults.baseURL}/original${poster_path}`}}
+          source={{
+            uri: `${apiImage.defaults.baseURL}/original${poster_path}`,
+          }}
           style={styles.Img}
         />
       </TouchableOpacity>
-      {favoriteMovieScreen ? null : (
-        <>
-          <Icon name="star" color={'red'} size={10} style={styles.icon} />
-          <TextRegular style={styles.note}>{`${vote_average}/10`}</TextRegular>
-        </>
-      )}
+      <RatingStarAndAverage vote_average={vote_average} />
     </View>
   );
 });
