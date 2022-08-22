@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         width: '93%',
         alignSelf:'center',
         marginVertical: relativeHeight(16),
-        top: 380
+        top: 340
     },
     topTextsWrapper: {
         flexDirection: 'row',

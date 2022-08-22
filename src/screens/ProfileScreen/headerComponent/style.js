@@ -10,16 +10,16 @@ const styles = StyleSheet.create({
     nome:{
         color: 'white',
         fontSize: 18,
-        top: 176,
+        top: 146,
         position: 'absolute'
     },
     conteinerImg:{
-        top: 98,
+        top: 58,
         position: 'absolute'
     },
     ratedConteiner:{
         position: 'absolute',
-        top: 247,
+        top: 207,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         width: 50.4,
         height: 14,
         left: 291,
-        top: 71,
+        top: 31,
         backgroundColor: '#E9A6A6',
         borderRadius: 5,
         flexDirection: 'row',
