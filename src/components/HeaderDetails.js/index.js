@@ -3,6 +3,7 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native';
 import styles from './style';
 import {TextBold, TextRegular} from '../Text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import ModalRating from '../ModalRating';
 
 const HeaderDetails = () => {
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
@@ -21,8 +22,15 @@ const HeaderDetails = () => {
           onPress={() => setRatingModalVisible(true)}>
           <TextBold style={styles.ratingText}>Avalie agora</TextBold>
           {ratingModalVisible ? (
-            <Modal onRequestClose={() => setRatingModalVisible(false)}>
-              <TextRegular>Imma modal</TextRegular>
+            <Modal
+              transparent={true}
+              visible={ratingModalVisible}
+              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              <ModalRating
+                cancel={() => setRatingModalVisible(!ratingModalVisible)}
+                isMovie={false}
+                okHandler={() => {}}
+              />
             </Modal>
           ) : null}
         </TouchableOpacity>
