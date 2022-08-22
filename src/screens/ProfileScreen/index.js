@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false)
-  const [ses, setSes] = useState(false)
+  const [results, setResults] = useState(false)
   const [focused, setIsFocused] = useState(false)
 
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
@@ -27,23 +27,23 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SupProfile/>
-        <TouchableOpacity style={styles.serieIconLocation} onPress={() => {setIsserie(true), setSes(true), setIsFocused(true)}}>
+        <TouchableOpacity style={styles.serieIconLocation} onPress={() => {setIsserie(true), setResults(true), setIsFocused(true)}}>
           <Icon name='television-play' style={[styles.iconSeries, {color: focused ? 'white' : null}]} size={30}/>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.filmesIconLocation} onPress={() => {setIsserie(false), setSes(false), setIsFocused(false)}}>
+        <TouchableOpacity style={styles.filmesIconLocation} onPress={() => {setIsserie(false), setResults(false), setIsFocused(false)}}>
           <Icon name='popcorn' style={[styles.iconFilmes, {color: focused ? null : 'white'}]} size={30}/>
         </TouchableOpacity>
       <View style={styles.lineUp}></View>
       <View style={styles.lineDown}></View>
       <View style={styles.lineMid}></View>
       <TopFiveMovies
-        moviesList={ses ? seriesFavorite?.results : filmsFavorite?.results}
+        moviesList={results ? seriesFavorite?.results : filmsFavorite?.results}
         isSerie={isserie}
         isLoad={favoriteLoad}
       />
       <View style={styles.line} />
       <TopFiveMovies
-        moviesList={ses ? seriesRated?.results : filmsRated?.results}
+        moviesList={results ? seriesRated?.results : filmsRated?.results}
         isRated={true}
         isSerie={isserie}
         isLoad={ratedLoad}
