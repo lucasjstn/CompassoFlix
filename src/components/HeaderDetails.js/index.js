@@ -1,11 +1,30 @@
-import React, {useState} from 'react';
-import {Modal, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  Image,
+  Modal,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import styles from './style';
 import {TextBold, TextRegular} from '../Text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {apiImage} from '../../service/api';
+const baseUrl = apiImage.defaults.baseURL;
 import ModalRating from '../ModalRating';
 
-const HeaderDetails = () => {
+const HeaderDetails = ({
+  backdrop_path,
+  poster_path,
+  createdBy,
+  first_air_date,
+  name,
+  vote_average,
+  vote_count,
+  seasons,
+  overview,
+}) => {
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [toggleLines, setToggleLines] = useState(true);
 
@@ -13,9 +32,19 @@ const HeaderDetails = () => {
 
   return (
     <>
-      <View style={styles.bannerContainer}>{null}</View>
+      <View style={styles.bannerContainer}>
+        {
+          <Image
+            source={{uri: `${baseUrl}/w500${backdrop_path}`}}
+            style={styles.bannerContainer}
+          />
+        }
+      </View>
       <View style={styles.coverContainer}>
-        <View>{null}</View>
+        <Image
+          source={{uri: `${baseUrl}/w500${poster_path}`}}
+          style={styles.poster}
+        />
         <TouchableOpacity
           style={styles.ratingButton}
           activeOpacity={0.8}
@@ -38,50 +67,53 @@ const HeaderDetails = () => {
 
       <View style={styles.titleAndDateContainer}>
         <TextBold numberOfLines={2} style={styles.title}>
-          {'The Get Down'}
+          {name}
         </TextBold>
-        <TextRegular style={styles.date}>{'2016'}</TextRegular>
+        <TextRegular style={styles.date}>
+          {first_air_date?.slice(0, 4)}
+        </TextRegular>
       </View>
 
       <View style={styles.titleAndDateContainer}>
-        <TextRegular style={styles.createdBy}>{'Criado por'}</TextRegular>
-        <TextBold style={styles.author}>{'Baz Luhrmann'}</TextBold>
+        <TextRegular style={styles.createdBy}>{'Criado por '}</TextRegular>
+        <TextBold style={styles.author}>{createdBy?.name}</TextBold>
       </View>
 
-      <TextRegular style={styles.rating}>{'7.8'}/10</TextRegular>
+      <TextRegular style={styles.rating}>
+        {vote_average?.toFixed(1)}/10
+      </TextRegular>
 
       <View style={styles.ratesInfoContaier}>
         <Icon name="favorite" size={30} color="red" />
-        <TextRegular style={styles.numberOfRates}>{'18k'}</TextRegular>
+        <TextRegular style={styles.numberOfRates}>
+          {vote_count > 1000
+            ? (vote_count / 1000).toFixed(1) + 'k'
+            : vote_count + ''}
+        </TextRegular>
       </View>
 
       <View style={styles.descriptionContainer}>
         <TextRegular
           numberOfLines={toggleLines ? 4 : null}
           style={styles.descriptionText}>
-          Ambientada em Nova York durante o ano de 1977, The Get Down conta a
-          história de como, à beira das ruínas e da falência, a grande metrópole
-          deu origem a um novo movimento musical no Bronx, focado nos jovens
-          negros e de minorias que são marginalizados.Ambientada em Nova York
-          durante o ano de 1977, The Get Down conta a história de como, à beira
-          das ruínas e da falência, a grande metrópole deu origem a um novo
-          movimento musical no Bronx, focado nos jovens negros e de minorias que
-          são marginalizados.
+          {overview}
         </TextRegular>
         <Text
           onPress={() => setToggleLines(!toggleLines)}
           style={{color: 'white'}}>
           ver mais.
         </Text>
+        {/* <ScrollView> */}
         <View style={styles.seasonsContainer}>
-          {temps.map(item => {
+          {seasons?.map(item => {
             return (
               <View style={styles.season}>
-                <TextRegular style={{color: 'white'}}>{item}</TextRegular>
+                <TextRegular style={{color: 'white'}}>{item.name}</TextRegular>
               </View>
             );
           })}
         </View>
+        {/* </ScrollView> */}
       </View>
       {/* <TextBold style={{color: 'white'}}>askdaskdska</TextBold> */}
     </>
