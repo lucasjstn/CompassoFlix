@@ -10,6 +10,11 @@ function relativeWidth(pixel) {
 }
 
 const styles = StyleSheet.create({
+  poster: {
+    position: 'absolute',
+    width: 135,
+    height: 224,
+  },
   season: {
     marginTop: relativeHeight(5),
     backgroundColor: 'grey',
@@ -52,6 +57,7 @@ const styles = StyleSheet.create({
   },
   numberOfRates: {
     color: 'white',
+    textAlign: 'center',
   },
   ratesInfoContaier: {
     position: 'absolute',
@@ -103,7 +109,6 @@ const styles = StyleSheet.create({
   coverContainer: {
     width: relativeWidth(119),
     height: relativeHeight(204),
-    backgroundColor: 'green',
     borderRadius: 10,
     position: 'absolute',
     left: relativeWidth(18.47),
@@ -112,7 +117,6 @@ const styles = StyleSheet.create({
   bannerContainer: {
     width: width,
     height: relativeHeight(160),
-    backgroundColor: 'blue',
   },
 });
 
