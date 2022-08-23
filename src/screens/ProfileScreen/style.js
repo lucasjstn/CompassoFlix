@@ -8,23 +8,23 @@ const styles = StyleSheet.create({
   line: {
     borderBottomWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.4)',
-    top: 295
+    top: 335
   },
   lineUp:{
     borderBottomWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.4)',
-    top: 230
+    top: 270
   },
   lineDown:{
     borderBottomWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.4)',
-    top: 290
+    top: 330
   },
   lineMid:{
     borderBottomWidth: 1,
     width: 61,
     borderColor: 'rgba(255, 255, 255, 0.4)',
-    top: 258.9,
+    top: 298.9,
     transform: [{rotate: '90deg'}],
     left: 165
   },
@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     position:'absolute'
   },
   filmesIconLocation:{
-    top: 245,
+    top: 285,
     left: 90
   },
   serieIconLocation:{
-    top: 245,
+    top: 285,
     left: 267
   }
 });

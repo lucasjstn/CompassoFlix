@@ -10,16 +10,15 @@ const styles = StyleSheet.create({
     nome:{
         color: 'white',
         fontSize: 18,
-        top: 116,
-        right: 55
+        top: 146,
+        position: 'absolute'
     },
     conteinerImg:{
         top: 58,
-        left: 62,
+        position: 'absolute'
     },
     ratedConteiner:{
         top: 207,
-        right: 147,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
@@ -34,10 +33,11 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     leavebuttom:{
+        position: 'absolute',
         width: 50.4,
         height: 14,
-        left: 271,
-        top: 11,
+        left: 291,
+        top: 31,
         backgroundColor: '#E9A6A6',
         borderRadius: 5,
         flexDirection: 'row',
@@ -113,5 +113,4 @@ const styles = StyleSheet.create({
         marginLeft: 32
     }
 })
-
 export default styles
