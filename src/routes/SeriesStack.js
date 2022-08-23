@@ -13,11 +13,11 @@ export default function SeriesStack() {
             }}
         >
             <TelaStack.Screen 
-                name="FlatFilmes" 
+                name="HomeSeries" 
                 component={SeriesScreen}
             />
             <TelaStack.Screen 
-                name="Details" 
+                name="SeriesDetails" 
                 component={SeriesDetails}
             />
         </TelaStack.Navigator>
