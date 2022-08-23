@@ -14,7 +14,7 @@ const SeriesDetails = ({route, navigation}) => {
   return !!dataCredits ? (
     <SafeAreaView style={styles.container}>
       <BtnGoBack nav={navigation} />
-      <HeaderDetails />
+      <HeaderDetails {...dataDetails} createdBy={dataDetails?.created_by[0]} />
       {/* <TvSeriesSeasons /> */}
       {/* <TextRegular style={{color: 'white', top: '50%'}}>
         {JSON.stringify(dataDetails)}
