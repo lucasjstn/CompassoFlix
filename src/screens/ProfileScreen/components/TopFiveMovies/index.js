@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Image} from 'react-native';
-import {TextSemiBold} from '../../../components/Text';
+import {TextSemiBold} from '../../../../components/Text';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {apiImage} from '../../../service/api';
-import Loading from '../../../components/Loading';
+import {apiImage} from '../../../../service/api';
+import Loading from '../../../../components/Loading';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default function TopFiveMovies({
@@ -38,6 +38,7 @@ export default function TopFiveMovies({
                   style={styles.imgWrapper}
                 />
                 <View
+                  
                   style={[
                     styles.ratedWrapper,
                     {display: isRated ? 'flex' : 'none'},
