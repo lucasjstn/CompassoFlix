@@ -10,16 +10,16 @@ const styles = StyleSheet.create({
     nome:{
         color: 'white',
         fontSize: 18,
-        top: 146,
-        position: 'absolute'
+        top: 116,
+        right: 55
     },
     conteinerImg:{
         top: 58,
-        position: 'absolute'
+        left: 62,
     },
     ratedConteiner:{
-        position: 'absolute',
         top: 207,
+        right: 147,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center'
@@ -34,11 +34,10 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     leavebuttom:{
-        position: 'absolute',
         width: 50.4,
         height: 14,
-        left: 291,
-        top: 31,
+        left: 271,
+        top: 11,
         backgroundColor: '#E9A6A6',
         borderRadius: 5,
         flexDirection: 'row',
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
         top: 300,
         backgroundColor: '#FFFFFF',
         borderRadius: 25,
-        position: 'relative',
         left: 30,
         justifyContent: 'center',
         alignItems: 'center'
