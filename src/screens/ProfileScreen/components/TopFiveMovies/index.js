@@ -34,20 +34,23 @@ export default function TopFiveMovies({
             return (
               <View key={index} style={styles.moviesWrapper}>
                 <Image
+                  testID="capa do filme"
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                   style={styles.imgWrapper}
                 />
-                <View
-                  
-                  style={[
-                    styles.ratedWrapper,
-                    {display: isRated ? 'flex' : 'none'},
-                  ]}>
-                  <Icon name="star" color={'red'} size={13} />
-                  <TextSemiBold style={styles.rated}>
-                    {Math.round(item.rating)}/10
-                  </TextSemiBold>
-                </View>
+                {isRated && (
+                  <View style={[styles.ratedWrapper]}>
+                    <Icon
+                      name="star"
+                      color={'red'}
+                      size={13}
+                      testID="starIcon"
+                    />
+                    <TextSemiBold style={styles.rated}>
+                      {Math.round(item.rating)}/10
+                    </TextSemiBold>
+                  </View>
+                )}
               </View>
             );
           })
