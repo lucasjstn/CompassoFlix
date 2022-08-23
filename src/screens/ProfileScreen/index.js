@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
-import TopFiveMovies from './components';
+import TopFiveMovies from './components/TopFiveMovies';
 import styles from './style';
 import getMovies from '../FilmsDetails/apiGets';
 
