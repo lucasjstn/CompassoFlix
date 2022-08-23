@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useReducer} from 'react';
 import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -6,6 +7,7 @@ import {apiImage} from '../../../../service/api';
 import transformInAround from './transformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../../../../components/Text';
+import ModalRating from '../../../../components/ModalRating';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default FilmsDetails = ({
@@ -73,8 +75,15 @@ export default FilmsDetails = ({
           onPress={() => setRatingModalVisible(true)}>
           <TextBold style={styles.ratingText}>Avalie agora</TextBold>
           {ratingModalVisible ? (
-            <Modal onRequestClose={() => setRatingModalVisible(false)}>
-              <TextRegular>Imma modal</TextRegular>
+            <Modal
+              transparent={true}
+              visible={ratingModalVisible}
+              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              <ModalRating
+                cancel={() => setRatingModalVisible(!ratingModalVisible)}
+                isMovie={true}
+                okHandler={() => {}}
+              />
             </Modal>
           ) : null}
         </TouchableOpacity>

@@ -12,6 +12,7 @@ import {TextBold, TextRegular} from '../Text';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {apiImage} from '../../service/api';
 const baseUrl = apiImage.defaults.baseURL;
+import ModalRating from '../ModalRating';
 
 const HeaderDetails = ({
   backdrop_path,
@@ -50,8 +51,15 @@ const HeaderDetails = ({
           onPress={() => setRatingModalVisible(true)}>
           <TextBold style={styles.ratingText}>Avalie agora</TextBold>
           {ratingModalVisible ? (
-            <Modal onRequestClose={() => setRatingModalVisible(false)}>
-              <TextRegular>Imma modal</TextRegular>
+            <Modal
+              transparent={true}
+              visible={ratingModalVisible}
+              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              <ModalRating
+                cancel={() => setRatingModalVisible(!ratingModalVisible)}
+                isMovie={false}
+                okHandler={() => {}}
+              />
             </Modal>
           ) : null}
         </TouchableOpacity>
