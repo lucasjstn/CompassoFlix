@@ -21,7 +21,10 @@ export default function Favorite({style, id}) {
       })
       .then(() => {
         setMarkFav(!markFav);
-      }).catch(err => {throw new Error('deu erro aqui ô ' + err)})
+      })
+      .catch(err => {
+        throw new Error('deu erro aqui ô ' + err);
+      });
   };
 
   useEffect(() => {
@@ -44,6 +47,7 @@ export default function Favorite({style, id}) {
 
   return (
     <TouchableOpacity
+      accessibilityHint="estrela para favoritar"
       style={style || styles.container}
       activeOpacity={0.7}
       onPress={() => {
@@ -54,6 +58,7 @@ export default function Favorite({style, id}) {
         loop={false}
         autoPlay={false}
         ref={animation}
+        accessibilityHint="Icone da estrela"
       />
     </TouchableOpacity>
   );
