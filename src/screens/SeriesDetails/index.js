@@ -15,10 +15,6 @@ const SeriesDetails = ({route, navigation}) => {
     <SafeAreaView style={styles.container}>
       <BtnGoBack nav={navigation} />
       <HeaderDetails {...dataDetails} createdBy={dataDetails?.created_by[0]} />
-      {/* <TvSeriesSeasons /> */}
-      {/* <TextRegular style={{color: 'white', top: '50%'}}>
-        {JSON.stringify(dataDetails)}
-      </TextRegular> */}
     </SafeAreaView>
   ) : (
     <Loading />

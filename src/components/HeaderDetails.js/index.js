@@ -15,6 +15,7 @@ const baseUrl = apiImage.defaults.baseURL;
 import ModalRating from '../ModalRating';
 
 const HeaderDetails = ({
+  id,
   backdrop_path,
   poster_path,
   createdBy,
@@ -27,7 +28,7 @@ const HeaderDetails = ({
 }) => {
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [toggleLines, setToggleLines] = useState(true);
-
+  console.log(`id: ${id}`);
   const temps = ['primeira temporada', 'segunda temporada'];
 
   return (
@@ -56,6 +57,7 @@ const HeaderDetails = ({
               visible={ratingModalVisible}
               onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
               <ModalRating
+                id={id}
                 cancel={() => setRatingModalVisible(!ratingModalVisible)}
                 isMovie={false}
                 okHandler={() => {}}

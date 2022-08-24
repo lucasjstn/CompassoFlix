@@ -80,6 +80,7 @@ export default FilmsDetails = ({
               visible={ratingModalVisible}
               onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
               <ModalRating
+                id={id}
                 cancel={() => setRatingModalVisible(!ratingModalVisible)}
                 isMovie={true}
                 okHandler={() => {}}
