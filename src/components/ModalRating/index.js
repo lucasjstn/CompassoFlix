@@ -134,6 +134,7 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
                     CANCELAR
                   </TextBold>
                 </TouchableOpacity>
+                {/* o timeout cancela o modal se a request for verdadeira */}
                 <TouchableOpacity
                   onPress={
                     status === 18
