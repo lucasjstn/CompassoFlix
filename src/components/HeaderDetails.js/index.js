@@ -28,7 +28,7 @@ const HeaderDetails = ({
 }) => {
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [toggleLines, setToggleLines] = useState(true);
-  console.log(`id: ${id}`);
+
   const temps = ['primeira temporada', 'segunda temporada'];
 
   return (
@@ -69,7 +69,7 @@ const HeaderDetails = ({
 
       <View style={styles.titleAndDateContainer}>
         <TextBold numberOfLines={2} style={styles.title}>
-          {name}
+          {name.split(':')[0]}
         </TextBold>
         <TextRegular style={styles.date}>
           {first_air_date?.slice(0, 4)}

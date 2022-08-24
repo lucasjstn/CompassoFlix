@@ -12,8 +12,8 @@ function relativeWidth(pixel) {
 const styles = StyleSheet.create({
   poster: {
     position: 'absolute',
-    width: 135,
-    height: 224,
+    width: relativeWidth(120),
+    height: relativeWidth(182),
   },
   season: {
     marginTop: relativeHeight(5),
