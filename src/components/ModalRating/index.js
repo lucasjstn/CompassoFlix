@@ -3,7 +3,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
-  Modal,
   TextInput,
   TouchableOpacity,
   View,
@@ -15,7 +14,7 @@ import styles from './style';
 export default function ModalRating({cancel, isMovie, okHandler, id}) {
   const [rating, setRating] = useState('');
   const [session, setSession] = useState('');
-  const [status, setStatus] = useState(1);
+  const [status, setStatus] = useState(18);
   const [disabled, setDisabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
@@ -23,19 +22,23 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
   }, [session]);
 
   useEffect(() => {
-    // console.log(usesRegex(rating));
     switch (status) {
+      case 1:
+        setErrorMessage('Avaliação enviada com sucesso!');
+        break;
       case 12:
         setErrorMessage('Avaliação atualizada com sucesso!');
         break;
       case 18:
-        setErrorMessage('Valor muito alto, insira um valor entre 0 e 10.');
+        setErrorMessage(
+          'Valor muito alto ou inválido, insira um valor entre 1,0 e 10.',
+        );
         break;
     }
-  }, [rating]);
+  }, [status, cancel]);
 
   function validateRate(rate) {
-    let regex = /[.0-9]/;
+    let regex = /[0-9]/;
     if (rate.match(regex)) {
       return true;
     } else {
@@ -49,10 +52,10 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
       setErrorMessage('');
     } else if (rating[0] !== '') {
       setRating('');
-      setErrorMessage('Insira apenas números.');
+      setErrorMessage('');
     }
 
-    if (rating[0] === '.' || rating[0] == 0) {
+    if (rating[0] === '.') {
       setRating('');
     } else {
     }
@@ -60,9 +63,6 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
     if (rating > 10) {
       setRating('10');
     }
-    // if (regex.test(rating) === true) {
-    //   return console.log(`true${''}`);
-    // }
   }, [rating]);
 
   async function pegarSessionId() {
@@ -83,18 +83,15 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
       .post(
         `/${isMovie ? 'movie' : 'tv'}/${id}/rating?&session_id=${session}`,
         {
-          value: rate,
+          value: parseFloat(rate.replace('.', ',')),
         },
       )
       .then(response => {
-        // console.log(`resultado: ${JSON.stringify(res.data)}`);
-        // console.log(`${typeof res.data.status_code}`);
         setStatus(response.data.status_code);
       })
       .catch(error => {
         console.log(`erro: ${error.response.data.status_code}`);
         setStatus(error.response.data.status_code);
-        // setRating('');
       });
   }
 
@@ -123,7 +120,10 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
                 <TextBold style={styles.staticInput}>/10</TextBold>
               </View>
               <TextRegular
-                style={{fontSize: 11, color: status === 12 ? 'green' : 'red'}}>
+                style={{
+                  fontSize: 11,
+                  color: status === 12 || status === 1 ? 'green' : 'red',
+                }}>
                 {errorMessage}
               </TextRegular>
               <View style={styles.buttonsWrapper}>
@@ -134,8 +134,13 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
                     CANCELAR
                   </TextBold>
                 </TouchableOpacity>
+                {/* o timeout cancela o modal se a request for verdadeira */}
                 <TouchableOpacity
-                  onPress={() => sendRating(rating)}
+                  onPress={
+                    status === 18
+                      ? () => sendRating(rating)
+                      : setTimeout(cancel, 1500)
+                  }
                   style={styles.cancelOkButtons}>
                   <TextBold style={styles.cancelOkButtonsText}>OK</TextBold>
                 </TouchableOpacity>
