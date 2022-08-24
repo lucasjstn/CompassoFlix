@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   cancelOkButtonsText: {
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     top: '40%',
     // backgroundColor: '#493843',
+    // flex: 1,
   },
 });
 
