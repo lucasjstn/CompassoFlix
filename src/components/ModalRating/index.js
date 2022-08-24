@@ -49,7 +49,7 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
       setErrorMessage('');
     } else if (rating[0] !== '') {
       setRating('');
-      setErrorMessage('Insira apenas números.');
+      setErrorMessage('');
     }
 
     if (rating[0] === '.' || rating[0] == 0) {
