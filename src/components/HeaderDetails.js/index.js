@@ -69,7 +69,7 @@ const HeaderDetails = ({
 
       <View style={styles.titleAndDateContainer}>
         <TextBold numberOfLines={2} style={styles.title}>
-          {name.split(':')[0]}
+          {name}
         </TextBold>
         <TextRegular style={styles.date}>
           {first_air_date?.slice(0, 4)}

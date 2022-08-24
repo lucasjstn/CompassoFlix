@@ -4,7 +4,6 @@ import React, {useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   TextInput,
-  Touchable,
   TouchableOpacity,
   View,
 } from 'react-native';
