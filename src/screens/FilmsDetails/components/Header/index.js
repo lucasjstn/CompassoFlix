@@ -56,7 +56,7 @@ export default FilmsDetails = ({
 
       <View>
         <Image
-          source={{uri: `${baseUrl}/original${backdrop_path}`}}
+          source={{uri: `${baseUrl}/w780${backdrop_path}`}}
           style={styles.poster}
         />
         {/* <View> */}
@@ -65,7 +65,7 @@ export default FilmsDetails = ({
           activeOpacity={0.9}
           onPress={setModalVisible}>
           <Image
-            source={{uri: `${baseUrl}/w500${poster_path}`}}
+            source={{uri: `${baseUrl}/w342${poster_path}`}}
             style={styles.frontCover}
           />
         </TouchableOpacity>

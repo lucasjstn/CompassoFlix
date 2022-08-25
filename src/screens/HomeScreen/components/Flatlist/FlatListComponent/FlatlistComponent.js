@@ -15,7 +15,7 @@ const FilmesCP = memo(({vote_average, poster_path, id}) => {
           navigation.navigate('Details', {id: id});
         }}>
         <Image
-          source={{uri: `${apiImage.defaults.baseURL}/original${poster_path}`}}
+          source={{uri: `${apiImage.defaults.baseURL}/w185${poster_path}`}}
           style={styles.Img}
         />
       </TouchableOpacity>

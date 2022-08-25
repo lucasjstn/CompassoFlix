@@ -24,15 +24,16 @@ export default function FlatFilmes() {
     try {
       const value = await AsyncStorage?.getItem('@session');
       if (value !== null) {
-        getUser(value);
+        api.defaults.params[ 'session_id' ] = value;
+        getUser()
       }
     } catch (e) {
       console.log('storege: ' + e);
     }
   };
 
-  const getUser = async sessionId => {
-    const res = await api.get(`/account?&session_id=${sessionId}`);
+  const getUser = async () => {
+    const res = await api.get(`/account?&`);
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
     } catch (error) {
