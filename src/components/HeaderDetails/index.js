@@ -6,7 +6,7 @@ import {apiImage} from '../../service/api';
 import transformInAround from './tansformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../Text';
-import { pressLongTitle, min } from '../../mocks/Details';
+import {pressLongTitle, min} from '../../mocks/Details';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
@@ -23,7 +23,7 @@ export default HeaderDetails = ({
   backdrop_path,
   directorDefault,
 }) => {
-  const [information, setInformation] = useState(0);
+  const [information, setInformation] = useState(false);
   const [press, setPress] = useReducer(press => !press, false);
   const [modalVisible, setModalVisible] = useReducer(
     modalVisible => !modalVisible,
@@ -36,8 +36,8 @@ export default HeaderDetails = ({
 
   useEffect(() => {
     if (title?.length > 14) {
-      setInformation(1);
-      setTimeout(() => setInformation(0), 2000);
+      setInformation(true);
+      setTimeout(() => setInformation(false), 2000);
     }
   }, [title]);
 
@@ -65,7 +65,7 @@ export default HeaderDetails = ({
           activeOpacity={0.6}
           onPress={setModalVisible}>
           <Image
-            accessibilityHint='poster'
+            accessibilityHint="poster"
             source={{uri: `${baseUrl}/w342${poster_path}`}}
             style={styles.frontCover}
           />
@@ -79,17 +79,21 @@ export default HeaderDetails = ({
                 alignItems: 'flex-end',
                 justifyContent: 'center',
               }}>
-              <View style={[styles.popUpWrapper, {opacity: information}]}>
-                <TextBold style={styles.popUpTitle}>
-                  {pressLongTitle}
-                </TextBold>
-                <View style={styles.bottomPopUp}></View>
-              </View>
+              {information && (
+                <View style={styles.popUpWrapper}>
+                  <TextBold style={styles.popUpTitle}>
+                    {pressLongTitle}
+                  </TextBold>
+                  <View style={styles.bottomPopUp}></View>
+                </View>
+              )}
 
-              <View style={[styles.popUpWrapper, {opacity: press ? 1 : 0}]}>
-                <TextBold style={styles.popUpTitle}>{title}</TextBold>
-                <View style={styles.bottomPopUp}></View>
-              </View>
+              {press && (
+                <View style={styles.popUpWrapper}>
+                  <TextBold style={styles.popUpTitle}>{title}</TextBold>
+                  <View style={styles.bottomPopUp}></View>
+                </View>
+              )}
 
               <TextBold
                 onLongPress={setPress}
