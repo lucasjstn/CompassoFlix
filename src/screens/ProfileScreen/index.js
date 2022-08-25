@@ -6,6 +6,7 @@ import getMovies from './getMovies';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false)
   const [results, setResults] = useState(false)
@@ -43,6 +44,7 @@ const ProfileScreen = () => {
         moviesList={results ? seriesFavorite?.results : filmsFavorite?.results}
         isSerie={isserie}
         isLoad={favoriteLoad}
+        favoriteMovies={true}
       />
       <View style={styles.line} />
       <TopFiveMovies
@@ -50,6 +52,7 @@ const ProfileScreen = () => {
         isRated={true}
         isSerie={isserie}
         isLoad={ratedLoad}
+        favoriteMovies={false}
       />
     </SafeAreaView>
   );

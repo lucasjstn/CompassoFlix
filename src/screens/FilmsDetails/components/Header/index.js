@@ -1,11 +1,13 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../../../service/api';
 import transformInAround from './transformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../../../../components/Text';
+import ModalRating from '../../../../components/ModalRating';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default FilmsDetails = ({
@@ -24,6 +26,7 @@ export default FilmsDetails = ({
 }) => {
   const [information, setInformation] = useState(0);
   const [press, setPress] = useReducer(press => !press, false);
+  const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [modalVisible, setModalVisible] = useReducer(
     modalVisible => !modalVisible,
     false,
@@ -56,16 +59,36 @@ export default FilmsDetails = ({
           source={{uri: `${baseUrl}/original${backdrop_path}`}}
           style={styles.poster}
         />
-
+        {/* <View> */}
         <TouchableOpacity
           style={styles.frontCoverBtn}
-          activeOpacity={0.6}
+          activeOpacity={0.9}
           onPress={setModalVisible}>
           <Image
             source={{uri: `${baseUrl}/w500${poster_path}`}}
             style={styles.frontCover}
           />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.ratingButton}
+          activeOpacity={0.8}
+          onPress={() => setRatingModalVisible(true)}>
+          <TextBold style={styles.ratingText}>Avalie agora</TextBold>
+          {ratingModalVisible ? (
+            <Modal
+              transparent={true}
+              visible={ratingModalVisible}
+              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              <ModalRating
+                id={id}
+                cancel={() => setRatingModalVisible(!ratingModalVisible)}
+                isMovie={true}
+                okHandler={() => {}}
+              />
+            </Modal>
+          ) : null}
+        </TouchableOpacity>
+        {/* </View> */}
 
         <View style={styles.mainWrapper}>
           <View style={styles.mainTextWrapper}>
@@ -79,12 +102,12 @@ export default FilmsDetails = ({
                 <TextBold style={styles.popUpTitle}>
                   Pressione para mostrar o título completo
                 </TextBold>
-                <View style={styles.bottomPopUp}></View>
+                <View style={styles.bottomPopUp} />
               </View>
 
               <View style={[styles.popUpWrapper, {opacity: press ? 1 : 0}]}>
                 <TextBold style={styles.popUpTitle}>{title}</TextBold>
-                <View style={styles.bottomPopUp}></View>
+                <View style={styles.bottomPopUp} />
               </View>
 
               <TextBold
