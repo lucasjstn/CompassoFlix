@@ -1,5 +1,6 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
+import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../service/api';
@@ -25,6 +26,7 @@ export default HeaderDetails = ({
 }) => {
   const [information, setInformation] = useState(false);
   const [press, setPress] = useReducer(press => !press, false);
+  const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [modalVisible, setModalVisible] = useReducer(
     modalVisible => !modalVisible,
     false,
@@ -58,11 +60,11 @@ export default HeaderDetails = ({
           source={{uri: `${baseUrl}/w780${backdrop_path}`}}
           style={styles.poster}
         />
-
+        {/* <View> */}
         <TouchableOpacity
           accessibilityHint="poster com botao"
           style={styles.frontCoverBtn}
-          activeOpacity={0.6}
+          activeOpacity={0.9}
           onPress={setModalVisible}>
           <Image
             accessibilityHint="poster"
@@ -70,6 +72,26 @@ export default HeaderDetails = ({
             style={styles.frontCover}
           />
         </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.ratingButton}
+          activeOpacity={0.8}
+          onPress={() => setRatingModalVisible(true)}>
+          <TextBold style={styles.ratingText}>Avalie agora</TextBold>
+          {ratingModalVisible ? (
+            <Modal
+              transparent={true}
+              visible={ratingModalVisible}
+              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              <ModalRating
+                id={id}
+                cancel={() => setRatingModalVisible(!ratingModalVisible)}
+                isMovie={true}
+                okHandler={() => {}}
+              />
+            </Modal>
+          ) : null}
+        </TouchableOpacity>
+        {/* </View> */}
 
         <View style={styles.mainWrapper}>
           <View style={styles.mainTextWrapper}>

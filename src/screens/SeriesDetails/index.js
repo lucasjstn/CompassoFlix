@@ -35,7 +35,10 @@ const SeriesDetails = ({route, navigation}) => {
     </SafeAreaView>
   ) : (
     <Loading />
+  ) : (
+    <Loading />
   );
 };
 
 export default SeriesDetails;
+
