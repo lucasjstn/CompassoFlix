@@ -5,7 +5,7 @@ import styles from './style';
 
 export default function BtnGoBack({nav, name, size, color, style, modal}) {
   function toNavigate() {
-    return nav.goBack();
+    return nav.reset({index: 0, routes: [{name: 'Home'}]});
   }
 
   return (

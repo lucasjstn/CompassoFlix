@@ -11,14 +11,7 @@ const SeriesDetails = ({route, navigation}) => {
   const {data: dataDetails} = apiGets(`/tv/${id}?&language=pt-BR`);
   const {data: dataCredits} = apiGets(`/tv/${id}/credits?&language=pt-BR`);
 
-  return !!dataCredits ? (
-    <SafeAreaView style={styles.container}>
-      <BtnGoBack nav={navigation} />
-      <HeaderDetails {...dataDetails} createdBy={dataDetails?.created_by[0]} />
-    </SafeAreaView>
-  ) : (
-    <Loading />
-  );
+  return <></>;
 };
 
 export default SeriesDetails;

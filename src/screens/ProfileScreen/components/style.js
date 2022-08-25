@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     alignSelf: 'center',
     flexDirection: 'row',
-    width: relativeWidth(210),
+    width: '80%',
   },
   greetingText: {
     color: 'white',
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     // textAlign: 'center',
   },
   greetingTextUserName: {
+    textTransform: 'capitalize',
     color: '#E9A6A6',
     fontSize: relativeHeight(20),
     lineHeight: relativeHeight(27),
@@ -50,12 +51,9 @@ const styles = StyleSheet.create({
   favoriteMoviesWrapper: {
     position: 'absolute',
     alignItems: 'center',
-    // backgroundColor: 'grey',
     flexDirection: 'row',
     top: relativeHeight(157),
     marginHorizontal: relativeWidth(14 / 2),
-    // display: 'flex',
-    // maxWidth: '9%',
     flexWrap: 'wrap',
     alignSelf: 'center',
   },
@@ -65,10 +63,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: relativeHeight(12 / 2),
     marginHorizontal: relativeWidth(7),
-    // alignSelf
   },
   touchableWrapper: {
-    // backgroundColor: 'red',
     width: '100%',
     minHeight: height,
   },

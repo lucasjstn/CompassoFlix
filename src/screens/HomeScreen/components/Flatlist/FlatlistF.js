@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../../../components/Loading';
 import ContentList from '../../../../components/ContentList';
 import {getContent} from '../../../../service/requests/ContentRequest/MoviesRequest';
+import {KeepToken} from '../../../../service/storage';
 
 export default function FlatFilmes() {
   const [scroll, setScroll] = useState(false);
@@ -26,18 +27,16 @@ export default function FlatFilmes() {
       if (value !== null) {
         getUser(value);
       }
-    } catch (e) {
-      console.log('storege: ' + e);
-    }
+    } catch (e) {}
   };
 
   const getUser = async sessionId => {
     const res = await api.get(`/account?&session_id=${sessionId}`);
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
-    } catch (error) {
-      console.log('api: ' + error);
-    }
+      await KeepToken('@username', res?.data?.username);
+      await KeepToken('@name', res?.data?.name);
+    } catch (error) {}
   };
 
   const scrollLoad = () => {
@@ -47,21 +46,6 @@ export default function FlatFilmes() {
     SetPagina(prev => prev + 1);
   };
 
-  // const getMovies = async () => {
-  //   await api
-  //     .get(`/movie/popular?&language=pt-BR&page=${pagina}`)
-  //     .then(res => {
-  //       const current = res.data.results;
-  //       // console.log(res?.data.results);
-  //       setMovies(prev => [...prev, ...current]);
-  //     })
-  //     .catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-  //     .finally(() => {
-  //       setScroll(false);
-  //       setLoad(false);
-  //     });
-  // };
-
   useEffect(() => {
     if (scroll) setTimeout(() => getMovies(), 3000);
   }, [scroll]);
@@ -69,8 +53,6 @@ export default function FlatFilmes() {
   useEffect(() => {
     getData();
     getMovies();
-    // console.log(`movies ${movies}`);
-    // getMovies();
   }, []);
 
   async function getMovies() {

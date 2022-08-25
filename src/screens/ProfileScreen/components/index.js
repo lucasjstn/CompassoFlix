@@ -1,21 +1,11 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  Modal,
-  ScrollView,
-  TouchableHighlightBase,
-  TouchableHighlight,
-  Touchable,
-} from 'react-native';
-import {TextBold, TextRegular, TextSemiBold} from '../../../components/Text';
+import {View, Image, TouchableOpacity, Modal, ScrollView} from 'react-native';
+import {TextBold, TextSemiBold} from '../../../components/Text';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {apiImage} from '../../../service/api';
 import Loading from '../../../components/Loading';
 import BtnGoBack from '../../../components/BtnGoBack';
-import ContentList from '../../../components/ContentList';
 import {useNavigation} from '@react-navigation/native';
 import RatingStarAndAverage from '../../../components/ContentList/FlatlistComponent/RatingStarAndAverage';
 const baseUrl = apiImage.defaults.baseURL;
@@ -25,6 +15,8 @@ export default function TopFiveMovies({
   isRated = false,
   isLoad,
   favoriteMovies,
+  username,
+  name,
 }) {
   const [toggleUserFavorites, setToggleUserFavorites] = useState(false);
   const navigation = useNavigation();
@@ -53,11 +45,11 @@ export default function TopFiveMovies({
               <TextBold style={styles.greetingText}>
                 {favoriteMovies
                   ? [
-                      'Filmes favoritos do  ',
+                      'Filmes favoritos de  ',
                       <TextBold
                         key={'greeting'}
                         style={styles.greetingTextUserName}>
-                        John
+                        {name || username}
                       </TextBold>,
                       <TextBold
                         key={'favoriteRate'}
@@ -66,11 +58,11 @@ export default function TopFiveMovies({
                       </TextBold>,
                     ]
                   : [
-                      'Avaliações de filmes recentes do ',
+                      'Avaliações de filmes recentes de ',
                       <TextBold
                         key={'greetingRate'}
                         style={styles.greetingTextUserName}>
-                        John
+                        {name || username}
                       </TextBold>,
                       <TextBold
                         key={'rateExclamatin'}
@@ -82,13 +74,22 @@ export default function TopFiveMovies({
             </View>
             <View style={[styles.favoriteMoviesWrapper]}>
               {moviesList?.map((item, index) => (
-                <TouchableOpacity style={null} key={index} onPress={() => null}>
+                <TouchableOpacity
+                  style={null}
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate('Details', {id: moviesList[index]?.id});
+                  }}>
                   <Image
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.favoriteImageWrapper}
                   />
                   {isRated ? (
-                    <RatingStarAndAverage vote_average={item.vote_average} />
+                    <RatingStarAndAverage
+                      vote_average={
+                        Number(item.rating) === 10 ? 10 : item.rating
+                      }
+                    />
                   ) : null}
                 </TouchableOpacity>
               ))}
@@ -105,7 +106,12 @@ export default function TopFiveMovies({
               : `${isSerie ? 'Séries' : 'Filmes'} Favorit${
                   isSerie ? 'a' : 'o'
                 }s`}{' '}
-            de John
+            de{' '}
+            {
+              <TextSemiBold style={{textTransform: 'capitalize'}}>
+                {name || username}
+              </TextSemiBold>
+            }
           </TextSemiBold>
           <TouchableOpacity
             style={styles.seeAllButton}

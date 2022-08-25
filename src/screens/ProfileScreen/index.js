@@ -5,12 +5,14 @@ import styles from './style';
 import getMovies from './getMovies';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false);
   const [results, setResults] = useState(false);
   const [focused, setIsFocused] = useState(false);
-
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
     `/account/13768649/favorite/movies?&session_id=`,
   );
@@ -24,6 +26,21 @@ const ProfileScreen = () => {
   const {data: seriesRated} = getMovies(
     `/account/13768649/rated/tv?&session_id=`,
   );
+
+  async function getAllKeys() {
+    try {
+      const userNameResult = await AsyncStorage.getItem('@username');
+      const nameResult = await AsyncStorage.getItem('@name');
+      if (userNameResult !== null) {
+        setUsername(userNameResult);
+        setName(nameResult);
+      }
+    } catch (error) {}
+  }
+  useEffect(() => {
+    getAllKeys();
+  }, [username, name, filmsFavorite]);
+
   return (
     <SafeAreaView style={styles.container}>
       <SupProfile />
@@ -60,6 +77,8 @@ const ProfileScreen = () => {
         isSerie={isserie}
         isLoad={favoriteLoad}
         favoriteMovies={true}
+        username={username}
+        name={name}
       />
       <View style={styles.line} />
       <TopFiveMovies
@@ -67,7 +86,9 @@ const ProfileScreen = () => {
         isRated={true}
         isSerie={isserie}
         isLoad={ratedLoad}
+        username={username}
         favoriteMovies={false}
+        name={name}
       />
     </SafeAreaView>
   );
