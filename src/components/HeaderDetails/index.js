@@ -8,6 +8,7 @@ import transformInAround from './tansformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../Text';
 import {pressLongTitle, min} from '../../mocks/Details';
+import ModalRating from '../../components/ModalRating'
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
