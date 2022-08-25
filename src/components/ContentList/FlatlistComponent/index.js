@@ -7,14 +7,14 @@ import {useNavigation} from '@react-navigation/native';
 import {TextRegular} from '../../Text/';
 import RatingStarAndAverage from './RatingStarAndAverage';
 
-const ListOfMoviesComponent = memo(({vote_average, poster_path, id}) => {
+const ListOfMoviesComponent = memo(({vote_average, poster_path, id, stack}) => {
   const favoriteMovieScreen = false;
   const navigation = useNavigation();
   return (
     <View style={styles.conteinerImage}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Details', {id: id});
+          navigation.navigate(stack, {id: id});
         }}>
         <Image
           source={{

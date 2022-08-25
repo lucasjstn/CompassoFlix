@@ -10,7 +10,7 @@ export default function Favorite({style, id, mediaType}) {
   const firstRender = useRef(true);
   const [markFav, setMarkFav] = useState(false);
 
-  const {data: favorite} = getMovies(`/movie/${id}/account_states?&`);
+  const {data: favorite} = getMovies(`/${mediaType}/${id}/account_states?&`);
 
   const markOrUnmark = async () => {
     await api

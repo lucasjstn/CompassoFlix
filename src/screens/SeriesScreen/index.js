@@ -42,7 +42,7 @@ const SeriesScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={{color: 'white'}}>asjdajsd</Text>
-      <ContentList content={tv} endProp={scrollLoad} />
+      <ContentList content={tv} endProp={scrollLoad} stack={"SeriesDetails"}/>
     </SafeAreaView>
   );
 };
