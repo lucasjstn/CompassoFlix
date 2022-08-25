@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView, View, TouchableOpacity} from 'react-native';
 import TopFiveMovies from './components';
 import styles from './style';
@@ -6,11 +6,10 @@ import getMovies from './getMovies';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
 const ProfileScreen = () => {
-  const [isserie, setIsserie] = useState(false)
-  const [results, setResults] = useState(false)
-  const [focused, setIsFocused] = useState(false)
+  const [isserie, setIsserie] = useState(false);
+  const [results, setResults] = useState(false);
+  const [focused, setIsFocused] = useState(false);
 
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
     `/account/13768649/favorite/movies?&session_id=`,
@@ -27,16 +26,32 @@ const ProfileScreen = () => {
   );
   return (
     <SafeAreaView style={styles.container}>
-      <SupProfile/>
+      <SupProfile />
       <View style={styles.lineUp}></View>
       <View style={styles.lineDown}></View>
       <View style={styles.lineMid}>
         <View style={{position: 'absolute'}}>
-        <TouchableOpacity style={styles.serieIconLocation} onPress={() => {setIsserie(true), setResults(true), setIsFocused(true)}}>
-            <Icon name='television-play' style={[styles.iconSeries, {color: focused ? 'white' : 'grey'}]} size={30}/>
+          <TouchableOpacity
+            style={styles.serieIconLocation}
+            onPress={() => {
+              setIsserie(true), setResults(true), setIsFocused(true);
+            }}>
+            <Icon
+              name="television-play"
+              style={[styles.iconSeries, {color: focused ? 'white' : 'grey'}]}
+              size={30}
+            />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.filmesIconLocation} onPress={() => {setIsserie(false), setResults(false), setIsFocused(false)}}>
-            <Icon name='popcorn' style={[styles.iconFilmes, {color: focused ? 'grey' : 'white'}]} size={30}/>
+          <TouchableOpacity
+            style={styles.filmesIconLocation}
+            onPress={() => {
+              setIsserie(false), setResults(false), setIsFocused(false);
+            }}>
+            <Icon
+              name="popcorn"
+              style={[styles.iconFilmes, {color: focused ? 'grey' : 'white'}]}
+              size={30}
+            />
           </TouchableOpacity>
         </View>
       </View>

@@ -21,7 +21,7 @@ import RatingStarAndAverage from '../../../components/ContentList/FlatlistCompon
 const baseUrl = apiImage.defaults.baseURL;
 export default function TopFiveMovies({
   moviesList,
-  isSerie = false,
+  isSerie,
   isRated = false,
   isLoad,
   favoriteMovies,
