@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {SafeAreaView, View, TouchableOpacity} from 'react-native';
-import TopFiveMovies from './components/TopFiveMovies/index'
+import TopFiveMovies from './components/TopFiveMovies';
 import styles from './style';
 import getMovies from '../FilmsDetails/apiGets';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../../service/api';
 
 
@@ -14,20 +13,9 @@ const ProfileScreen = () => {
   const [results, setResults] = useState(false)
   const [focused, setIsFocused] = useState(false)
   const [id, setId] = useState('')
-  
-  const getUsuario = async () => {
-    try {
-      const value = await AsyncStorage?.getItem('@session');
-      if (value !== null) {
-        getUser(value);
-      }
-    } catch (err) {
-      console.log('erro aqui ó: ' + err);
-    }
-  };
 
-  const getUser = async sessionId => {
-    const res = await api.get(`/account?&session_id=${sessionId}`);
+  const getUser = async ()=> {
+    const res = await api.get(`/account?&`);
     try {
       setId(res.data.id);
     } catch (err) {
@@ -36,21 +24,21 @@ const ProfileScreen = () => {
   };
 
   useEffect(() => {
-    getUsuario();
+    getUser();
   }, []);
 
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
-    `/account/${id}}/favorite/movies?&session_id=`,
+    `/account/${id}}/favorite/movies?&`,
   );
   const {data: filmsRated, isLoad: ratedLoad} = getMovies(
-    `/account/${id}}/rated/movies?&session_id=`,
+    `/account/${id}}/rated/movies?&`,
   );
 
   const {data: seriesFavorite} = getMovies(
-    `/account/${id}}/favorite/tv?&session_id=`,
+    `/account/${id}}/favorite/tv?&`,
   );
   const {data: seriesRated} = getMovies(
-    `/account/${id}}/rated/tv?&session_id=`,
+    `/account/${id}}/rated/tv?&`,
   );
   return (
     <SafeAreaView style={styles.container}>

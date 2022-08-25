@@ -12,7 +12,7 @@ export default function WatchScreen({id}) {
       const res = await api.get(`/movie/${id}/videos?&language=en-US`);
       setVideoKey(res.data.results.find(item => item.type === 'Trailer'));
     } catch (error) {
-      console.log(error);
+      throw new Error(`deu erro aqui ô: ${err}`);
     }
   };
 
@@ -21,7 +21,7 @@ export default function WatchScreen({id}) {
       const meta = await getYoutubeMeta(videoKey?.key);
       setMetaRanger({height: meta?.height, width: meta?.width});
     } catch (error) {
-      console.log(error);
+      throw new Error(`deu erro aqui : ${err}`);
     }
   };
 

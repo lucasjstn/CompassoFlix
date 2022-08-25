@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
-import Header from './components/Header';
-import Synopsis from './components/Synopsis';
+import HeaderDetails from '../../components/HeaderDetails';
+import Synopsis from '../../components/Synopsis';
 import Cast from './components/Cast';
 import BtnGoBack from '../../components/BtnGoBack';
 import styles from './style';
@@ -14,20 +14,22 @@ export default FilmsDetails = ({route, navigation}) => {
   const {id} = route.params;
   const {data: dataDetails} = apiGets(`/movie/${id}?&language=pt-BR`);
   const {data: dataCredits} = apiGets(`/movie/${id}/credits?&language=pt-BR`);
+  
   return !!dataCredits ? (
     <SafeAreaView style={styles.container}>
       <View
         style={styles.btnWrapper}>
         <BtnGoBack nav={navigation} />
-        <Favorite id={id}/>
+        <Favorite id={id} mediaType='movie'/>
       </View>
-      <Header
+      <HeaderDetails
         {...dataDetails}
         director={dataCredits?.crew}
         {...mockFilmsDetails.header}
         id={id}
+        isSerie={false}
       />
-      <Synopsis {...dataDetails} {...mockFilmsDetails.synopsis} />
+      <Synopsis {...dataDetails} />
       <Cast cast={dataCredits?.cast} {...mockFilmsDetails.cast} />
     </SafeAreaView>
   ) : (

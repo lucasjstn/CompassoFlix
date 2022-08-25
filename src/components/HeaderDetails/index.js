@@ -3,18 +3,19 @@ import React, {useState, useEffect, useReducer} from 'react';
 import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
-import {apiImage} from '../../../../service/api';
-import transformInAround from './transformInAround';
+import {apiImage} from '../../service/api';
+import transformInAround from './tansformInAround';
 import ImgWindow from './ImgWindow';
-import {TextBold, TextRegular} from '../../../../components/Text';
-import ModalRating from '../../../../components/ModalRating';
+import {TextBold, TextRegular} from '../Text';
+import {pressLongTitle, min} from '../../mocks/Details';
+import ModalRating from '../../components/ModalRating'
 const baseUrl = apiImage.defaults.baseURL;
 
-export default FilmsDetails = ({
+export default HeaderDetails = ({
   id,
-  min,
   title,
   runtime,
+  isSerie,
   director,
   directorBy,
   popularity,
@@ -24,7 +25,7 @@ export default FilmsDetails = ({
   backdrop_path,
   directorDefault,
 }) => {
-  const [information, setInformation] = useState(0);
+  const [information, setInformation] = useState(false);
   const [press, setPress] = useReducer(press => !press, false);
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
   const [modalVisible, setModalVisible] = useReducer(
@@ -38,8 +39,8 @@ export default FilmsDetails = ({
 
   useEffect(() => {
     if (title?.length > 14) {
-      setInformation(1);
-      setTimeout(() => setInformation(0), 2000);
+      setInformation(true);
+      setTimeout(() => setInformation(false), 2000);
     }
   }, [title]);
 
@@ -56,15 +57,18 @@ export default FilmsDetails = ({
 
       <View>
         <Image
+          accessibilityHint="banner de fundo"
           source={{uri: `${baseUrl}/w780${backdrop_path}`}}
           style={styles.poster}
         />
         {/* <View> */}
         <TouchableOpacity
+          accessibilityHint="poster com botao"
           style={styles.frontCoverBtn}
           activeOpacity={0.9}
           onPress={setModalVisible}>
           <Image
+            accessibilityHint="poster"
             source={{uri: `${baseUrl}/w342${poster_path}`}}
             style={styles.frontCover}
           />
@@ -88,7 +92,6 @@ export default FilmsDetails = ({
             </Modal>
           ) : null}
         </TouchableOpacity>
-        {/* </View> */}
 
         <View style={styles.mainWrapper}>
           <View style={styles.mainTextWrapper}>
@@ -98,23 +101,33 @@ export default FilmsDetails = ({
                 alignItems: 'flex-end',
                 justifyContent: 'center',
               }}>
-              <View style={[styles.popUpWrapper, {opacity: information}]}>
-                <TextBold style={styles.popUpTitle}>
-                  Pressione para mostrar o título completo
-                </TextBold>
-                <View style={styles.bottomPopUp} />
-              </View>
+              {information && (
+                <View style={styles.popUpWrapper}>
+                  <TextBold style={styles.popUpTitle}>
+                    {pressLongTitle}
+                  </TextBold>
+                  <View style={styles.bottomPopUp}></View>
+                </View>
+              )}
 
-              <View style={[styles.popUpWrapper, {opacity: press ? 1 : 0}]}>
-                <TextBold style={styles.popUpTitle}>{title}</TextBold>
-                <View style={styles.bottomPopUp} />
-              </View>
+              {press && (
+                <View style={styles.popUpWrapper}>
+                  <TextBold style={styles.popUpTitle}>{title}</TextBold>
+                  <View style={styles.bottomPopUp}></View>
+                </View>
+              )}
 
               <TextBold
                 onLongPress={setPress}
                 onPressOut={setPress}
                 style={styles.frontCoverTitle}>
-                {title?.length < 14 ? title : `${title?.slice(0, 14)}...`}
+                {isSerie
+                  ? title?.length < 17
+                    ? title
+                    : `${title?.slice(0, 17)}...`
+                  : title?.length < 15
+                  ? title
+                  : `${title?.slice(0, 14)}...`}
                 <TextRegular style={styles.frontCoverLaunch}>
                   {' '}
                   {release_date?.slice(0, 4)}
@@ -122,15 +135,19 @@ export default FilmsDetails = ({
               </TextBold>
             </View>
 
-            <TextRegular style={styles.frontCoverMin}>
-              {runtime} {min}
-            </TextRegular>
+            {!isSerie && (
+              <TextRegular style={styles.frontCoverMin}>
+                {runtime} {min}
+              </TextRegular>
+            )}
           </View>
 
           <TextRegular style={styles.directorText}>
             {directorBy}{' '}
             <TextBold style={{fontFamily: 'OpenSans-Ligth'}}>
-              {searchPeople(director).name || directorDefault}
+              {isSerie
+                ? director?.name ?? directorDefault
+                : searchPeople(director)?.name ?? directorDefault}
             </TextBold>
           </TextRegular>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
-import {TextBold, TextRegular, TextSemiBold} from '../../../../components/Text';
-import {apiImage} from '../../../../service/api';
+import {TextBold, TextRegular, TextSemiBold} from "../../../../components/Text"
+import {apiImage} from "../../../../service/api"
 import styles from './style';
 
 const undefinedPhoto =

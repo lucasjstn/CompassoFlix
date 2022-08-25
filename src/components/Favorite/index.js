@@ -5,17 +5,17 @@ import LottieView from 'lottie-react-native';
 import getMovies from '../../screens/FilmsDetails/apiGets';
 import {api} from '../../service/api';
 
-export default function Favorite({style, id}) {
+export default function Favorite({style, id, mediaType}) {
   const animation = useRef(null);
   const firstRender = useRef(true);
   const [markFav, setMarkFav] = useState(false);
 
-  const {data: favorite} = getMovies(`/movie/${id}/account_states?&`);
+  const {data: favorite} = getMovies(`/${mediaType}/${id}/account_states?&`);
 
   const markOrUnmark = async () => {
     await api
       .post('/account/ACCOUNT_ID/favorite?&', {
-        media_type: 'movie',
+        media_type: mediaType,
         media_id: id,
         favorite: !markFav,
       })

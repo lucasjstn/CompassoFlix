@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Modal, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {apiImage} from '../../../../../service/api';
+import {apiImage} from '../../../service/api';
 import styles from './style';
-import WatchScreen from '../../../../WatchScreen';
+import WatchScreen from '../../../screens/WatchScreen';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default function ImgWindow({id, visible, setVisible}) {

@@ -1,6 +1,5 @@
 import React, {useEffect, useState, memo} from 'react';
 import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
-import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
 import {api} from '../../../../service/api';
@@ -48,20 +47,7 @@ export default function FlatFilmes() {
     SetPagina(prev => prev + 1);
   };
 
-  // const getMovies = async () => {
-  //   await api
-  //     .get(`/movie/popular?&language=pt-BR&page=${pagina}`)
-  //     .then(res => {
-  //       const current = res.data.results;
-  //       // console.log(res?.data.results);
-  //       setMovies(prev => [...prev, ...current]);
-  //     })
-  //     .catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-  //     .finally(() => {
-  //       setScroll(false);
-  //       setLoad(false);
-  //     });
-  // };
+ 
 
   useEffect(() => {
     if (scroll) setTimeout(() => getMovies(), 3000);
@@ -70,8 +56,6 @@ export default function FlatFilmes() {
   useEffect(() => {
     getData();
     getMovies();
-    // console.log(`movies ${movies}`);
-    // getMovies();
   }, []);
 
   async function getMovies() {
@@ -92,16 +76,7 @@ export default function FlatFilmes() {
     <View style={styles.conteinerBackGround}>
       <FilmesHeader name={metaNames.name} userName={metaNames.username} />
       <View style={styles.conteinerFlatList}>
-        {/* <FlatList
-        data={movies}
-        renderItem={({item}) => <FilmesCP {...item} />}
-        keyExtractor={(_, index) => index}
-        numColumns={4}
-        ListFooterComponent={<ActivityIndicator color={'red'} />}
-        onEndReached={scrollLoad}
-        onEndReachedThreshold={0.2}
-      /> */}
-        <ContentList content={movies} endProp={scrollLoad} />
+        <ContentList content={movies} endProp={scrollLoad} stack='Details'/>
       </View>
     </View>
   );
