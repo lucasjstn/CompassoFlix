@@ -5,19 +5,21 @@ export default function getMovies(url) {
   const [data, setData] = useState();
   const [isLoad, setIsLoad] = useState(true);
 
-  const get = async (sessionId) => {
+  const get = async () => {
     await api
-      .get(url + sessionId)
+      .get(url)
       .then(res => {
         setData(res?.data);
       })
-      .catch(err => {throw new Error(`deu erro aqui ô: ${err}`)})
-      .finally(() => setIsLoad(false))
+      .catch(err => {
+        throw new Error(`deu erro aqui ô: ${err}`);
+      })
+      .finally(() => setIsLoad(false));
   };
 
   useEffect(() => {
-    get()
-  }, [])
+    get();
+  }, []);
 
   return {data, isLoad};
 }
