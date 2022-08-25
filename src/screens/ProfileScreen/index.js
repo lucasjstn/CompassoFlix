@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import {SafeAreaView, View, TouchableOpacity} from 'react-native';
-import TopFiveMovies from './components';
+import TopFiveMovies from './components/TopFiveMovies/index'
 import styles from './style';
-import getMovies from './getMovies';
+import getMovies from '../FilmsDetails/apiGets';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
