@@ -1,16 +1,13 @@
 import { StyleSheet } from "react-native";
 
-import { StyleSheet } from "react-native";
-
 const styles = StyleSheet.create({
     leaveModal:{
         width: 327,
         height: 166,
         top: 300,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'pink',
         borderRadius: 25,
-        position: 'relative',
-        left: 30,
+        position: 'absolute',
         justifyContent: 'center',
         alignItems: 'center'
     },

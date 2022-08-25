@@ -27,15 +27,18 @@ const ProfileScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <SupProfile/>
-        <TouchableOpacity style={styles.serieIconLocation} onPress={() => {setIsserie(true), setResults(true), setIsFocused(true)}}>
-          <Icon name='television-play' style={[styles.iconSeries, {color: focused ? 'white' : null}]} size={30}/>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.filmesIconLocation} onPress={() => {setIsserie(false), setResults(false), setIsFocused(false)}}>
-          <Icon name='popcorn' style={[styles.iconFilmes, {color: focused ? null : 'white'}]} size={30}/>
-        </TouchableOpacity>
       <View style={styles.lineUp}></View>
       <View style={styles.lineDown}></View>
-      <View style={styles.lineMid}></View>
+      <View style={styles.lineMid}>
+        <View style={{position: 'absolute'}}>
+        <TouchableOpacity style={styles.serieIconLocation} onPress={() => {setIsserie(true), setResults(true), setIsFocused(true)}}>
+            <Icon name='television-play' style={[styles.iconSeries, {color: focused ? 'white' : 'grey'}]} size={30}/>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.filmesIconLocation} onPress={() => {setIsserie(false), setResults(false), setIsFocused(false)}}>
+            <Icon name='popcorn' style={[styles.iconFilmes, {color: focused ? 'grey' : 'white'}]} size={30}/>
+          </TouchableOpacity>
+        </View>
+      </View>
       <TopFiveMovies
         moviesList={results ? seriesFavorite?.results : filmsFavorite?.results}
         isSerie={isserie}

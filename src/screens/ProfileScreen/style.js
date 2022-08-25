@@ -26,21 +26,23 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255, 255, 255, 0.4)',
     top: 298.9,
     transform: [{rotate: '90deg'}],
-    left: 165
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row'
+    
   },
   iconFilmes:{
-    position:'absolute',
+    transform: [{rotate: '270deg'}]
   },
   iconSeries:{
-    position:'absolute'
+    transform: [{rotate: '270deg'}],
   },
   filmesIconLocation:{
-    top: 285,
-    left: 90
+    top: 50
   },
   serieIconLocation:{
-    top: 285,
-    left: 267
+    top: -50
   }
 });
 

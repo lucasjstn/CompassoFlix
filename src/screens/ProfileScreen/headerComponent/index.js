@@ -70,10 +70,12 @@ export default function SupProfile(){
     return(
         <View style={styles.conteiner}>
             <LeaveMdl modalActive={modalActive} setModalActive={setModalActive}/>
-            <TouchableOpacity style={styles.leavebuttom} onPress={() => setModalActive(true)}>
-              <Icon name="md-exit-outline" style={styles.iconleave}/>
-              <TextRegular style={styles.leavetxt}>Sair</TextRegular>
-            </TouchableOpacity>
+            <View style={{width: '100%', position: 'absolute', justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+              <TouchableOpacity style={styles.leavebuttom} onPress={() => setModalActive(true)}>
+                <Icon name="md-exit-outline" style={styles.iconleave}/>
+                <TextRegular style={styles.leavetxt}>Sair</TextRegular>
+              </TouchableOpacity>
+            </View>
             <View style={styles.conteinerImg}>
                 <Picture/>
             </View>

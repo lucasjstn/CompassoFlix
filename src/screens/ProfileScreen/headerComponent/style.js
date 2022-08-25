@@ -33,11 +33,10 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     leavebuttom:{
-        position: 'absolute',
         width: 50.4,
         height: 14,
-        left: 291,
-        top: 31,
+        right: 30,
+        top: 20,
         backgroundColor: '#E9A6A6',
         borderRadius: 5,
         flexDirection: 'row',

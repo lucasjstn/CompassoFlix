@@ -17,7 +17,7 @@ export default function LeaveMdl({modalActive, setModalActive}){
         transparent={true}
         visible={modalActive}
         onRequestClose={() => setModalActive(false)}>
-          <View style={styles.leaveModal}>
+          <View style={{width: 327, height: 166, top: 300, backgroundColor: 'white', borderRadius: 25, alignSelf: 'center'}}>
               <TextBold style={styles.atencaoModal}>Atenção</TextBold>
               <TextRegular style={styles.djsModal}>Deseja mesmo sair?</TextRegular>
               <Pressable style={styles.cancelarModal} onPress={() => setModalActive(false)}>
