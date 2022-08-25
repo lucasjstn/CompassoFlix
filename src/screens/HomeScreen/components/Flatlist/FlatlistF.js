@@ -65,7 +65,6 @@ export default function FlatFilmes() {
     }
   }
 
-  // console.log(`movies ${movies[0].adult}`);
 
   return load ? (
     <Loading />
