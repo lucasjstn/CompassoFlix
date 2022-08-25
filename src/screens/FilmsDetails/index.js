@@ -20,7 +20,7 @@ export default FilmsDetails = ({route, navigation}) => {
       <View
         style={styles.btnWrapper}>
         <BtnGoBack nav={navigation} />
-        <Favorite id={id}/>
+        <Favorite id={id} mediaType='movie'/>
       </View>
       <HeaderDetails
         {...dataDetails}

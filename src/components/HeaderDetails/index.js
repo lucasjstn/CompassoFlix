@@ -14,7 +14,7 @@ export default HeaderDetails = ({
   id,
   title,
   runtime,
-  isSerie = false,
+  isSerie,
   director,
   directorBy,
   popularity,

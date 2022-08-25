@@ -48,20 +48,7 @@ export default function FlatFilmes() {
     SetPagina(prev => prev + 1);
   };
 
-  // const getMovies = async () => {
-  //   await api
-  //     .get(`/movie/popular?&language=pt-BR&page=${pagina}`)
-  //     .then(res => {
-  //       const current = res.data.results;
-  //       // console.log(res?.data.results);
-  //       setMovies(prev => [...prev, ...current]);
-  //     })
-  //     .catch(err => console.log(`Opa, erro nisso aqui ${err}`))
-  //     .finally(() => {
-  //       setScroll(false);
-  //       setLoad(false);
-  //     });
-  // };
+ 
 
   useEffect(() => {
     if (scroll) setTimeout(() => getMovies(), 3000);
@@ -70,8 +57,6 @@ export default function FlatFilmes() {
   useEffect(() => {
     getData();
     getMovies();
-    // console.log(`movies ${movies}`);
-    // getMovies();
   }, []);
 
   async function getMovies() {

@@ -19,10 +19,7 @@ const SeriesScreen = () => {
   }, [scroll]);
 
   useEffect(() => {
-    // getData();
     getTVSeries();
-    // console.log(`movies ${movies}`);
-    // getMovies();
   }, []);
 
   const scrollLoad = () => {

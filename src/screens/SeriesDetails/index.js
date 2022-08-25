@@ -9,16 +9,15 @@ import Loading from '../../components/Loading';
 import apiGets from '../FilmsDetails/apiGets';
 import Favorite from '../../components/Favorite';
 
-const id = '80020';
-
 const SeriesDetails = ({route, navigation}) => {
+  const {id} = route.params
   const {data: dataDetails} = apiGets(`/tv/${id}?&language=pt-BR`);
 
   return !!dataDetails ? (
     <SafeAreaView style={styles.container}>
       <View style={styles.btnWrapper}>
         <BtnGoBack nav={navigation} />
-        <Favorite id={id} />
+        <Favorite id={id} mediaType="tv"/>
       </View>
       <HeaderDetails
         {...dataDetails}
