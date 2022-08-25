@@ -5,25 +5,52 @@ import styles from './style';
 import getMovies from './getMovies';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { api } from '../../service/api';
 
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false)
   const [results, setResults] = useState(false)
   const [focused, setIsFocused] = useState(false)
+  const [id, setId] = useState('')
+  
+  const getUsuario = async () => {
+    try {
+      const value = await AsyncStorage?.getItem('@session');
+      if (value !== null) {
+        getUser(value);
+      }
+    } catch (err) {
+      console.log('erro aqui ó: ' + err);
+    }
+  };
+
+  const getUser = async sessionId => {
+    const res = await api.get(`/account?&session_id=${sessionId}`);
+    try {
+      setId(res.data.id);
+    } catch (err) {
+      console.log('erro aqui ó: ' + err);
+    } 
+  };
+
+  useEffect(() => {
+    getUsuario();
+  }, []);
 
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
-    `/account/13768649/favorite/movies?&session_id=`,
+    `/account/${id}}/favorite/movies?&session_id=`,
   );
   const {data: filmsRated, isLoad: ratedLoad} = getMovies(
-    `/account/13768649/rated/movies?&session_id=`,
+    `/account/${id}}/rated/movies?&session_id=`,
   );
 
   const {data: seriesFavorite} = getMovies(
-    `/account/13768649/favorite/tv?&session_id=`,
+    `/account/${id}}/favorite/tv?&session_id=`,
   );
   const {data: seriesRated} = getMovies(
-    `/account/13768649/rated/tv?&session_id=`,
+    `/account/${id}}/rated/tv?&session_id=`,
   );
   return (
     <SafeAreaView style={styles.container}>
