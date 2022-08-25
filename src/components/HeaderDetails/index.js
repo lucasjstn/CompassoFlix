@@ -91,7 +91,6 @@ export default HeaderDetails = ({
             </Modal>
           ) : null}
         </TouchableOpacity>
-        {/* </View> */}
 
         <View style={styles.mainWrapper}>
           <View style={styles.mainTextWrapper}>

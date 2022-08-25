@@ -1,6 +1,5 @@
 import React, {useEffect, useState, memo} from 'react';
 import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
-import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
 import {api} from '../../../../service/api';
@@ -77,16 +76,7 @@ export default function FlatFilmes() {
     <View style={styles.conteinerBackGround}>
       <FilmesHeader name={metaNames.name} userName={metaNames.username} />
       <View style={styles.conteinerFlatList}>
-        {/* <FlatList
-        data={movies}
-        renderItem={({item}) => <FilmesCP {...item} />}
-        keyExtractor={(_, index) => index}
-        numColumns={4}
-        ListFooterComponent={<ActivityIndicator color={'red'} />}
-        onEndReached={scrollLoad}
-        onEndReachedThreshold={0.2}
-      /> */}
-        <ContentList content={movies} endProp={scrollLoad} />
+        <ContentList content={movies} endProp={scrollLoad} stack='Details'/>
       </View>
     </View>
   );
