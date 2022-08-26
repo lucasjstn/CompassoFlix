@@ -8,6 +8,15 @@ const styles = StyleSheet.create({
     flex: 1,
     color: 'white',
   },
+  picture:{
+    top: 1,
+    position: 'absolute',
+    width: '100%',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    right: 30,
+    top: 10
+}
 });
 
 export default styles;

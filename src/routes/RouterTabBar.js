@@ -16,6 +16,7 @@ export default function TabBar() {
     <Tab.Navigator
       initialRouteName="TelasFilmes"
       screenOptions={{
+        unmountOnBlur: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: 'white',
         headerShown: false,

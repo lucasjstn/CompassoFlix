@@ -17,6 +17,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         top: 150
+    },
+    picture:{
+        top: 1,
+        position: 'absolute',
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
+        right: 30,
+        top: 10
     }
 })
 
