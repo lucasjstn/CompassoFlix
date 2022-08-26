@@ -5,10 +5,9 @@ import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {apiImage} from '../../../service/api';
 import Loading from '../../../components/Loading';
-import {useNavigation} from '@react-navigation/native';
-
 import ModalRatedOrFav from './ModalRatedOrFav';
 const baseUrl = apiImage.defaults.baseURL;
+
 export default function TopFiveMovies({
   moviesList,
   isSerie,
@@ -19,7 +18,7 @@ export default function TopFiveMovies({
   name,
 }) {
   const [toggleUserFavorites, setToggleUserFavorites] = useState(false);
-  const navigation = useNavigation();
+
   const toggle = () => {
     return setToggleUserFavorites(!toggleUserFavorites);
   };

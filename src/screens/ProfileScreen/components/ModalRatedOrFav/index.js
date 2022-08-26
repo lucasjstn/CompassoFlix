@@ -4,6 +4,7 @@ import BtnGoBack from '../../../../components/BtnGoBack';
 import {Modal, View, ScrollView, TouchableOpacity, Image} from 'react-native';
 import {TextBold} from '../../../../components/Text';
 import styles from './style';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ModalRatedOrFav({
   toggleUserFavorites,
@@ -14,8 +15,9 @@ export default function ModalRatedOrFav({
   moviesList,
   isRated,
   baseUrl,
-  setToggleUserFavorites
+  setToggleUserFavorites,
 }) {
+  const navigation = useNavigation();
   return (
     <Modal
       visible={toggleUserFavorites}
