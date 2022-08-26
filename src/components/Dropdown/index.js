@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, Animated, Easing} from 'react-native';
 import {TextBold, TextRegular} from '../Text';
 import styles from './style';
 import getMovies from '../../screens/FilmsDetails/apiGets';
@@ -8,6 +8,25 @@ export default function ({id, path, name}) {
   const [drop, setDrop] = useState(false);
 
   const {data: episodes} = getMovies(`/tv/${id}/season/${path}?`);
+
+  const icon = new Animated.Value(0);
+  Animated.timing(icon, {
+    toValue: 1,
+    duration: 300,
+    easing: Easing.ease,
+    useNativeDriver: false,
+  }).start();
+
+  const rotation = {
+    transform: [
+      {
+        rotate: icon.interpolate({
+          inputRange: [0, 1],
+          outputRange: drop ? ['0deg', '180deg'] : ['180deg', '0deg'],
+        })
+      }
+    ]
+  }
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -20,11 +39,13 @@ export default function ({id, path, name}) {
           <TextBold style={styles.titleTemp}>
             {name ?? `Temporada ${episodes?.episodes[0]?.season_number} `}
           </TextBold>
-          <Icon
-            name={drop ? 'chevron-up' : 'chevron-down'}
-            size={18}
-            color="#FFFFFF"
-          />
+          <Animated.View style={rotation}>
+            <Icon
+              name={'chevron-down'}
+              size={18}
+              color="#FFFFFF"
+            />
+          </Animated.View>
         </View>
       </TouchableOpacity>
       <View
