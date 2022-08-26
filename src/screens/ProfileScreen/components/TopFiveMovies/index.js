@@ -47,7 +47,7 @@ export default function TopFiveMovies({
                       testID="starIcon"
                     />
                     <TextSemiBold style={styles.rated}>
-                      {Math.round(item.rating)}/10
+                      {item.rating.toFixed(1)}/10
                     </TextSemiBold>
                   </View>
                 )}

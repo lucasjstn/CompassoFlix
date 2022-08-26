@@ -1,6 +1,6 @@
 import React, {useEffect, useState, memo} from 'react';
 import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
-import FilmesCP from './FlatListComponent/FlatlistComponent';
+// import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
 import {api} from '../../../../service/api';
