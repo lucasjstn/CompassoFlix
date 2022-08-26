@@ -1,5 +1,6 @@
 import React, {useEffect, useState, memo} from 'react';
 import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
+// import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
 import {api} from '../../../../service/api';
@@ -7,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Loading from '../../../../components/Loading';
 import ContentList from '../../../../components/ContentList';
 import {getContent} from '../../../../service/requests/ContentRequest/MoviesRequest';
+import {KeepToken} from '../../../../service/storage';
 
 export default function FlatFilmes() {
   const [scroll, setScroll] = useState(false);
@@ -35,9 +37,9 @@ export default function FlatFilmes() {
     const res = await api.get(`/account?&`);
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
-    } catch (error) {
-      console.log('api: ' + error);
-    }
+      await KeepToken('@username', res?.data?.username);
+      await KeepToken('@name', res?.data?.name);
+    } catch (error) {}
   };
 
   const scrollLoad = () => {
@@ -46,8 +48,6 @@ export default function FlatFilmes() {
     setScroll(true);
     SetPagina(prev => prev + 1);
   };
-
- 
 
   useEffect(() => {
     if (scroll) setTimeout(() => getMovies(), 3000);
@@ -68,7 +68,6 @@ export default function FlatFilmes() {
     }
   }
 
-  // console.log(`movies ${movies[0].adult}`);
 
   return load ? (
     <Loading />

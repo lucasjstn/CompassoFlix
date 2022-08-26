@@ -1,15 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 import styles from './style';
 import ContentList from '../../components/ContentList';
 import {getContent} from '../../service/requests/ContentRequest/MoviesRequest';
+import {FilmesHeader} from '../HomeScreen/components/HeaderFilms/HeaderCP';
+import {KeepToken} from '../../service/storage';
+import {api} from '../../service/api';
 const SeriesScreen = () => {
   const [tv, setTV] = useState('');
   const [page, setPage] = useState(1);
   const [scroll, setScroll] = useState(false);
   const [metaNames, setMetaNames] = useState({
-    name: undefined,
-    username: 'none',
+    name: '',
+    username: '',
   });
   const [load, setLoad] = useState(true);
   const content = 'tv';
@@ -20,6 +23,7 @@ const SeriesScreen = () => {
 
   useEffect(() => {
     getTVSeries();
+    getUser();
   }, []);
 
   const scrollLoad = () => {
@@ -27,6 +31,13 @@ const SeriesScreen = () => {
 
     setScroll(true);
     setPage(prev => prev + 1);
+  };
+
+  const getUser = async () => {
+    const res = await api.get(`/account?&`);
+    try {
+      setMetaNames({name: res?.data?.name, username: res?.data?.username});
+    } catch (error) {}
   };
 
   async function getTVSeries() {
@@ -41,8 +52,19 @@ const SeriesScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{color: 'white'}}>asjdajsd</Text>
-      <ContentList content={tv} endProp={scrollLoad} stack={"SeriesDetails"}/>
+      <FilmesHeader
+        isSeries={true}
+        name={metaNames.name}
+        userName={metaNames.username}
+      />
+      {/* <Text style={{color: 'white'}}>asjdajsd</Text> */}
+      <View style={{top: 150}}>
+        <ContentList
+          content={tv}
+          endProp={scrollLoad}
+          stack={'SeriesDetails'}
+        />
+      </View>
     </SafeAreaView>
   );
 };

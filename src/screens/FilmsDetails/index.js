@@ -12,6 +12,7 @@ import Favorite from '../../components/Favorite';
 
 export default FilmsDetails = ({route, navigation}) => {
   const {id} = route.params;
+
   const {data: dataDetails} = apiGets(`/movie/${id}?&language=pt-BR`);
   const {data: dataCredits} = apiGets(`/movie/${id}/credits?&language=pt-BR`);
   
