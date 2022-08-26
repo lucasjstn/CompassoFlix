@@ -1,8 +1,9 @@
 import {useState, useEffect} from 'react';
 import {api} from '../../service/api';
 
-export default function apiGets(url) {
+export default function getMovies(url) {
   const [data, setData] = useState();
+  const [isLoad, setIsLoad] = useState(true);
 
   const get = async () => {
     await api
@@ -10,12 +11,15 @@ export default function apiGets(url) {
       .then(res => {
         setData(res?.data);
       })
-      .catch(err => console.log('deu erro aqui ô ' + err));
+      .catch(err => {
+        throw new Error(`deu erro aqui ô: ${err}`);
+      })
+      .finally(() => setIsLoad(false));
   };
 
   useEffect(() => {
     get();
   }, []);
 
-  return {data};
+  return {data, isLoad};
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, FlatList} from 'react-native';
-import {TextBold, TextRegular, TextSemiBold} from '../../../../components/Text';
-import {apiImage} from '../../../../service/api';
+import {TextBold, TextRegular, TextSemiBold} from "../../../../components/Text"
+import {apiImage} from "../../../../service/api"
 import styles from './style';
 
 const undefinedPhoto =
@@ -12,7 +12,7 @@ const Item = ({name, character, profile_path}) => (
     <Image
       source={{
         uri: profile_path
-          ? `${apiImage.defaults.baseURL}w138_and_h175_face${profile_path}`
+          ? `${apiImage.defaults.baseURL}/w185${profile_path}`
           : undefinedPhoto,
       }}
       style={styles.imgWrapper}
