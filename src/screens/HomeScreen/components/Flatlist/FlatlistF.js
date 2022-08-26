@@ -1,5 +1,5 @@
 import React, {useEffect, useState, memo} from 'react';
-import {ActivityIndicator, FlatList, View, LogBox} from 'react-native';
+import {ActivityIndicator, FlatList, View, LogBox, TouchableOpacity} from 'react-native';
 // import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
 import {FilmesHeader} from '../HeaderFilms/HeaderCP';
@@ -9,8 +9,12 @@ import Loading from '../../../../components/Loading';
 import ContentList from '../../../../components/ContentList';
 import {getContent} from '../../../../service/requests/ContentRequest/MoviesRequest';
 import {KeepToken} from '../../../../service/storage';
+import { Avatar } from '@react-native-material/core'
+import { apiImage } from '../../../../service/api';
+import { useNavigation } from '@react-navigation/native';
 
 export default function FlatFilmes() {
+  const navigation = useNavigation()
   const [scroll, setScroll] = useState(false);
   const [movies, setMovies] = useState([]);
   const [pagina, SetPagina] = useState(1);
@@ -20,6 +24,7 @@ export default function FlatFilmes() {
   });
   const [content, setContent] = useState('movie');
   const [load, setLoad] = useState(true);
+  const [avatar, setAvatar] = useState('')
 
   const getData = async () => {
     try {
@@ -39,6 +44,7 @@ export default function FlatFilmes() {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
       await KeepToken('@username', res?.data?.username);
       await KeepToken('@name', res?.data?.name);
+      setAvatar(res.data.avatar.tmdb.avatar_path)
     } catch (error) {}
   };
 
@@ -68,11 +74,21 @@ export default function FlatFilmes() {
     }
   }
 
+  function Picture(){
+    if (avatar == null) 
+    { return(<Avatar label={metaNames.name || metaNames.username} size={44}/>)
+    }else{
+     return(<Avatar image={{uri: `${apiImage.defaults.baseURL}/w200${avatar}`}} size={44}/>)
+    }       
+}
 
   return load ? (
     <Loading />
   ) : (
     <View style={styles.conteinerBackGround}>
+      <TouchableOpacity style={styles.picture} onPress={() => navigation.navigate('ProfileScreen')} >
+        <Picture/>
+      </TouchableOpacity>
       <FilmesHeader name={metaNames.name} userName={metaNames.username} />
       <View style={styles.conteinerFlatList}>
         <ContentList content={movies} endProp={scrollLoad} stack='Details'/>

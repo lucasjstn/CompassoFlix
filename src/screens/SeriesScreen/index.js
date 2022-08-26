@@ -1,12 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 import styles from './style';
 import ContentList from '../../components/ContentList';
 import {getContent} from '../../service/requests/ContentRequest/MoviesRequest';
 import {FilmesHeader} from '../HomeScreen/components/HeaderFilms/HeaderCP';
 import {KeepToken} from '../../service/storage';
 import {api} from '../../service/api';
+import { Avatar } from '@react-native-material/core'
+import { apiImage } from '../../service/api';
+import { useNavigation } from '@react-navigation/native';
+
 const SeriesScreen = () => {
+  
+  const navigation = useNavigation()
   const [tv, setTV] = useState('');
   const [page, setPage] = useState(1);
   const [scroll, setScroll] = useState(false);
@@ -16,6 +22,7 @@ const SeriesScreen = () => {
   });
   const [load, setLoad] = useState(true);
   const content = 'tv';
+  const [avatar, setAvatar] = useState('')
 
   useEffect(() => {
     if (scroll) setTimeout(() => getTVSeries(), 3000);
@@ -37,6 +44,7 @@ const SeriesScreen = () => {
     const res = await api.get(`/account?&`);
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
+      setAvatar(res.data.avatar.tmdb.avatar_path)
     } catch (error) {}
   };
 
@@ -50,8 +58,19 @@ const SeriesScreen = () => {
     }
   }
 
+  function Picture(){
+    if (avatar == null) 
+    { return(<Avatar label={metaNames.name || metaNames.username} size={44}/>)
+    }else{
+     return(<Avatar image={{uri: `${apiImage.defaults.baseURL}/w200${avatar}`}} size={44}/>)
+    }       
+}
+
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity style={styles.picture} onPress={() => navigation.navigate('ProfileScreen')} >
+        <Picture/>
+      </TouchableOpacity>
       <FilmesHeader
         isSeries={true}
         name={metaNames.name}
