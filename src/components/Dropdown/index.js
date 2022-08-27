@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity, Animated} from 'react-native';
 import {TextBold, TextRegular} from '../Text';
-import styles from './style';
+import styles from './style'
 import getMovies from '../../screens/FilmsDetails/apiGets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-export default function ({id, path, name}) {
+export default function Dropdown ({id, path, name}) {
   const [drop, setDrop] = useState(false);
   const [listEp, setListEp] = useState(new Animated.Value(0));
 
