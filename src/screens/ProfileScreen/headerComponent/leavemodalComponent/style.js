@@ -1,65 +1,44 @@
-import { StyleSheet } from "react-native";
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
-    leaveModal:{
-        width: 327,
-        height: 166,
-        top: 300,
-        backgroundColor: 'pink',
-        borderRadius: 25,
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    atencaoModal:{
-        color: 'black',
-        position: 'absolute',
-        fontSize: 14,
-        left: 32,
-        top: 30
-    },
-    djsModal:{
-        color: '#8E8E8E',
-        position: 'absolute',
-        top: 68,
-        left: 32
-    },
-    cancelarModal:{
-        position: 'absolute',
-        alignItems: 'center',
-        textAlign: 'center',
-        left: 63,
-        top: 123,
-        borderRadius: 5,
-        backgroundColor: 'black'
-    },
-    cancelartxt:{
-        fontSize: 10,
-        color: 'white',
-        marginBottom: 5,
-        marginTop: 5,
-        marginRight: 15,
-        marginLeft: 15
-    },
-    sairModal:{
-        position: 'absolute',
-        alignItems: 'center',
-        textAlign: 'center',
-        left: 169,
-        top: 123,
-        borderRadius: 5,
-        backgroundColor: 'white',
-        borderColor: 'black',
-        borderWidth: 1
-    },
-    sairtxt:{
-        fontSize: 10,
-        color: 'black',
-        marginBottom: 3,
-        marginTop: 5,
-        marginRight: 32,
-        marginLeft: 32
-    }
-})
+  container: {
+    backgroundColor: 'white',
+    width: '80%',
+    alignSelf: 'center',
+    height: 166,
+    marginTop: '74%',
+    borderRadius: 25,
+    padding: 30,
+  },
+  atention: {
+    color: 'black',
+    marginBottom: 17,
+    fontSize: 14,
+    lineHeigth: 21,
+  },
+  warning: {
+    color: '#8E8E8E',
+    marginBottom: 35,
+    fontSize: 13,
+    lineHeigth: 20,
+  },
+  btnWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  btnCancel: {
+    width: 84,
+    backgroundColor: 'black',
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 4,
+  },
+  btnText: {
+    color: 'white',
+    fontSize: 10,
+    lineHeigth: 15,
+  },
+});
 
-export default styles
+export default styles;

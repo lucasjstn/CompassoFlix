@@ -12,7 +12,6 @@ function relativeWidth(pixel) {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
-    marginTop: relativeHeight(25),
     marginLeft: relativeWidth(20),
   },
   castTitleWrapper: {
