@@ -36,7 +36,7 @@ export default function Dropdown ({id, path, name}) {
   const {data: episodes} = getMovies(`/tv/${id}/season/${path}?`);
 
   return (
-    <View style={styles.container}>
+    <View  style={styles.container}>
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={() => {
@@ -67,8 +67,8 @@ export default function Dropdown ({id, path, name}) {
         episodes?.episodes.map((item, index) => {
           
           return (
-            <Animated.View style={{top: listEp}}>
-              <View key={index} style={styles.cardEp}>
+            <Animated.View style={{top: listEp}} key={index}>
+              <View  style={styles.cardEp}>
                 <TextBold style={{color: '#FFFFFF', marginLeft: 13}}>
                   T
                   {item.season_number < 10
