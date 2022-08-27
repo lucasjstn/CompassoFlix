@@ -48,22 +48,24 @@ const ProfileScreen = () => {
       <View style={styles.navWrapper}>
         <TouchableOpacity
           onPress={() => {
-            setIsserie(true), setResults(true), setIsFocused(true);
-          }}>
-          <Icon
-            name="television-play"
-            style={{color: focused ? 'white' : 'grey'}}
-            size={30}
-          />
-        </TouchableOpacity>
-        <View style={styles.lineMid} />
-        <TouchableOpacity
-          onPress={() => {
             setIsserie(false), setResults(false), setIsFocused(false);
           }}>
           <Icon
             name="popcorn"
             style={{color: focused ? 'grey' : 'white'}}
+            size={30}
+          />
+        </TouchableOpacity>
+
+        <View style={styles.lineMid} />
+
+        <TouchableOpacity
+          onPress={() => {
+            setIsserie(true), setResults(true), setIsFocused(true);
+          }}>
+          <Icon
+            name="television-play"
+            style={{color: focused ? 'white' : 'grey'}}
             size={30}
           />
         </TouchableOpacity>

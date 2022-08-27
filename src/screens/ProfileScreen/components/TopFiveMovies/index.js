@@ -45,12 +45,7 @@ export default function TopFiveMovies({
               : `${isSerie ? 'Séries' : 'Filmes'} Favorit${
                   isSerie ? 'a' : 'o'
                 }s`}{' '}
-            de{' '}
-            {
-              <TextSemiBold style={{textTransform: 'capitalize'}}>
-                {name || username}
-              </TextSemiBold>
-            }
+            de {name || username}
           </TextSemiBold>
           <TouchableOpacity
             style={styles.seeAllButton}
@@ -67,6 +62,7 @@ export default function TopFiveMovies({
               return (
                 <View key={index} style={styles.moviesWrapper}>
                   <Image
+                    testID='capa do filme'
                     source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                     style={styles.imgWrapper}
                   />
@@ -75,7 +71,7 @@ export default function TopFiveMovies({
                       styles.ratedWrapper,
                       {display: isRated ? 'flex' : 'none'},
                     ]}>
-                    <Icon name="star" color={'red'} size={13} />
+                    <Icon testID='starIcon' name="star" color={'red'} size={13} />
                     <TextSemiBold style={styles.rated}>
                       {item.rating?.toFixed(1)}/10
                     </TextSemiBold>

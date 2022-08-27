@@ -22,7 +22,6 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
   }, [session]);
 
   useEffect(() => {
-    console.log(`${status}`);
     switch (status) {
       case 1:
         setTimeout(cancel, 1000);
@@ -113,7 +112,7 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
       }
       setSession(result);
     } catch (error) {
-      console.warn('Erro no storage session', error.data);
+      throw new Error(`Erro no storage session: ${error.data}`);
     }
   }
 
@@ -137,8 +136,8 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
           setStatus(response.data.status_code);
         })
         .catch(error => {
-          console.log(`erro: ${error.response.data.status_code}`);
           setStatus(error.response.data.status_code);
+          throw new Error(`Erro : ${error.response.data.status_code}`);
         });
     }
   }

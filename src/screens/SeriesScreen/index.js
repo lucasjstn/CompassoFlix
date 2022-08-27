@@ -45,7 +45,9 @@ const SeriesScreen = () => {
     try {
       setMetaNames({name: res?.data?.name, username: res?.data?.username});
       setAvatar(res.data.avatar.tmdb.avatar_path)
-    } catch (error) {}
+    } catch (error) {
+      throw new Error(`failed request get metaNames : ${error}`);
+    }
   };
 
   async function getTVSeries() {
@@ -76,7 +78,6 @@ const SeriesScreen = () => {
         name={metaNames.name}
         userName={metaNames.username}
       />
-      {/* <Text style={{color: 'white'}}>asjdajsd</Text> */}
       <View style={{top: 150}}>
         <ContentList
           content={tv}
