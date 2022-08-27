@@ -10,42 +10,43 @@ function relativeWidth(pixel) {
 }
 
 const styles = StyleSheet.create({
-    ratingText: {
-      textTransform: 'uppercase',
-      fontSize: relativeHeight(10),
-      color: 'black',
-    },
-    ratingButton: {
-      width: relativeWidth(116),
-      height: relativeHeight(22),
-      backgroundColor: '#E9A6A6',
-      position: 'absolute',
-      marginTop: relativeHeight(258),
-      marginLeft: relativeWidth(20),
-      borderBottomLeftRadius: 10,
-      borderBottomRightRadius: 10,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
   poster: {
     height: relativeWidth(160),
     opacity: 0.7,
   },
   frontCoverBtn: {
     width: relativeWidth(116),
-    height: relativeHeight(182),
+    height: relativeHeight(166),
     marginTop: relativeHeight(86),
     marginLeft: relativeWidth(20),
     position: 'absolute',
   },
   frontCover: {
     width: relativeWidth(116),
-    height: relativeHeight(182),
+    height: relativeHeight(166),
     borderRadius: 10,
+  },
+  ratingButton: {
+    width: relativeWidth(116),
+    height: relativeHeight(22),
+    backgroundColor: '#E9A6A6',
+    position: 'absolute',
+    marginTop: relativeHeight(244),
+    marginLeft: relativeWidth(20),
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  ratingText: {
+    textTransform: 'uppercase',
+    fontSize: relativeHeight(10),
+    color: 'black',
   },
   mainWrapper: {
     marginLeft: relativeWidth(20) + relativeWidth(116), //soma do marginLeft + width do frontCover
     marginTop: relativeHeight(10),
+    marginBottom: relativeHeight(30),
   },
   popUpWrapper: {
     position: 'absolute',
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
   },
   directorText: {
     paddingLeft: relativeWidth(16),
+    marginBottom: relativeHeight(20),
     fontSize: 8,
     lineHeight: 11,
     color: 'white',
@@ -103,7 +105,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginRight: relativeWidth(66),
-    marginTop: relativeHeight(10),
     paddingHorizontal: relativeWidth(15),
   },
   rating: {
