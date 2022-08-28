@@ -10,6 +10,18 @@ function relativeWidth(pixel) {
 }
 
 const styles = StyleSheet.create({
+  alreadyRatedButton: {
+    width: relativeWidth(116),
+    height: relativeHeight(22),
+    backgroundColor: 'cyan',
+    position: 'absolute',
+    marginTop: relativeHeight(244),
+    marginLeft: relativeWidth(20),
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   poster: {
     height: relativeWidth(160),
     opacity: 0.7,
