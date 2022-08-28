@@ -36,7 +36,7 @@ export default HeaderDetails = ({
 
   const getUpdate = async () => {
     await api
-      .get(`/movie/${id}/account_states?&`)
+      .get(`/tv/${id}/account_states?&`)
       .then(res => setRated(res?.data))
       .catch(error => console.log(error));
   };
@@ -49,6 +49,7 @@ export default HeaderDetails = ({
   useEffect(() => {
     getUpdate();
     console.log(rated);
+    console.log('é serie: ', isSerie);
   }, []);
 
   const searchPeople = array => {
@@ -108,11 +109,11 @@ export default HeaderDetails = ({
             <Modal
               transparent={true}
               visible={ratingModalVisible}
-              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              onRequestClose={() => after()}>
               <ModalRating
                 id={id}
                 cancel={() => after()}
-                isMovie={true}
+                isMovie={isSerie ? false : true}
                 okHandler={() => {}}
               />
             </Modal>
@@ -176,7 +177,6 @@ export default HeaderDetails = ({
                 : searchPeople(director)?.name ?? directorDefault}
             </TextBold>
           </TextRegular>
-          <TextRegular style={{color: 'white'}}>{id}</TextRegular>
           <View style={styles.ratingWrapper}>
             <TextRegular style={styles.rating}>
               {vote_average?.toFixed(1)}/10

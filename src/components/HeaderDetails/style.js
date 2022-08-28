@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   frontCoverBtn: {
     width: relativeWidth(116),
     height: relativeHeight(166),
-    marginTop: relativeHeight(86),
+    marginTop: relativeHeight(76),
     marginLeft: relativeWidth(20),
     position: 'absolute',
   },
