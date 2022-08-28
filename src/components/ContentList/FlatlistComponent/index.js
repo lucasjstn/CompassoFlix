@@ -18,7 +18,7 @@ const ListOfMoviesComponent = memo(({vote_average, poster_path, id, stack}) => {
         }}>
         <Image
           source={{
-            uri: `${apiImage.defaults.baseURL}/original${poster_path}`,
+            uri: `${apiImage.defaults.baseURL}/w300${poster_path}`,
           }}
           style={styles.Img}
         />
