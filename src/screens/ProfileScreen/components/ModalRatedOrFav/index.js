@@ -24,7 +24,7 @@ export default function ModalRatedOrFav({
         <ScrollView>
           <TouchableOpacity style={styles.touchableWrapper}></TouchableOpacity>
 
-          <BtnGoBack modal={toggle} />
+          <BtnGoBack style={styles.btnGoBackModal} modal={toggle} />
           <View
             key={'greetingContainer'}
             style={
@@ -62,10 +62,7 @@ export default function ModalRatedOrFav({
           </View>
           <View style={[styles.favoriteMoviesWrapper]}>
             {moviesList?.map((item, index) => (
-              <TouchableOpacity
-                style={null}
-                key={index}
-                >
+              <TouchableOpacity style={null} key={index}>
                 <Image
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                   style={styles.favoriteImageWrapper}

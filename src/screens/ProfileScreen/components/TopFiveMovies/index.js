@@ -64,6 +64,7 @@ export default function TopFiveMovies({
             moviesList?.slice(0, 5)?.map((item, index) => {
               return (
                 <TouchableOpacity
+                  key={index}
                   onPress={() => {
                     navigation.navigate(
                       isSerie ? 'SeriesScreen' : 'TelasFilmes',
@@ -73,7 +74,7 @@ export default function TopFiveMovies({
                       },
                     );
                   }}>
-                  <View key={index} style={styles.moviesWrapper}>
+                  <View style={styles.moviesWrapper}>
                     <Image
                       testID="capa do filme"
                       source={{uri: `${baseUrl}/w185${item.poster_path}`}}
