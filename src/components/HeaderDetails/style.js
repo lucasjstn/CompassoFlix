@@ -29,14 +29,16 @@ const styles = StyleSheet.create({
   frontCoverBtn: {
     width: relativeWidth(116),
     height: relativeHeight(166),
-    marginTop: relativeHeight(76),
+    marginTop: relativeHeight(78),
     marginLeft: relativeWidth(20),
     position: 'absolute',
   },
   frontCover: {
     width: relativeWidth(116),
     height: relativeHeight(166),
-    borderRadius: 10,
+    // borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   ratingButton: {
     width: relativeWidth(116),
