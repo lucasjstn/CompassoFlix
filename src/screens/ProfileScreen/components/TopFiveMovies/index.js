@@ -26,6 +26,13 @@ export default function TopFiveMovies({
     return setToggleUserFavorites(!toggleUserFavorites);
   };
 
+  function navigateToDetails() {
+    navigation.navigate(isSerie ? 'SeriesScreen' : 'TelasFilmes', {
+      screen: isSerie ? 'SeriesDetails' : 'Details',
+      params: {id: moviesList?.id},
+    });
+  }
+
   return (
     <>
       <ModalRatedOrFav
@@ -38,6 +45,8 @@ export default function TopFiveMovies({
         username={username}
         baseUrl={baseUrl}
         setToggleUserFavorites={setToggleUserFavorites}
+        navigationHandler={() => navigateToDetails()}
+        isSerie={isSerie}
       />
 
       <View style={styles.container}>
@@ -52,6 +61,7 @@ export default function TopFiveMovies({
           </TextSemiBold>
           <TouchableOpacity
             style={styles.seeAllButton}
+            navigationHandler={() => navigateToDetails()}
             onPress={() => setToggleUserFavorites(true)}>
             <TextSemiBold style={styles.seeAll}>Ver tudo</TextSemiBold>
           </TouchableOpacity>
@@ -65,15 +75,7 @@ export default function TopFiveMovies({
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={() => {
-                    navigation.navigate(
-                      isSerie ? 'SeriesScreen' : 'TelasFilmes',
-                      {
-                        screen: isSerie ? 'SeriesDetails' : 'Details',
-                        params: {id: item.id},
-                      },
-                    );
-                  }}>
+                  onPress={() => navigateToDetails()}>
                   <View style={styles.moviesWrapper}>
                     <Image
                       testID="capa do filme"

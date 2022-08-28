@@ -4,8 +4,10 @@ import BtnGoBack from '../../../../components/BtnGoBack';
 import {Modal, View, ScrollView, TouchableOpacity, Image} from 'react-native';
 import {TextBold} from '../../../../components/Text';
 import styles from './style';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ModalRatedOrFav({
+  isSerie,
   toggleUserFavorites,
   toggle,
   favoriteMovies,
@@ -16,6 +18,7 @@ export default function ModalRatedOrFav({
   baseUrl,
   setToggleUserFavorites,
 }) {
+  const navigation = useNavigation();
   return (
     <Modal
       visible={toggleUserFavorites}
@@ -62,7 +65,18 @@ export default function ModalRatedOrFav({
           </View>
           <View style={[styles.favoriteMoviesWrapper]}>
             {moviesList?.map((item, index) => (
-              <TouchableOpacity style={null} key={index}>
+              <TouchableOpacity
+                style={null}
+                key={index}
+                onPress={() => {
+                  navigation.navigate(
+                    isSerie ? 'SeriesScreen' : 'TelasFilmes',
+                    {
+                      screen: isSerie ? 'SeriesDetails' : 'Details',
+                      params: {id: item?.id},
+                    },
+                  );
+                }}>
                 <Image
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                   style={styles.favoriteImageWrapper}
