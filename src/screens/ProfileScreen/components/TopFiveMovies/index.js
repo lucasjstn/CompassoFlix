@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {apiImage} from '../../../../service/api';
 import Loading from '../../../../components/Loading';
 import ModalRatedOrFav from '../ModalRatedOrFav';
+import {useNavigation} from '@react-navigation/native';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default function TopFiveMovies({
@@ -18,6 +19,8 @@ export default function TopFiveMovies({
   name,
 }) {
   const [toggleUserFavorites, setToggleUserFavorites] = useState(false);
+
+  const navigation = useNavigation();
 
   const toggle = () => {
     return setToggleUserFavorites(!toggleUserFavorites);
@@ -60,23 +63,39 @@ export default function TopFiveMovies({
           ) : (
             moviesList?.slice(0, 5)?.map((item, index) => {
               return (
-                <View key={index} style={styles.moviesWrapper}>
-                  <Image
-                    testID='capa do filme'
-                    source={{uri: `${baseUrl}/w185${item.poster_path}`}}
-                    style={styles.imgWrapper}
-                  />
-                  <View
-                    style={[
-                      styles.ratedWrapper,
-                      {display: isRated ? 'flex' : 'none'},
-                    ]}>
-                    <Icon testID='starIcon' name="star" color={'red'} size={13} />
-                    <TextSemiBold style={styles.rated}>
-                      {item.rating?.toFixed(1)}/10
-                    </TextSemiBold>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(
+                      isSerie ? 'SeriesScreen' : 'TelasFilmes',
+                      {
+                        screen: isSerie ? 'SeriesDetails' : 'Details',
+                        params: {id: item.id},
+                      },
+                    );
+                  }}>
+                  <View key={index} style={styles.moviesWrapper}>
+                    <Image
+                      testID="capa do filme"
+                      source={{uri: `${baseUrl}/w185${item.poster_path}`}}
+                      style={styles.imgWrapper}
+                    />
+                    <View
+                      style={[
+                        styles.ratedWrapper,
+                        {display: isRated ? 'flex' : 'none'},
+                      ]}>
+                      <Icon
+                        testID="starIcon"
+                        name="star"
+                        color={'red'}
+                        size={13}
+                      />
+                      <TextSemiBold style={styles.rated}>
+                        {item.rating?.toFixed(1)}/10
+                      </TextSemiBold>
+                    </View>
                   </View>
-                </View>
+                </TouchableOpacity>
               );
             })
           )}
