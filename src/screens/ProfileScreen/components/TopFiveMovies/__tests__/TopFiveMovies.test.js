@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from '@testing-library/react-native';
 import TopFiveMovies from '../index';
 
+
 const mock = {
   results: [
     {
@@ -33,6 +34,10 @@ describe('TopFiveMovies', () => {
           moviesList={mock.results}
           isSerie={true}
           isRated={false}
+          favoriteMovies={false}
+          name={"John"}
+          username={"John"}
+
         />,
       );
       expect(getByText('Séries Favoritas de John')).toBeTruthy();
@@ -55,6 +60,9 @@ describe('TopFiveMovies', () => {
           moviesList={mock.results}
           isSerie={false}
           isRated={false}
+          favoriteMovies={true}
+          name={"John"}
+          username={"John"}
         />,
       );
       expect(getByText('Filmes Favoritos de John')).toBeTruthy();
@@ -95,6 +103,8 @@ describe('TopFiveMovies', () => {
           moviesList={mock.results}
           isSerie={false}
           isRated={true}
+          name="John"
+          username={"John"}
         />,
       );
       expect(getByText('Avaliações de filmes recentes de John')).toBeTruthy();
@@ -108,7 +118,7 @@ describe('TopFiveMovies', () => {
         />,
       );
       //debug();
-      expect(getByText('7/10')).toBeTruthy();
+      expect(getByText('7.0/10')).toBeTruthy();
     });
     it('Deve mostrar uma estrela', () => {
       const {getByTestId} = render(
@@ -129,6 +139,8 @@ describe('TopFiveMovies', () => {
           moviesList={mock.results}
           isSerie={false}
           isRated={false}
+          name="John"
+          username={"John"}
         />,
       );
       expect(getByText('Filmes Favoritos de John')).toBeTruthy();

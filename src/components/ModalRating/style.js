@@ -23,8 +23,10 @@ const styles = StyleSheet.create({
   },
   staticInput: {fontSize: 23, color: 'black'},
   textInput: {
+    width: 74,
     padding: 0,
     fontSize: 19,
+    textAlign: 'center',
   },
   ratingInputContainer: {
     width: 74,
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingResourcer: {
+    left: 10,
     // height: 40,
     // backgroundColor: '#C86EFA',
     flexDirection: 'row',

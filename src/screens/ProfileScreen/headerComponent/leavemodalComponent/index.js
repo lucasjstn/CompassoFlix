@@ -1,36 +1,48 @@
-import React, { useState } from "react";
-import { Modal } from "react-native";
-import styles from "../style";
-import { View, Pressable} from "react-native";
-import { TextBold, TextRegular } from "../../../../components/Text";
+import React, {useState} from 'react';
+import {Modal} from 'react-native';
+import styles from './style';
+import {View, Pressable} from 'react-native';
+import {TextBold, TextRegular} from '../../../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useContext } from "react";
-import { AuthContext } from "../../../../context/AuthContext";
+import {useContext} from 'react';
+import {AuthContext} from '../../../../context/AuthContext';
 
-export default function LeaveMdl({modalActive, setModalActive}){
+export default function LeaveMdl({modalActive, setModalActive}) {
+  const {isLogged, setIsLogged} = useContext(AuthContext);
 
-    const {isLogged, setIsLogged} = useContext(AuthContext);
-
-    return(
-        <Modal 
-        animationType="fade"
-        transparent={true}
-        visible={modalActive}
-        onRequestClose={() => setModalActive(false)}>
-          <View style={{width: 327, height: 166, top: 300, backgroundColor: 'white', borderRadius: 25, alignSelf: 'center'}}>
-              <TextBold style={styles.atencaoModal}>Atenção</TextBold>
-              <TextRegular style={styles.djsModal}>Deseja mesmo sair?</TextRegular>
-              <Pressable style={styles.cancelarModal} onPress={() => setModalActive(false)}>
-                <TextBold style={styles.cancelartxt}>CANCELAR</TextBold>
-              </Pressable>
-              <Pressable style={styles.sairModal} 
-              onPress={async () => {
-                await AsyncStorage.removeItem('@token');
-                setIsLogged(false);
-              }}>
-                <TextBold style={styles.sairtxt}>SIM</TextBold>
-              </Pressable>
-          </View>
-        </Modal>
-    )
+  return (
+    <Modal
+      animationType="fade"
+      transparent={true}
+      visible={modalActive}
+      onRequestClose={() => setModalActive(false)}>
+      <View style={styles.container}>
+        <TextBold style={styles.atention}>Atenção</TextBold>
+        <TextRegular style={styles.warning}>Deseja mesmo sair?</TextRegular>
+        <View style={styles.btnWrapper}>
+          <Pressable
+            style={styles.btnCancel}
+            onPress={() => setModalActive(false)}>
+            <TextBold style={styles.btnText}>CANCELAR</TextBold>
+          </Pressable>
+          <Pressable
+            style={[
+              styles.btnCancel,
+              {
+                backgroundColor: 'white',
+                borderWidth: 1,
+              },
+            ]}
+            onPress={async () => {
+              await AsyncStorage.removeItem('@token');
+              setIsLogged(false);
+            }}>
+            <TextBold style={[styles.btnText, {color:'black'}]}>
+              SIM
+            </TextBold>
+          </Pressable>
+        </View>
+      </View>
+    </Modal>
+  );
 }

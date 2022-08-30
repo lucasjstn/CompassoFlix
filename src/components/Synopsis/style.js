@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'flex-start',
     marginLeft: relativeWidth(20),
-    marginTop: relativeHeight(30),
+    marginBottom: relativeHeight(27)
   },
   synopsisTitle: {
     fontSize: 12,
