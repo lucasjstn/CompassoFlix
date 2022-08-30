@@ -36,7 +36,7 @@ export default HeaderDetails = ({
 
   const getUpdate = async () => {
     await api
-      .get(`/tv/${id}/account_states?&`)
+      .get(`/${isSerie ? 'tv' : 'movie'}/${id}/account_states?&`)
       .then(res => setRated(res?.data))
       .catch(error => console.log(error));
   };
@@ -114,6 +114,7 @@ export default HeaderDetails = ({
                 id={id}
                 cancel={() => after()}
                 isMovie={isSerie ? false : true}
+                contentType={isSerie ? 'tv' : 'movie'}
                 okHandler={() => {}}
               />
             </Modal>
