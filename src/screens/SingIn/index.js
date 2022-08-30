@@ -127,28 +127,30 @@ const SignIn = () => {
               <TextRegular style={styles.textentrar}>
                 Entre na sua conta para continuar.
               </TextRegular>
+
+              <InputGrey
+                isPassword={false}
+                value={username}
+                onChangeText={setUsername}
+                errorMessage={errorMessage}
+              />
+              <InputGrey
+                errorMessage={errorMessage}
+                isPassword={true}
+                value={password}
+                onChangeText={setPassword}
+              />
               <TextRegular
                 style={[
                   styles.textentrar,
                   {
-                    position: 'absolute',
-                    top: 20,
-                    color: 'red',
+                    top: 5,
+                    color: '#EC2626',
                     marginTop: 8,
                   },
                 ]}>
                 {errorMessage}
               </TextRegular>
-              <InputGrey
-                isPassword={false}
-                value={username}
-                onChangeText={setUsername}
-              />
-              <InputGrey
-                isPassword={true}
-                value={password}
-                onChangeText={setPassword}
-              />
               {!loginAttempting ? (
                 <TouchableOpacity
                   style={styles.botaologin}
