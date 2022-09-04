@@ -4,7 +4,7 @@ import Tela from './HomeStack.js';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SeriesStack from './SeriesStack.js';
-import ProfileScreen from '../screens/ProfileScreen/index.js';
+import ProfileStack from './ProfileStack'
 
 const height = Dimensions.get('screen').height;
 const tabBarHeight = 0.08; //valor em porcentagem 0.08 = 8%
@@ -52,8 +52,8 @@ export default function TabBar() {
         }}
       />
       <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+        name="ProfileStack"
+        component={ProfileStack}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({focused, color}) => (
