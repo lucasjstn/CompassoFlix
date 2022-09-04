@@ -3,18 +3,18 @@ import {
   View,
   ActivityIndicator,
   TouchableOpacity,
-  Modal,
-  Pressable,
 } from 'react-native';
-import {TextBold, TextRegular, TextSemiBold} from '../../../components/Text';
+import {TextBold, TextRegular} from '../../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {api, apiImage} from '../../../service/api';
 import {Avatar} from '@react-native-material/core';
 import styles from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LeaveMdl from './leavemodalComponent';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SupProfile() {
+  const navigation = useNavigation();
   const [avatar, setAvatar] = useState('');
   const [nomes, setNomes] = useState({name: undefined, username: 'none'});
   const [ratedseries, setRatedSerie] = useState();
@@ -84,8 +84,6 @@ export default function SupProfile() {
       );
     }
   }
-  //{width: '100%', justifyContent: 'flex-end', alignItems: 'flex-end'}
-  //{flexDirection: 'row', justifyContent: 'center'}
 
   return (
     <View style={styles.conteiner}>
@@ -95,18 +93,25 @@ export default function SupProfile() {
           style={styles.btnLeave}
           onPress={() => setModalActive(true)}>
           <Icon name="md-exit-outline" color={'black'} />
-          <TextRegular style={styles.leaveText}>
-            Sair
-          </TextRegular>
+          <TextRegular style={styles.leaveText}>Sair</TextRegular>
         </TouchableOpacity>
       </View>
       <View style={styles.imgWrapper}>
         <Picture />
       </View>
-      <TextBold
-        style={styles.name}>
-        {nomes.name || nomes.username}
-      </TextBold>
+      <TextBold style={styles.name}>{nomes.name || nomes.username}</TextBold>
+
+      <TouchableOpacity
+        style={styles.btnList}
+        onPress={() => {
+          navigation.navigate("List");
+        }}
+        >
+        <TextRegular style={styles.listText}>
+          Ver listas de filmes
+        </TextRegular>
+      </TouchableOpacity>
+
       <View style={styles.ratedWrapper}>
         {isLoad ? (
           <ActivityIndicator color={'red'} />
@@ -115,9 +120,7 @@ export default function SupProfile() {
             <TextBold style={styles.numberRated}>
               {ratedseries + ratedmovie}
             </TextBold>
-            <TextRegular style={styles.ratedText}>
-              Avaliações
-            </TextRegular>
+            <TextRegular style={styles.ratedText}>Avaliações</TextRegular>
           </View>
         )}
       </View>
