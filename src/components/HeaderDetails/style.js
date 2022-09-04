@@ -11,7 +11,7 @@ function relativeWidth(pixel) {
 
 const styles = StyleSheet.create({
   poster: {
-    height: relativeWidth(160),
+    height: relativeWidth(150),
     opacity: 0.7,
   },
   frontCoverBtn: {
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginRight: relativeWidth(66),
     paddingHorizontal: relativeWidth(15),
+    bottom: 15
   },
   rating: {
     fontSize: 30,
@@ -120,6 +121,16 @@ const styles = StyleSheet.create({
     lineHeight: 14,
     color: 'white',
   },
+  AddFilmInListWrapper:{
+    marginTop: 50,
+    flexDirection:'row',
+    backgroundColor: '#C4C4C4',
+    justifyContent: 'space-around',
+    position: 'absolute',
+    borderRadius: 10,
+    paddingLeft: 18,
+    marginLeft: 8
+  }
 });
 
 export default styles;

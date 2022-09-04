@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity, Modal} from 'react-native';
+import {View, Image, TouchableOpacity, Modal, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {apiImage} from '../../service/api';
@@ -9,6 +9,9 @@ import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../Text';
 import {pressLongTitle, min} from '../../mocks/Details';
 import ModalRating from '../../components/ModalRating'
+import Icone from 'react-native-vector-icons/AntDesign'
+import ModalLists from './Modal\'s/ModalList';
+import ModalConfirmedAdd from './Modal\'s/ModalConfirmedAdd';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
@@ -32,6 +35,8 @@ export default HeaderDetails = ({
     modalVisible => !modalVisible,
     false,
   );
+  const [teste, setTest] = useState(false);
+  const [modalConfirmedAdd, setModalConfirmedAdd] = useState(false);
 
   const searchPeople = array => {
     return array?.find(obj => obj?.job === 'Director');
@@ -61,6 +66,12 @@ export default HeaderDetails = ({
           source={{uri: `${baseUrl}/w780${backdrop_path}`}}
           style={styles.poster}
         />
+        <>
+        <ModalLists teste={teste} setTest={setTest} movie_id={id} setModalConfirmedAdd={setModalConfirmedAdd}/>
+        </>
+        <>
+        <ModalConfirmedAdd setModalConfirmedAdd={setModalConfirmedAdd} modalConfirmedAdd={modalConfirmedAdd} setTest={setTest}/>
+        </>
         {/* <View> */}
         <TouchableOpacity
           accessibilityHint="poster com botao"
@@ -150,11 +161,20 @@ export default HeaderDetails = ({
                 : searchPeople(director)?.name ?? directorDefault}
             </TextBold>
           </TextRegular>
-
           <View style={styles.ratingWrapper}>
             <TextRegular style={styles.rating}>
               {vote_average?.toFixed(1)}/10
             </TextRegular>
+            {isSerie ? <></> :
+                  <View style={styles.AddFilmInListWrapper}>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setTest(true)}>
+                      <View style={{backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center', width: 20, height: 20, alignSelf: 'flex-start', right: 20}}>
+                        <Icone name='plus' style={{color:'black'}}/>
+                      </View>
+                        <Text style={{color: 'black', right: 15, fontSize: 10, top: 3}}>Adicionar a uma lista</Text>
+                    </TouchableOpacity>
+                  </View>
+                }
 
             <View style={styles.votesWrapper}>
               <Icon name="favorite" size={30} color="red" />
