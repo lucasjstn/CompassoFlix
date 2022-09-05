@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginHorizontal: relativeWidth(14 / 2),
     flexWrap: 'wrap',
     alignSelf: 'center',
-    zIndex: -1,
+    // zIndex: -1,
   },
   favoriteImageWrapper: {
     width: relativeWidth(75),
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: relativeHeight(12 / 2),
     marginHorizontal: relativeWidth(7),
-    zIndex: -1,
+    // zIndex: -1,
   },
   container: {
     flex: 1,
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     height: 18,
     width: 18,
     backgroundColor: 'white',
-    zIndex: 1,
+    // zIndex: 1,
   },
 });
 
