@@ -90,21 +90,21 @@ export default function ModalLists({teste, setTest, movie_id, setModalConfirmedA
     visible={teste}
     onRequestClose={() => setTest(false)}>
       <View style={{height: '50%', top: 390}}>
-        <View style={{width: '100%', backgroundColor: 'white', height: '70%', borderRadius: 20, position: 'absolute', bottom: -10}}>
-            <Text style={{color: 'black', fontSize: 15, left: 30, top: 10, fontWeight: 'bold'}}>Salvar filme em...</Text>
-            <TouchableOpacity style={{ alignSelf: 'flex-end', right: 20, position: 'absolute', top: 10}} onPress={() => setTest(false)}>
+        <View style={styles.conteiner}>
+            <TextBold style={{color: 'black', fontSize: 15, left: 30, top: 10}}>Salvar filme em...</TextBold>
+            <TouchableOpacity style={styles.closeButton} onPress={() => setTest(false)}>
               <Icon name='close' style={{color: 'black'}} size={20}/>
             </TouchableOpacity>     
             <View style={styles.line}/>
-            <View style={{marginTop: 25, height: 135}}>
+            <View style={styles.flatlistConteiner}>
                 <FlatList
                 keyExtractor={item => item.id}
                 data={list}
                 renderItem={({item}) => 
                       <View style={{marginBottom: 15}}>
-                        <View style={{justifyContent: 'flex-start',  width: '100%', left: 50, top: 10}}>
+                        <View style={styles.listConteiner}>
                           <Text style={{color: 'black',}}>{item.name}</Text>
-                          <TouchableOpacity key={item.id} style={{width: 20, height: 20, borderRadius: 50, position: 'absolute', borderWidth: 1, left: -30, justifyContent: 'center', alignItems: 'center'}} onPress={() => {setAtivo(item.id), setListas(item.id)}}>
+                          <TouchableOpacity key={item.id} style={styles.selectListButton} onPress={() => {setAtivo(item.id), setListas(item.id)}}>
                             {ativo === item.id ? <View style={{backgroundColor: 'black', height: 15, width: 15, borderRadius: 50}}></View> : <></>}
                           </TouchableOpacity>
                       </View>
@@ -113,7 +113,7 @@ export default function ModalLists({teste, setTest, movie_id, setModalConfirmedA
             </View>
             {isSelected ? <TextBold style={{color: 'red', alignSelf: 'center', top: 50}}>Por favor, selecione uma lista.</TextBold> : <></>}
             {status ? <TextBold style={{color: 'red', alignSelf: 'center', top: 50, fontSize: 12}}>Esse filme já foi adicionado nessa lista, selecione outra!</TextBold> : <></>}
-            <TouchableOpacity style={{alignSelf: 'center', backgroundColor: 'black', paddingLeft: 15, paddingRight: 15, paddingTop: 2, paddingBottom: 2, borderRadius: 5, position: 'absolute', bottom: 50,}} onPress={() => {SelectList()}}>
+            <TouchableOpacity style={styles.saveButton} onPress={() => {SelectList()}}>
               <TextBold style={{color: 'white'}}>SALVAR</TextBold>
             </TouchableOpacity>
         </View>

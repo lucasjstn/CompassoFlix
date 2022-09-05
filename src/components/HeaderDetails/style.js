@@ -130,6 +130,22 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 18,
     marginLeft: 8
+  },
+  iconFilmInList:{
+    backgroundColor: 'white',
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 20,
+    height: 20,
+    alignSelf: 'flex-start',
+    right: 20
+  },
+  txtFilminList:{
+    color: 'black',
+    right: 15,
+    fontSize: 10,
+    top: 3
   }
 });
 

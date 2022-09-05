@@ -168,10 +168,10 @@ export default HeaderDetails = ({
             {isSerie ? <></> :
                   <View style={styles.AddFilmInListWrapper}>
                     <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setTest(true)}>
-                      <View style={{backgroundColor: 'white', borderRadius: 50, justifyContent: 'center', alignItems: 'center', width: 20, height: 20, alignSelf: 'flex-start', right: 20}}>
+                      <View style={styles.iconFilmInList}>
                         <Icone name='plus' style={{color:'black'}}/>
                       </View>
-                        <Text style={{color: 'black', right: 15, fontSize: 10, top: 3}}>Adicionar a uma lista</Text>
+                        <Text style={styles.txtFilminList}>Adicionar a uma lista</Text>
                     </TouchableOpacity>
                   </View>
                 }
