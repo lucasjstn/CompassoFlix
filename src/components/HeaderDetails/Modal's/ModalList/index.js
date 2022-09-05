@@ -15,8 +15,6 @@ export default function ModalLists({teste, setTest, movie_id, setModalConfirmedA
     const [isSelected, setIsSelected] = useState();
     const [status, setStatus] = useState();
 
-    console.log(status)
-
     const getUsuario = async () => {
         try {
           const value = await AsyncStorage?.getItem('@session');
