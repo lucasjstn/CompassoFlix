@@ -11,7 +11,13 @@ import {api} from '../../service/api';
 import {TextBold, TextRegular} from '../Text';
 import styles from './style';
 
-export default function ModalRating({cancel, isMovie, okHandler, id}) {
+export default function ModalRating({
+  cancel,
+  isMovie,
+  okHandler,
+  id,
+  contentType,
+}) {
   const [rating, setRating] = useState('');
   const [session, setSession] = useState('');
   const [status, setStatus] = useState(-1);
@@ -52,6 +58,9 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
   }
 
   useEffect(() => {
+    if (rating.length > 0) {
+      setStatus(8);
+    }
     if (validateRate(rating) === false) {
       setRating('');
       setStatus(18);
@@ -126,18 +135,15 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
     } else {
       setStatus(0);
       await api
-        .post(
-          `/${isMovie ? 'movie' : 'tv'}/${id}/rating?&session_id=${session}`,
-          {
-            value: rate,
-          },
-        )
+        .post(`/${contentType}/${id}/rating?&session_id=${session}`, {
+          value: rate,
+        })
         .then(response => {
           setStatus(response.data.status_code);
         })
         .catch(error => {
           setStatus(error.response.data.status_code);
-          throw new Error(`Erro : ${error.response.data.status_code}`);
+          // console.log(error);
         });
     }
   }
@@ -193,8 +199,14 @@ export default function ModalRating({cancel, isMovie, okHandler, id}) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={status <= 12 ? () => sendRating(rating) : null}
-                  style={styles.cancelOkButtons}>
-                  <TextBold style={styles.cancelOkButtonsText}>OK</TextBold>
+                  style={[
+                    styles.cancelOkButtons,
+                    {backgroundColor: status <= 12 ? 'black' : 'grey'},
+                  ]}>
+                  <TextBold
+                    style={[styles.cancelOkButtonsText, {color: 'white'}]}>
+                    OK
+                  </TextBold>
                 </TouchableOpacity>
               </View>
             </>

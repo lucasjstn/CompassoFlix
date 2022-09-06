@@ -18,7 +18,10 @@ const SeriesDetails = ({route, navigation}) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.btnWrapper}>
-          <BtnGoBack nav={navigation} />
+          <BtnGoBack
+            nav={navigation}
+            modal={() => navigation.navigate('HomeSeries')}
+          />
           <Favorite id={id} mediaType="tv" />
         </View>
         <HeaderDetails

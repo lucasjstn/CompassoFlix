@@ -1,13 +1,15 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useContext, useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from './RouterTabBar';
-import SignIn from '../screens/SingIn';
+import LoginScreen from '../screens/LoginScreen';
 import {AuthContext} from '../context/AuthContext';
 import {ActivityIndicator, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Banner from '../screens/SingIn/components/Banner';
+import Banner from '../screens/LoginScreen/components/Banner';
+// eslint-disable-next-line no-unused-vars
 import {ClearToken} from '../service/storage';
 
 const Router = () => {
@@ -24,7 +26,6 @@ const Router = () => {
 
   useEffect(() => {
     getPersistedToken();
-
   }, []);
 
   const getPersistedToken = async () => {
@@ -67,9 +68,9 @@ const Router = () => {
       ) : (
         <AuthStack.Navigator>
           <AuthStack.Screen
-            name="SignIn"
+            name="LoginScreen"
             options={{headerShown: false}}
-            component={SignIn}
+            component={LoginScreen}
           />
         </AuthStack.Navigator>
       )}
