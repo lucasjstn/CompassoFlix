@@ -10,7 +10,6 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import {TextBold, TextRegular} from '../../components/Text';
 import {AuthContext} from '../../context/AuthContext';
 import {
@@ -24,11 +23,11 @@ import {
   RequestToken,
 } from '../../service/requests/LoginRequest';
 import {KeepToken} from '../../service/storage';
-import styles from '../SingIn/styles';
+import styles from '../LoginScreen/styles';
 import Banner from './components/Banner/index';
 import InputGrey from './components/InputGrey';
 import {height, width} from './consts';
-const SignIn = () => {
+const LoginScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [color, setColor] = useState(false);
   const [view, setView] = useState(0);
@@ -127,28 +126,30 @@ const SignIn = () => {
               <TextRegular style={styles.textentrar}>
                 Entre na sua conta para continuar.
               </TextRegular>
+
+              <InputGrey
+                isPassword={false}
+                value={username}
+                onChangeText={setUsername}
+                errorMessage={errorMessage}
+              />
+              <InputGrey
+                errorMessage={errorMessage}
+                isPassword={true}
+                value={password}
+                onChangeText={setPassword}
+              />
               <TextRegular
                 style={[
                   styles.textentrar,
                   {
-                    position: 'absolute',
-                    top: 20,
-                    color: 'red',
+                    top: 5,
+                    color: '#EC2626',
                     marginTop: 8,
                   },
                 ]}>
                 {errorMessage}
               </TextRegular>
-              <InputGrey
-                isPassword={false}
-                value={username}
-                onChangeText={setUsername}
-              />
-              <InputGrey
-                isPassword={true}
-                value={password}
-                onChangeText={setPassword}
-              />
               {!loginAttempting ? (
                 <TouchableOpacity
                   style={styles.botaologin}
@@ -172,4 +173,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default LoginScreen;

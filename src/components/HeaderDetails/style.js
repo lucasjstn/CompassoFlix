@@ -10,6 +10,18 @@ function relativeWidth(pixel) {
 }
 
 const styles = StyleSheet.create({
+  alreadyRatedButton: {
+    width: relativeWidth(116),
+    height: relativeHeight(22),
+    backgroundColor: 'cyan',
+    position: 'absolute',
+    marginTop: relativeHeight(244),
+    marginLeft: relativeWidth(20),
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   poster: {
     height: relativeWidth(160),
     opacity: 0.7,
@@ -17,14 +29,16 @@ const styles = StyleSheet.create({
   frontCoverBtn: {
     width: relativeWidth(116),
     height: relativeHeight(166),
-    marginTop: relativeHeight(86),
+    marginTop: relativeHeight(78),
     marginLeft: relativeWidth(20),
     position: 'absolute',
   },
   frontCover: {
     width: relativeWidth(116),
     height: relativeHeight(166),
-    borderRadius: 10,
+    // borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   ratingButton: {
     width: relativeWidth(116),
