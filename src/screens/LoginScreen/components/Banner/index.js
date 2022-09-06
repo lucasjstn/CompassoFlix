@@ -143,8 +143,8 @@ const Banner = ({loading}) => {
         <Image
           clipRule="nonzero"
           x={0}
-          y={70}
-          width={width * 0.783}
+          y={60}
+          width={width * 0.763}
           height={height * 0.48}
           preserveAspectRatio="xMidYMid meet"
           opacity={count === 4 ? '0.70' : '0.50'}

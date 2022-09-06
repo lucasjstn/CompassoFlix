@@ -3,12 +3,12 @@ import React, {useState, useEffect, useReducer} from 'react';
 import {View, Image, TouchableOpacity, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
-import {apiImage} from '../../service/api';
+import {api, apiImage} from '../../service/api';
 import transformInAround from './tansformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../Text';
 import {pressLongTitle, min} from '../../mocks/Details';
-import ModalRating from '../../components/ModalRating'
+import ModalRating from '../../components/ModalRating';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
@@ -25,6 +25,7 @@ export default HeaderDetails = ({
   backdrop_path,
   directorDefault,
 }) => {
+  const [rated, setRated] = useState([]);
   const [information, setInformation] = useState(false);
   const [press, setPress] = useReducer(press => !press, false);
   const [ratingModalVisible, setRatingModalVisible] = useState(false);
@@ -32,6 +33,24 @@ export default HeaderDetails = ({
     modalVisible => !modalVisible,
     false,
   );
+
+  const getUpdate = async () => {
+    await api
+      .get(`/${isSerie ? 'tv' : 'movie'}/${id}/account_states?&`)
+      .then(res => setRated(res?.data))
+      .catch(error => console.log(error));
+  };
+
+  function after() {
+    getUpdate();
+    setRatingModalVisible(!ratingModalVisible);
+  }
+
+  useEffect(() => {
+    getUpdate();
+    console.log(rated);
+    console.log('é serie: ', isSerie);
+  }, []);
 
   const searchPeople = array => {
     return array?.find(obj => obj?.job === 'Director');
@@ -74,19 +93,28 @@ export default HeaderDetails = ({
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.ratingButton}
+          style={rated?.rated ? styles.alreadyRatedButton : styles.ratingButton}
           activeOpacity={0.8}
           onPress={() => setRatingModalVisible(true)}>
-          <TextBold style={styles.ratingText}>Avalie agora</TextBold>
+          <TextBold style={styles.ratingText}>
+            {rated?.rated
+              ? `Sua nota: ${
+                  rated?.rated['value'] == 10
+                    ? rated?.rated['value']
+                    : (rated?.rated['value']).toFixed(1)
+                }/10`
+              : 'Avalie agora'}
+          </TextBold>
           {ratingModalVisible ? (
             <Modal
               transparent={true}
               visible={ratingModalVisible}
-              onRequestClose={() => setRatingModalVisible(!ratingModalVisible)}>
+              onRequestClose={() => after()}>
               <ModalRating
                 id={id}
-                cancel={() => setRatingModalVisible(!ratingModalVisible)}
-                isMovie={true}
+                cancel={() => after()}
+                isMovie={isSerie ? false : true}
+                contentType={isSerie ? 'tv' : 'movie'}
                 okHandler={() => {}}
               />
             </Modal>
@@ -150,7 +178,6 @@ export default HeaderDetails = ({
                 : searchPeople(director)?.name ?? directorDefault}
             </TextBold>
           </TextRegular>
-
           <View style={styles.ratingWrapper}>
             <TextRegular style={styles.rating}>
               {vote_average?.toFixed(1)}/10

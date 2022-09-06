@@ -2,20 +2,18 @@ import React from 'react';
 import {TextInput, View} from 'react-native';
 import inputs from './styles';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
-const InputGrey = ({
-  username,
-  setUsername,
-  isPassword,
-  value,
-  onChangeText,
-}) => {
+const InputGrey = ({errorMessage, isPassword, value, onChangeText}) => {
   return (
     <>
       <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <TextInput
-          placeholderTextColor="#a2a2a2"
+          placeholderTextColor={!errorMessage ? '#ffffff80' : '#EC2626'}
           placeholder={isPassword ? 'senha' : 'usuário'}
-          style={inputs.entriesInput}
+          style={
+            !errorMessage
+              ? inputs.entriesInput
+              : [inputs.entriesInput, {color: '#EC2626'}]
+          }
           autoCapitalize="none"
           value={value}
           onChangeText={onChangeText}
@@ -26,7 +24,7 @@ const InputGrey = ({
           style={{position: 'absolute', left: 100}}
           name={isPassword ? 'lock' : 'user'}
           size={20}
-          color={'#ffffff80'}
+          color={!errorMessage ? '#ffffff80' : '#EC2626'}
         />
       </View>
     </>

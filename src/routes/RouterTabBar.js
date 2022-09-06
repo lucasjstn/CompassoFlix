@@ -4,8 +4,7 @@ import Tela from './HomeStack.js';
 import {StyleSheet, View, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import SeriesStack from './SeriesStack.js';
-import ProfileScreen from '../screens/ProfileScreen/index.js';
-import ListMovies from '../screens/ListMovies/index.js';
+import ProfileStack from './ProfileStack'
 
 const height = Dimensions.get('screen').height;
 const tabBarHeight = 0.08; //valor em porcentagem 0.08 = 8%
@@ -15,7 +14,7 @@ const Tab = createBottomTabNavigator();
 export default function TabBar() {
   return (
     <Tab.Navigator
-      initialRouteName="ListMovies"
+      initialRouteName="TelasFilmes"
       screenOptions={{
         unmountOnBlur: true,
         tabBarShowLabel: false,
@@ -25,7 +24,7 @@ export default function TabBar() {
           height: '8%',
           backgroundColor: '#454545',
           borderTopColor: 'transparent',
-        },
+        }
       }}>
       <Tab.Screen
         name="SeriesScreen"
@@ -33,32 +32,13 @@ export default function TabBar() {
         options={{
           tabBarLabel: 'Séries',
           tabBarIcon: ({focused, color}) => (
-            <View
-              style={[
-                styles.container,
-                {backgroundColor: focused ? '#E9A6A6' : null},
-              ]}>
+            <View style={[styles.container, {backgroundColor: focused ? '#E9A6A6' : null} ]}>
               <Icon name="television-play" size={30} color={color} />
             </View>
           ),
         }}
       />
-      <Tab.Screen
-        name="ListMovies"
-        component={ListMovies}
-        options={{
-          tabBarLabel: 'Séries',
-          tabBarIcon: ({focused, color}) => (
-            <View
-              style={[
-                styles.container,
-                {backgroundColor: focused ? '#E9A6A6' : null},
-              ]}>
-              <Icon name="television-play" size={30} color={color} />
-            </View>
-          ),
-        }}
-      />
+
       <Tab.Screen
         name="TelasFilmes"
         component={Tela}
@@ -76,8 +56,8 @@ export default function TabBar() {
         }}
       />
       <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
+        name="ProfileStack"
+        component={ProfileStack}
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({focused, color}) => (
