@@ -12,6 +12,7 @@ import ModalRating from '../../components/ModalRating'
 import Icone from 'react-native-vector-icons/AntDesign'
 import ModalLists from './Modal\'s/ModalList';
 import ModalConfirmedAdd from './Modal\'s/ModalConfirmedAdd';
+import { AddFilmInListWrapper, TxtFilminList } from './style';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
@@ -166,14 +167,14 @@ export default HeaderDetails = ({
               {vote_average?.toFixed(1)}/10
             </TextRegular>
             {isSerie ? <></> :
-                  <View style={styles.AddFilmInListWrapper}>
+                  <AddFilmInListWrapper>
                     <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setTest(true)}>
                       <View style={styles.iconFilmInList}>
                         <Icone name='plus' style={{color:'black'}}/>
                       </View>
-                        <Text style={styles.txtFilminList}>Adicionar a uma lista</Text>
+                        <TxtFilminList>Adicionar a uma lista</TxtFilminList>
                     </TouchableOpacity>
-                  </View>
+                  </AddFilmInListWrapper>
                 }
 
             <View style={styles.votesWrapper}>

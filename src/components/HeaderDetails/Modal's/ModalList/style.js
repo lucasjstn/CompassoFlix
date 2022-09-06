@@ -1,62 +1,66 @@
-import {StyleSheet} from 'react-native';
-
 import styled from 'styled-components/native'
 
-const styles = StyleSheet.create({
-    line: {
-        borderBottomWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.4)',
-        width: '100%',
-        position: 'absolute',
-        backgroundColor: 'grey',
-        top: 40
+export const Line = styled.View`
+  position: absolute;
+  border-color: rgba(255, 255, 255, 0.4);
+  width: 100%;
+  background-color: grey;
+  top: 40px;
+  border-bottom-width: 1px
+`;
 
-      },
-      conteiner:{
-        width: '100%',
-        backgroundColor: 'white',
-        height: '70%',
-        borderRadius: 20,
-        position: 'absolute',
-        bottom: -10
-      },
-      closeButton:{
-        alignSelf: 'flex-end',
-        right: 20,
-        position: 'absolute',
-        top: 10
-      },
-      flatlistConteiner:{
-        marginTop: 25,
-        height: 135
-      },
-      listConteiner:{
-        justifyContent: 'flex-start', 
-        width: '100%',
-        left: 50, 
-        top: 10
-      },
-      selectListButton:{
-        width: 20, 
-        height: 20, 
-        borderRadius: 50, 
-        position: 'absolute', 
-        borderWidth: 1, 
-        left: -30, 
-        justifyContent: 'center', 
-        alignItems: 'center'
-      },
-      saveButton:{
-        alignSelf: 'center', 
-        backgroundColor: 'black', 
-        paddingLeft: 15, 
-        paddingRight: 15, 
-        paddingTop: 2, 
-        paddingBottom: 2, 
-        borderRadius: 5, 
-        position: 'absolute', 
-        bottom: 50,
-      }
-});
+export const Conteiner = styled.View`
+  width: 100%;
+  background-color: white;
+  height: 70%;
+  border-radius: 20px;
+  position: absolute;
+  bottom: -10px;
+`
 
-export default styles;
+export const InvisibleConteiner = styled.View`
+  height: 50%;
+  top: 390px
+`
+
+export const FlatlistConteiner = styled.View`
+  margin-top: 25px;
+  height: 135px
+`
+
+export const CloseButton = styled.TouchableOpacity`
+  align-self: flex-end;
+  right: 20px;
+  position: absolute;
+  top: 10px;
+`
+
+export const SelectListButton = styled.TouchableOpacity`
+  width: 20px;
+  height: 20px; 
+  border-radius: 50px;
+  position: absolute;
+  border-width: 1px;
+  left: -30px;
+  justify-content: center;
+  align-items: center;
+`
+
+export const SaveButton = styled.TouchableOpacity`
+  align-self: center;
+  background-color: black; 
+  padding-left: 15px; 
+  padding-right: 15px;
+  padding-top: 2px; 
+  padding-bottom: 2px; 
+  border-radius: 5px;
+  position: absolute;
+  bottom: 50px;
+`
+
+export const ListConteiner = styled.View`
+  justify-content: flex-start;
+  width: 100%;
+  left: 50px;
+  top: 10px;
+`

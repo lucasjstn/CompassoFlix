@@ -5,6 +5,7 @@ import styles from './style';
 import { TextBold } from '../../../Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import  Icon  from 'react-native-vector-icons/AntDesign';
+import { Line, Conteiner, InvisibleConteiner, FlatlistConteiner, CloseButton, SelectListButton, SaveButton, ListConteiner} from './style';
 
 export default function ModalLists({teste, setTest, movie_id, setModalConfirmedAdd}) {
 
@@ -89,35 +90,35 @@ export default function ModalLists({teste, setTest, movie_id, setModalConfirmedA
     transparent={true}
     visible={teste}
     onRequestClose={() => setTest(false)}>
-      <View style={{height: '50%', top: 390}}>
-        <View style={styles.conteiner}>
+      <InvisibleConteiner>
+        <Conteiner>
             <TextBold style={{color: 'black', fontSize: 15, left: 30, top: 10}}>Salvar filme em...</TextBold>
-            <TouchableOpacity style={styles.closeButton} onPress={() => setTest(false)}>
+            <CloseButton onPress={() => setTest(false)}>
               <Icon name='close' style={{color: 'black'}} size={20}/>
-            </TouchableOpacity>     
-            <View style={styles.line}/>
-            <View style={styles.flatlistConteiner}>
+            </CloseButton>     
+            <Line/>
+            <FlatlistConteiner>
                 <FlatList
                 keyExtractor={item => item.id}
                 data={list}
                 renderItem={({item}) => 
                       <View style={{marginBottom: 15}}>
-                        <View style={styles.listConteiner}>
+                        <ListConteiner>
                           <Text style={{color: 'black',}}>{item.name}</Text>
-                          <TouchableOpacity key={item.id} style={styles.selectListButton} onPress={() => {setAtivo(item.id), setListas(item.id)}}>
+                          <SelectListButton onPress={() => {setAtivo(item.id), setListas(item.id)}}>
                             {ativo === item.id ? <View style={{backgroundColor: 'black', height: 15, width: 15, borderRadius: 50}}></View> : <></>}
-                          </TouchableOpacity>
-                      </View>
+                          </SelectListButton>
+                      </ListConteiner>
                     </View>}
                 />
-            </View>
+            </FlatlistConteiner>
             {isSelected ? <TextBold style={{color: 'red', alignSelf: 'center', top: 50}}>Por favor, selecione uma lista.</TextBold> : <></>}
             {status ? <TextBold style={{color: 'red', alignSelf: 'center', top: 50, fontSize: 12}}>Esse filme já foi adicionado nessa lista, selecione outra!</TextBold> : <></>}
-            <TouchableOpacity style={styles.saveButton} onPress={() => {SelectList()}}>
+            <SaveButton onPress={() => {SelectList()}}>
               <TextBold style={{color: 'white'}}>SALVAR</TextBold>
-            </TouchableOpacity>
-        </View>
-      </View>
+            </SaveButton>
+        </Conteiner>
+      </InvisibleConteiner>
     </Modal>
   );
 }

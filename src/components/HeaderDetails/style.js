@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import styled from 'styled-components/native';
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
@@ -8,6 +9,25 @@ function relativeHeight(pixel) {
 function relativeWidth(pixel) {
   return width * (pixel / 375);
 }
+
+export const AddFilmInListWrapper = styled.View`
+    margin-top: 50px;
+    flex-direction: row;
+    background-color: #C4C4C4;
+    justify-content: space-around;
+    position: absolute;
+    border-radius: 10px;
+    padding-left: 18px;
+    margin-left: 8px
+`
+
+export const TxtFilminList = styled.Text`
+    color: black;
+    right: 15px;
+    font-size: 10px;
+    top: 3px
+`
+
 
 const styles = StyleSheet.create({
   poster: {
@@ -121,16 +141,6 @@ const styles = StyleSheet.create({
     lineHeight: 14,
     color: 'white',
   },
-  AddFilmInListWrapper:{
-    marginTop: 50,
-    flexDirection:'row',
-    backgroundColor: '#C4C4C4',
-    justifyContent: 'space-around',
-    position: 'absolute',
-    borderRadius: 10,
-    paddingLeft: 18,
-    marginLeft: 8
-  },
   iconFilmInList:{
     backgroundColor: 'white',
     borderRadius: 50,
@@ -141,12 +151,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     right: 20
   },
-  txtFilminList:{
-    color: 'black',
-    right: 15,
-    fontSize: 10,
-    top: 3
-  }
 });
 
 export default styles;
