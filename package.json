@@ -26,7 +26,8 @@
     "react-native-svg": "^12.4.3",
     "react-native-vector-icons": "^9.2.0",
     "react-native-webview": "^11.23.0",
-    "react-native-youtube-iframe": "^2.2.2"
+    "react-native-youtube-iframe": "^2.2.2",
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -45,7 +46,9 @@
     "setupFiles": [
       "./mock.js"
     ],
-    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

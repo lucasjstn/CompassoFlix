@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import styled from 'styled-components/native'
+
 const styles = StyleSheet.create({
     line: {
         borderBottomWidth: 1,
