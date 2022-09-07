@@ -4,13 +4,13 @@ import { TextBold } from '../../../Text';
 import  Icon  from 'react-native-vector-icons/Ionicons';
 import { Conteiner, OkButtonConteiner } from './style';
 
-export default function ModalConfirmedAdd({setTest, modalConfirmedAdd, setModalConfirmedAdd}) {
+export default function ModalConfirmedAdd({setSelectListModal, modalConfirmedAdd, setModalConfirmedAdd}) {
   return (
     <Modal
     animationType= "fade"
     transparent={true}
     visible={modalConfirmedAdd}
-    onRequestClose={() => {setTest(false), setModalConfirmedAdd(false)}}>
+    onRequestClose={() => {setSelectListModal(false), setModalConfirmedAdd(false)}}>
         <Conteiner>
             <Icon name='checkmark-circle-outline' style={{color: 'black', alignSelf: 'center', top: 20}} size={40}/>
             <TextBold style={{color: 'black', alignSelf: 'center', top: 20}}>Lista atualizada com sucesso!</TextBold>

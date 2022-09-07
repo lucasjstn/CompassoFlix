@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import  Icon  from 'react-native-vector-icons/AntDesign';
 import { Line, Conteiner, InvisibleConteiner, FlatlistConteiner, CloseButton, SelectListButton, SaveButton, ListConteiner} from './style';
 
-export default function ModalLists({teste, setTest, movie_id, setModalConfirmedAdd}) {
+export default function ModalLists({selectListModal, setSelectListModal, movie_id, setModalConfirmedAdd}) {
 
     const [iduser, setIdUser] = useState();
     const [list, setList] = useState();
@@ -88,12 +88,12 @@ export default function ModalLists({teste, setTest, movie_id, setModalConfirmedA
     <Modal
     animationType= "slide"
     transparent={true}
-    visible={teste}
-    onRequestClose={() => setTest(false)}>
+    visible={selectListModal}
+    onRequestClose={() => setSelectListModal(false)}>
       <InvisibleConteiner>
         <Conteiner>
             <TextBold style={{color: 'black', fontSize: 15, left: 30, top: 10}}>Salvar filme em...</TextBold>
-            <CloseButton onPress={() => setTest(false)}>
+            <CloseButton onPress={() => setSelectListModal(false)}>
               <Icon name='close' style={{color: 'black'}} size={20}/>
             </CloseButton>     
             <Line/>

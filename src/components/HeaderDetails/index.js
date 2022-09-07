@@ -37,7 +37,7 @@ export default HeaderDetails = ({
     modalVisible => !modalVisible,
     false,
   );
-  const [teste, setTest] = useState(false);
+  const [selectListModal, setSelectListModal] = useState(false);
   const [modalConfirmedAdd, setModalConfirmedAdd] = useState(false);
 
   const getUpdate = async () => {
@@ -87,10 +87,10 @@ export default HeaderDetails = ({
           style={styles.poster}
         />
         <>
-        <ModalLists teste={teste} setTest={setTest} movie_id={id} setModalConfirmedAdd={setModalConfirmedAdd}/>
+        <ModalLists selectListModal={selectListModal} setSelectListModal={setSelectListModal} movie_id={id} setModalConfirmedAdd={setModalConfirmedAdd}/>
         </>
         <>
-        <ModalConfirmedAdd setModalConfirmedAdd={setModalConfirmedAdd} modalConfirmedAdd={modalConfirmedAdd} setTest={setTest}/>
+        <ModalConfirmedAdd setModalConfirmedAdd={setModalConfirmedAdd} modalConfirmedAdd={modalConfirmedAdd} setSelectListModal={setSelectListModal}/>
         </>
         {/* <View> */}
         <TouchableOpacity
@@ -196,7 +196,7 @@ export default HeaderDetails = ({
             </TextRegular>
             {isSerie ? <></> :
                   <AddFilmInListWrapper>
-                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setTest(true)}>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setSelectListModal(true)}>
                       <View style={styles.iconFilmInList}>
                         <Icone testID='plus' name='plus' style={{color:'black'}}/>
                       </View>
