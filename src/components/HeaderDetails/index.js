@@ -198,7 +198,7 @@ export default HeaderDetails = ({
                   <AddFilmInListWrapper>
                     <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setTest(true)}>
                       <View style={styles.iconFilmInList}>
-                        <Icone name='plus' style={{color:'black'}}/>
+                        <Icone testID='plus' name='plus' style={{color:'black'}}/>
                       </View>
                         <TxtFilminList>Adicionar a uma lista</TxtFilminList>
                     </TouchableOpacity>
