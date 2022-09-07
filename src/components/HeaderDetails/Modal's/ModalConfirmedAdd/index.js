@@ -15,7 +15,7 @@ export default function ModalConfirmedAdd({setSelectListModal, modalConfirmedAdd
             <Icon name='checkmark-circle-outline' style={{color: 'black', alignSelf: 'center', top: 20}} size={40}/>
             <TextBold style={{color: 'black', alignSelf: 'center', top: 20}}>Lista atualizada com sucesso!</TextBold>
             <OkButtonConteiner>
-                <TouchableOpacity style={{top: 3}} onPress={() => {setTest(false), setModalConfirmedAdd(false)}}>
+                <TouchableOpacity style={{top: 3}} onPress={() => {setSelectListModal(false), setModalConfirmedAdd(false)}}>
                     <TextBold style={{color: 'white', alignSelf: 'center'}}>OK</TextBold>
                 </TouchableOpacity>
             </OkButtonConteiner>
