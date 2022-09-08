@@ -104,8 +104,12 @@ export default function ListMovies({route}) {
           />
         </View>
         <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
+        {/* {apaga essa descricao gigante qnd terminar} */}
         <TextRegular style={styles.descriptionList}>
-          {meta[0].description}
+          {meta[0].description} asdsdasdasdasdasdasd asdsdasdasdasdasdasd
+          asdsdasdasdasdasdasd asdsdasdasdasdasdasd asdsdasdasdasdasdasd
+          asdsdasdasdasdasdasd asdsdasdasdasdasdasd asdsdasdasdasdasdasd
+          asdsdasdasdasdasdasd asdsdasdasdasdasdasd
         </TextRegular>
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
