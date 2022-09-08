@@ -19,7 +19,13 @@ import {api} from '../../service/api';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator} from '@react-native-material/core';
-export default function ListMovies() {
+import {TextBold, TextRegular} from '../../components/Text';
+import {Dimensions} from 'react-native';
+
+const {width, height} = Dimensions.get('screen');
+
+export default function ListMovies({route}) {
+  const {meta} = route.params;
   const navigation = useNavigation();
 
   const [toggleValue, setToggleValue] = useState(false);
@@ -32,12 +38,8 @@ export default function ListMovies() {
     d();
   }, []);
 
-  // console.log('data: ', data);
-  // console.log('session_id', data);
-
   async function b() {
-    //trocar esse id da lista hard coded pra parametros recebidos da outra tela
-    const result = await ListOfSelectedMovies(8216011);
+    const result = await ListOfSelectedMovies(meta[0].id);
     if (result) {
       setData(result);
     }
@@ -55,7 +57,7 @@ export default function ListMovies() {
       .post(`/list/8216011/remove_item?&session_id=${sessionId}`, {
         media_id: id,
       })
-      .then(res => console.log('funcionou: ', res.data))
+      .then(res => res)
       .catch(error =>
         console.log(error.response.data, Object.keys(error?.response)),
       );
@@ -69,16 +71,13 @@ export default function ListMovies() {
         flex: 1,
       }}>
       <ScrollView>
-        <BtnGoBack
-          modal={() => navigation.navigate('ProfileScreen')}
-          style={{top: 20, left: 20, position: 'absolute'}}
-        />
-        {
-          <View style={{flexDirection: 'row', left: 200}}>
-            <Text style={{color: 'green'}}>{list.items[1].id}</Text>
-          </View>
-        }
-        <View>
+        {<View style={{flexDirection: 'row', left: 200}}></View>}
+        <View
+          style={{
+            flexDirection: 'row',
+            marginTop: '3%',
+          }}>
+          <BtnGoBack style={styles.goback} modal={() => navigation.goBack()} />
           <Toggle
             value={toggleValue}
             onPress={newState => {
@@ -105,37 +104,30 @@ export default function ListMovies() {
             }
           />
         </View>
-
-        <Text style={styles.nameList}>Filmes que mudaram a minha vida</Text>
-
-        <Text style={styles.descriptionList}>
-          Essa é uma lista de filmes que vai mudar a sua vida e gerar reflexão
-          sobre diversos temas. Aproveite para unir o útil ao agradável e usar
-          seu tempo livre para conhecer histórias inspiradoras.
-        </Text>
-        {/* <TouchableOpacity
-        onPress={() => {
-          c(18);
-        }}>
-        <Text style={{color: 'green'}}>Teste</Text>
-      </TouchableOpacity> */}
-        {/* <Text style={styles.descriptionList}>{typeof list.items}</Text> */}
-        <View style={styles.favoriteMoviesWrapper}>
-          {true ? (
-            data.map((item, index) => (
-              <TouchableOpacity
-                // onPress={() =>
-                //   navigation.navigate('TelaStack', {
-                //     screen: 'Details',
-                //     params: {id: item.id},
-                //   })
-                // }
-                key={index.toString()}
-                style={{backgroundColor: 'blue'}}>
-                {/* <Text style={{color: 'green'}}>
-                  {item.id}, {index}
-                </Text> */}
-
+        <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
+        <TextRegular style={styles.descriptionList}>
+          {meta[0].description}
+        </TextRegular>
+        {true ? (
+          <View style={styles.favoriteMoviesWrapper}>
+            {list.items.map((item, index) => (
+              <TouchableOpacity key={index.toString()}>
+                <Image
+                  key={index.toString()}
+                  testID="capa do filme"
+                  source={{
+                    uri: `https://image.tmdb.org/t/p//w185${item.poster_path}`,
+                  }}
+                  style={styles.favoriteImageWrapper}
+                />
+                <Image
+                  key={index.toString()}
+                  testID="capa do filme"
+                  source={{
+                    uri: `https://image.tmdb.org/t/p//w185${item.poster_path}`,
+                  }}
+                  style={styles.favoriteImageWrapper}
+                />
                 <Image
                   key={index.toString()}
                   testID="capa do filme"
@@ -148,17 +140,20 @@ export default function ListMovies() {
                 {toggleValue && (
                   <TouchableOpacity
                     key={index.toString() + 'b'}
-                    style={styles.delete}
+                    style={styles.deleteButtton}
                     onPress={() => {
                       c(item.id);
-                    }}></TouchableOpacity>
+                    }}>
+                    <Icon name={'horizontal-rule'} size={6} color={'red'} />
+                  </TouchableOpacity>
                 )}
               </TouchableOpacity>
-            ))
-          ) : (
-            <ActivityIndicator size={30} color={'white'} />
-          )}
-        </View>
+            ))}
+          </View>
+        ) : (
+          <ActivityIndicator size={30} color={'red'} />
+        )}
+        <Text style={{height: height * 0.2}}></Text>
       </ScrollView>
     </View>
   );

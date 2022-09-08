@@ -9,24 +9,28 @@ function relativeWidth(pixel) {
   return width * (pixel / 375);
 }
 
+console.log('275:   ', relativeWidth(275));
+
 const styles = StyleSheet.create({
   favoriteMoviesWrapper: {
     // position: 'absolute',
-    alignItems: 'center',
-    flexDirection: 'row',
-    top: relativeHeight(157),
-    marginHorizontal: relativeWidth(14 / 2),
-    flexWrap: 'wrap',
+    paddingLeft: 10,
     alignSelf: 'center',
-    // zIndex: -1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   favoriteImageWrapper: {
-    width: relativeWidth(75),
-    height: relativeHeight(110),
+    width: width * 0.21,
+    height: width * 0.32,
     borderRadius: 10,
-    marginVertical: relativeHeight(12 / 2),
-    marginHorizontal: relativeWidth(7),
-    // zIndex: -1,
+    marginVertical: 5,
+    margin: 5,
+    backgroundColor: 'blue',
+  },
+  goback: {
+    width: '70%',
+    backgroundColor: 'purple',
+    marginLeft: relativeWidth(20),
   },
   container: {
     flex: 1,
@@ -34,24 +38,22 @@ const styles = StyleSheet.create({
   },
   nameList: {
     width: 211,
+    alignSelf: 'center',
     height: 54,
-    left: 82,
-    top: 100,
+    marginTop: 80,
     fontSize: 20,
     lineHeight: 27,
     textAlign: 'center',
-    fontWeight: '700',
     color: '#E9A6A6',
     marginBottom: 26,
   },
   descriptionList: {
-    width: 344,
-    height: 36,
-    top: 120,
-    fontSize: 10,
-    lineHeight: 12,
-    textAlign: 'justify',
-    fontWeight: '400',
+    width: '90%',
+    marginVertical: 13,
+    fontSize: 13,
+    lineHeight: 14,
+    alignSelf: 'center',
+    textAlign: 'left',
     color: '#FFFFFF',
   },
   return: {
@@ -70,10 +72,7 @@ const styles = StyleSheet.create({
   },
   toggleContainer: {
     position: 'absolute',
-    width: 76,
-    height: 25,
-    right: 20,
-    top: 25,
+    marginLeft: '75%',
   },
   trackBarStyle: {
     backgroundColor: '#FFF',
@@ -110,19 +109,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   teste1: {
-    //position: 'absolute',
     left: 210,
   },
-  delete: {
+  deleteButtton: {
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    // top: 290,
-    // left: 95,
     alignSelf: 'flex-end',
-    height: 18,
-    width: 18,
+    height: 20,
+    width: 20,
     backgroundColor: 'white',
     // zIndex: 1,
   },
