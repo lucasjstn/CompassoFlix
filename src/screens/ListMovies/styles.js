@@ -113,18 +113,15 @@ const styles = StyleSheet.create({
     //position: 'absolute',
     left: 210,
   },
-  delete: {
+  deleteButtton: {
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    // top: 290,
-    // left: 95,
     alignSelf: 'flex-end',
-    height: 18,
-    width: 18,
+    height: 20,
+    width: 20,
     backgroundColor: 'white',
-    zIndex: 1,
   },
 });
 

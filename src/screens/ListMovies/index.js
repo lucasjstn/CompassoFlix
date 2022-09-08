@@ -34,34 +34,33 @@ export default function ListMovies({route}) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    b();
-    d();
+    getListOfAddedItems();
+    getSessionId();
   }, []);
 
-  async function b() {
+  async function getListOfAddedItems() {
     const result = await ListOfSelectedMovies(meta[0].id);
     if (result) {
       setData(result);
     }
   }
 
-  async function d() {
+  async function getSessionId() {
     const result = await AsyncStorage.getItem('@session');
     if (result) {
       setSessionId(result);
     }
   }
 
-  const c = async id => {
+  const removeItemFromAddedList = async id => {
     await api
-      .post(`/list/8216011/remove_item?&session_id=${sessionId}`, {
+      .post(`/list/${meta[0].id}/remove_item?&session_id=${sessionId}`, {
         media_id: id,
       })
-      .then(res => res)
       .catch(error =>
         console.log(error.response.data, Object.keys(error?.response)),
       );
-    b();
+    getListOfAddedItems();
   };
 
   return (
@@ -110,39 +109,22 @@ export default function ListMovies({route}) {
         </TextRegular>
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
-            {list.items.map((item, index) => (
+            {data.map((item, index) => (
               <TouchableOpacity key={index.toString()}>
                 <Image
-                  key={index.toString()}
+                  key={index.toString() + 'a'}
                   testID="capa do filme"
                   source={{
                     uri: `https://image.tmdb.org/t/p//w185${item.poster_path}`,
                   }}
                   style={styles.favoriteImageWrapper}
                 />
-                <Image
-                  key={index.toString()}
-                  testID="capa do filme"
-                  source={{
-                    uri: `https://image.tmdb.org/t/p//w185${item.poster_path}`,
-                  }}
-                  style={styles.favoriteImageWrapper}
-                />
-                <Image
-                  key={index.toString()}
-                  testID="capa do filme"
-                  source={{
-                    uri: `https://image.tmdb.org/t/p//w185${item.poster_path}`,
-                  }}
-                  style={styles.favoriteImageWrapper}
-                />
-
                 {toggleValue && (
                   <TouchableOpacity
                     key={index.toString() + 'b'}
                     style={styles.deleteButtton}
                     onPress={() => {
-                      c(item.id);
+                      removeItemFromAddedList(item.id);
                     }}>
                     <Icon name={'horizontal-rule'} size={6} color={'red'} />
                   </TouchableOpacity>
