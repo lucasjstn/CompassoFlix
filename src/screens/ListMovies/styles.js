@@ -9,11 +9,8 @@ function relativeWidth(pixel) {
   return width * (pixel / 375);
 }
 
-console.log('275:   ', relativeWidth(275));
-
 const styles = StyleSheet.create({
   favoriteMoviesWrapper: {
-    // position: 'absolute',
     paddingLeft: 10,
     alignSelf: 'center',
     flexDirection: 'row',
@@ -120,7 +117,6 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     backgroundColor: 'white',
-    // zIndex: 1,
   },
 });
 
