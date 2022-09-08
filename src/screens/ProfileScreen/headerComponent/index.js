@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
+import {View, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {TextBold, TextRegular} from '../../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {api, apiImage} from '../../../service/api';
@@ -11,12 +7,12 @@ import {Avatar} from '@react-native-material/core';
 import styles from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LeaveMdl from './leavemodalComponent';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function SupProfile() {
   const navigation = useNavigation();
   const [avatar, setAvatar] = useState('');
-  const [nomes, setNomes] = useState({name: undefined, username: 'none'});
+  const [nomes, setNomes] = useState({name: '', username: ''});
   const [ratedseries, setRatedSerie] = useState();
   const [ratedmovie, setRatedMovie] = useState();
   const [isLoad, setIsLoad] = useState(true);
@@ -99,26 +95,25 @@ export default function SupProfile() {
       <View style={styles.imgWrapper}>
         <Picture />
       </View>
-      <TextBold style={styles.name}>{nomes.name || nomes.username}</TextBold>
+      <TextBold style={styles.name}>
+        {nomes.name || nomes.username || ''}
+      </TextBold>
 
       <TouchableOpacity
         style={styles.btnList}
         onPress={() => {
-          navigation.navigate("List");
-        }}
-        >
-        <TextRegular style={styles.listText}>
-          Ver listas de filmes
-        </TextRegular>
+          navigation.navigate('List');
+        }}>
+        <TextRegular style={styles.listText}>Ver listas de filmes</TextRegular>
       </TouchableOpacity>
 
       <View style={styles.ratedWrapper}>
-        {isLoad ? (
+        {false ? (
           <ActivityIndicator color={'red'} />
         ) : (
           <View style={{alignItems: 'center'}}>
             <TextBold style={styles.numberRated}>
-              {ratedseries + ratedmovie}
+              {ratedseries + ratedmovie || ''}
             </TextBold>
             <TextRegular style={styles.ratedText}>Avaliações</TextRegular>
           </View>

@@ -6,6 +6,7 @@ import getMovies from '../FilmsDetails/apiGets';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ActivityIndicator} from '@react-native-material/core';
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false);
@@ -46,54 +47,62 @@ const ProfileScreen = () => {
       <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <SafeAreaView style={styles.container}>
         <SupProfile />
-        <View style={styles.lineUp}></View>
-        <View style={styles.navWrapper}>
-          <TouchableOpacity
-            onPress={() => {
-              setIsserie(false), setResults(false), setIsFocused(false);
-            }}>
-            <Icon
-              name="popcorn"
-              style={{color: focused ? 'grey' : 'white'}}
-              size={30}
+        {seriesFavorite && filmsFavorite && seriesRated && filmsRated ? (
+          <>
+            <View style={styles.lineUp}></View>
+            <View style={styles.navWrapper}>
+              <TouchableOpacity
+                onPress={() => {
+                  setIsserie(false), setResults(false), setIsFocused(false);
+                }}>
+                <Icon
+                  name="popcorn"
+                  style={{color: focused ? 'grey' : 'white'}}
+                  size={30}
+                />
+              </TouchableOpacity>
+
+              <View style={styles.lineMid} />
+
+              <TouchableOpacity
+                onPress={() => {
+                  setIsserie(true), setResults(true), setIsFocused(true);
+                }}>
+                <Icon
+                  name="television-play"
+                  style={{color: focused ? 'white' : 'grey'}}
+                  size={30}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.lineDown}></View>
+
+            <TopFiveMovies
+              moviesList={
+                results
+                  ? seriesFavorite?.results.reverse()
+                  : filmsFavorite?.results.reverse()
+              }
+              isSerie={isserie}
+              isLoad={favoriteLoad}
+              favoriteMovies={true}
+              username={username}
+              name={name}
             />
-          </TouchableOpacity>
-
-          <View style={styles.lineMid} />
-
-          <TouchableOpacity
-            onPress={() => {
-              setIsserie(true), setResults(true), setIsFocused(true);
-            }}>
-            <Icon
-              name="television-play"
-              style={{color: focused ? 'white' : 'grey'}}
-              size={30}
+            <View style={styles.line} />
+            <TopFiveMovies
+              moviesList={results ? seriesRated?.results : filmsRated?.results}
+              isRated={true}
+              isSerie={isserie}
+              isLoad={ratedLoad}
+              username={username}
+              favoriteMovies={false}
+              name={name}
             />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.lineDown}></View>
-
-        <TopFiveMovies
-          moviesList={
-            results ? seriesFavorite?.results : filmsFavorite?.results
-          }
-          isSerie={isserie}
-          isLoad={favoriteLoad}
-          favoriteMovies={true}
-          username={username}
-          name={name}
-        />
-        <View style={styles.line} />
-        <TopFiveMovies
-          moviesList={results ? seriesRated?.results : filmsRated?.results}
-          isRated={true}
-          isSerie={isserie}
-          isLoad={ratedLoad}
-          username={username}
-          favoriteMovies={false}
-          name={name}
-        />
+          </>
+        ) : (
+          <ActivityIndicator color={'red'} size={44} />
+        )}
       </SafeAreaView>
     </>
   );
