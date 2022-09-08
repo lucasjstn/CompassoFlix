@@ -110,7 +110,7 @@ export default function ListMovies({route}) {
         </TextRegular>
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
-            {data.map((item, index) => (
+            {list.items.map((item, index) => (
               <TouchableOpacity key={index.toString()}>
                 <Image
                   key={index.toString()}
