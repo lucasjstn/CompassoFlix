@@ -104,7 +104,7 @@ export default function ListMovies({route}) {
           />
         </View>
         <TextBold style={styles.nameList}>{meta.name}</TextBold>
-        <View style={{width: '95%', alignSelf: 'center'}}>
+        <View style={{width: '90%', alignSelf: 'center'}}>
           <TextRegular style={styles.descriptionList}>
             {meta.description}
           </TextRegular>

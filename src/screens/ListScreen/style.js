@@ -7,11 +7,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   goBack: {
-    position:'absolute',
+    position: 'absolute',
     alignSelf: 'flex-start',
     left: 20,
     top: 17,
-    elevation: 10
+    elevation: 10,
   },
   title: {
     marginTop: 35 + 17,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 27,
     marginBottom: 50,
-    alignSelf:'center'
+    alignSelf: 'center',
   },
   card: {
     height: 79,
@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
   listTitle: {
     fontSize: 10,
     lineHeight: 14,
-    width: '45%',
+    width: '65%',
+    textTransform: 'uppercase',
   },
   totalFilms: {
     fontSize: 8,

@@ -8,7 +8,7 @@ const InputGrey = ({errorMessage, isPassword, value, onChangeText}) => {
       <View style={{alignItems: 'center', justifyContent: 'center'}}>
         <TextInput
           placeholderTextColor={!errorMessage ? '#ffffff80' : '#EC2626'}
-          placeholder={isPassword ? 'senha' : 'usuário'}
+          placeholder={isPassword ? 'senha' : 'nome de usuário'}
           style={
             !errorMessage
               ? inputs.entriesInput

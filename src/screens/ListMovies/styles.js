@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     lineHeight: 14,
     alignSelf: 'center',
-    // textAlign: 'left',
+    textAlign: 'justify',
     color: '#FFFFFF',
   },
   return: {

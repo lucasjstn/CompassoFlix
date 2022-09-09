@@ -65,10 +65,15 @@ export default function CreateList({modalActive, setModalActive}) {
               if (titleList) {
                 getList();
                 postNewList();
-                // setTitleList('');
-                // setDescriptionList('');
+                setTitleList('');
+                setDescriptionList('');
+              } else {
               }
-              setModalActive(false);
+              if (titleList) {
+                setModalActive(false);
+                setTitleList('');
+                setDescriptionList('');
+              }
             }}
             style={styles.btnSave}>
             <TextBold style={styles.btnSaveText}>Salvar</TextBold>
