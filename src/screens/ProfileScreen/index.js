@@ -92,9 +92,7 @@ const ProfileScreen = () => {
 
                 <TopFiveMovies
                   moviesList={
-                    results
-                      ? seriesFavorite?.results.reverse()
-                      : filmsFavorite?.results.reverse()
+                    results ? seriesFavorite?.results : filmsFavorite?.results
                   }
                   isSerie={isserie}
                   isLoad={favoriteLoad}
