@@ -15,13 +15,12 @@ export default FilmsDetails = ({route, navigation}) => {
 
   const {data: dataDetails} = apiGets(`/movie/${id}?&language=pt-BR`);
   const {data: dataCredits} = apiGets(`/movie/${id}/credits?&language=pt-BR`);
-  
+
   return !!dataCredits ? (
     <SafeAreaView style={styles.container}>
-      <View
-        style={styles.btnWrapper}>
+      <View style={styles.btnWrapper}>
         <BtnGoBack nav={navigation} />
-        <Favorite id={id} mediaType='movie'/>
+        <Favorite id={id} mediaType="movie" />
       </View>
       <HeaderDetails
         {...dataDetails}

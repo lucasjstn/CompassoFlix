@@ -40,9 +40,7 @@ export default function FlatFilmes() {
         api.defaults.params['session_id'] = value;
         getUser();
       }
-    } catch (e) {
-      console.log('storege: ' + e);
-    }
+    } catch (e) {}
   };
 
   const getUser = async () => {

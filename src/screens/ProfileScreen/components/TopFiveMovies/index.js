@@ -26,15 +26,6 @@ export default function TopFiveMovies({
     return setToggleUserFavorites(!toggleUserFavorites);
   };
 
-  console.log(isSerie, Object.keys(moviesList));
-
-  // function navigateToDetails(id) {
-  //   navigation.navigate(isSerie ? 'SeriesScreen' : 'MoviesStack', {
-  //     screen: isSerie ? 'SeriesDetails' : 'Details',
-  //     params: {id: 1231},
-  //   });
-  // }
-
   return (
     <>
       <ModalRatedOrFav
