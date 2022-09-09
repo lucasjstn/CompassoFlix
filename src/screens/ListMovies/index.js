@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
 import styles from './styles';
 import IconReturn from 'react-native-vector-icons/AntDesign';
@@ -21,13 +21,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator} from '@react-native-material/core';
 import {TextBold, TextRegular} from '../../components/Text';
 import {Dimensions} from 'react-native';
+import { AuthContext } from '../../context/AuthContext';
 
 const {width, height} = Dimensions.get('screen');
 
 export default function ListMovies({route}) {
   const {meta} = route.params;
   const navigation = useNavigation();
-
+  const {listUpdate, setListUpdate} = useContext(AuthContext);
   const [toggleValue, setToggleValue] = useState(false);
   const [setModal] = useState(false);
   const [sessionId, setSessionId] = useState();
@@ -39,7 +40,7 @@ export default function ListMovies({route}) {
   }, []);
 
   async function getListOfAddedItems() {
-    const result = await ListOfSelectedMovies(meta[0].id);
+    const result = await ListOfSelectedMovies(meta.id);
     if (result) {
       setData(result);
     }
@@ -54,10 +55,11 @@ export default function ListMovies({route}) {
 
   const removeItemFromAddedList = async id => {
     await api
-      .post(`/list/${meta[0].id}/remove_item?&session_id=${sessionId}`, {
+      .post(`/list/${meta.id}/remove_item?&session_id=${sessionId}`, {
         media_id: id,
       })
-      .catch(error => error);
+      .catch(error => error)
+      .finally(() => setListUpdate(Math.random()));
     getListOfAddedItems();
   };
 
@@ -101,10 +103,10 @@ export default function ListMovies({route}) {
             }
           />
         </View>
-        <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
+        <TextBold style={styles.nameList}>{meta.name}</TextBold>
         <View style={{width: '95%', alignSelf: 'center'}}>
           <TextRegular style={styles.descriptionList}>
-            {meta[0].description}
+            {meta.description}
           </TextRegular>
         </View>
         {data ? (

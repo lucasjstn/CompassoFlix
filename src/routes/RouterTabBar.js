@@ -15,14 +15,14 @@ export default function TabBar() {
   return (
     <Tab.Navigator
       initialRouteName="MovieScreen"
-      backBehavior="history"
+      backBehavior="initialRoute"
       screenOptions={{
         unmountOnBlur: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: 'white',
         headerShown: false,
         tabBarStyle: {
-          height: '8%',
+          height: '6.5%',
           backgroundColor: '#454545',
           borderTopColor: 'transparent',
         },

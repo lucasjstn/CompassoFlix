@@ -17,7 +17,15 @@ export default function CreateList({modalActive, setModalActive}) {
       });
       setListUpdate(response.data.list_id);
     } catch (error) {
-      throw new Error(`request failed from post creat list: ${error}`);
+      console.log(`request failed from post creat list: ${error}`);
+    }
+  };
+
+  const getList = async () => {
+    try {
+      const response = await api.get('/account/13768649/lists');
+    } catch (error) {
+      console.log('failed request getList: ' + error);
     }
   };
 
@@ -26,7 +34,9 @@ export default function CreateList({modalActive, setModalActive}) {
       animationType="fade"
       transparent={true}
       visible={modalActive}
-      onRequestClose={() => setModalActive(false)}>
+      onRequestClose={() => {
+        setModalActive(false);
+      }}>
       <View style={styles.container}>
         <TextBold style={styles.newList}>Nova lista</TextBold>
         <TextInput
@@ -43,17 +53,20 @@ export default function CreateList({modalActive, setModalActive}) {
           style={styles.descriptionInput}
         />
         <View style={styles.btnWrapper}>
-          <TouchableOpacity 
-          onPress={() => setModalActive(false)}
-          style={[styles.btnSave, styles.btnCancel]}>
-            <TextBold style={[styles.btnSaveText, styles.btnCancelText]}>Cancelar</TextBold>
+          <TouchableOpacity
+            onPress={() => setModalActive(false)}
+            style={[styles.btnSave, styles.btnCancel]}>
+            <TextBold style={[styles.btnSaveText, styles.btnCancelText]}>
+              Cancelar
+            </TextBold>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              if(titleList && descriptionList) {
+              if (titleList) {
+                getList();
                 postNewList();
-                setTitleList('');
-                setDescriptionList('');
+                // setTitleList('');
+                // setDescriptionList('');
               }
               setModalActive(false);
             }}

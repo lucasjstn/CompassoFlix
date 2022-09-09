@@ -19,13 +19,13 @@ export default function ListScreen({navigation}) {
       const response = await api.get('/account/13768649/lists');
       setMeta(response.data);
     } catch (error) {
-      throw new Error('failed request getList: ' + error);
+      console.log('failed request getList: ' + error);
     }
   };
   const deleteList = id => {
     api
       .delete(`/list/${id}?&`)
-      .then(response => console.log(response.data))
+      .then(response => response)
       .catch(err => console.log(err))
       .finally(() => setListUpdate(Math.random()));
   };
@@ -59,7 +59,9 @@ export default function ListScreen({navigation}) {
                   style={styles.btnList}
                   activeOpacity={0.8}
                   onPress={() => {
-                    navigation.navigate('ListMovies', {meta: meta?.results});
+                    navigation.navigate('ListMovies', {
+                      meta: item,
+                    });
                   }}>
                   <TextRegular style={styles.listTitle}>
                     {item?.name}
@@ -70,6 +72,7 @@ export default function ListScreen({navigation}) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
+                    getList();
                     deleteList(item?.id);
                   }}
                   activeOpacity={0.8}
