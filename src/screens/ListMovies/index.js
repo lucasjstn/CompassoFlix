@@ -102,7 +102,6 @@ export default function ListMovies({route}) {
           />
         </View>
         <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
-        {/* {apaga essa descricao gigante qnd terminar} */}
         <TextRegular style={styles.descriptionList}>
           {meta[0].description}
         </TextRegular>
