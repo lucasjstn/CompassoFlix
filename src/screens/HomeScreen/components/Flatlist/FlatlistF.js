@@ -5,6 +5,7 @@ import {
   View,
   LogBox,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 // import FilmesCP from './FlatListComponent/FlatlistComponent';
 import styles from './style';
@@ -97,9 +98,10 @@ export default function FlatFilmes() {
     <Loading />
   ) : (
     <View style={styles.conteinerBackGround}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <TouchableOpacity
         style={styles.picture}
-        onPress={() => navigation.navigate('ProfileScreen')}>
+        onPress={() => navigation.navigate('ProfileStack')}>
         <Picture />
       </TouchableOpacity>
       <FilmesHeader name={metaNames.name} userName={metaNames.username} />

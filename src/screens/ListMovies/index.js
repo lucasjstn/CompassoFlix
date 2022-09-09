@@ -108,7 +108,12 @@ export default function ListMovies({route}) {
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
             {data.map((item, index) => (
-              <TouchableOpacity key={index.toString()}>
+              <TouchableOpacity
+                key={index.toString()}
+                onPress={() => {
+                  navigation.replace('MovieDetails', {id: item.id});
+                  console.log('navegou', item.id);
+                }}>
                 <Image
                   key={index.toString() + 'a'}
                   testID="capa do filme"

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
+import {SafeAreaView, Text, View, TouchableOpacity, StatusBar} from 'react-native';
 import styles from './style';
 import ContentList from '../../components/ContentList';
 import {getContent} from '../../service/requests/ContentRequest/MoviesRequest';
@@ -74,9 +74,10 @@ const SeriesScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <TouchableOpacity
         style={styles.picture}
-        onPress={() => navigation.navigate('ProfileScreen')}>
+        onPress={() => navigation.navigate('ProfileStack')}>
         <Picture />
       </TouchableOpacity>
       <FilmesHeader
