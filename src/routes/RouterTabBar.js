@@ -17,6 +17,7 @@ export default function TabBar() {
       initialRouteName="MovieScreen"
       backBehavior="initialRoute"
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         unmountOnBlur: true,
         tabBarShowLabel: false,
         tabBarActiveTintColor: 'white',
