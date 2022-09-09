@@ -6,6 +6,7 @@ import getMovies from '../FilmsDetails/apiGets';
 import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoadingProfile from './components/ProfileLoading';
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false);
@@ -13,6 +14,7 @@ const ProfileScreen = () => {
   const [focused, setIsFocused] = useState(false);
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
+  const [load, setLoad] = useState(true);
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
     `/account/13768649/favorite/movies?&session_id=`,
   );
@@ -34,6 +36,7 @@ const ProfileScreen = () => {
       if (userNameResult !== null) {
         setUsername(userNameResult);
         setName(nameResult);
+        setTimeout(() => setLoad(false), 2000)
       }
     } catch (error) {}
   }
@@ -41,7 +44,7 @@ const ProfileScreen = () => {
     getAllKeys();
   }, [username, name, filmsFavorite]);
 
-  return (
+  return load ? (<LoadingProfile/>) : (
     <>
       <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <SafeAreaView style={styles.container}>

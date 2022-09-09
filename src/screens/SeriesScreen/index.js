@@ -9,6 +9,7 @@ import {api} from '../../service/api';
 import { Avatar } from '@react-native-material/core'
 import { apiImage } from '../../service/api';
 import { useNavigation } from '@react-navigation/native';
+import Loading from '../../components/Loading';
 
 const SeriesScreen = () => {
   
@@ -68,7 +69,7 @@ const SeriesScreen = () => {
     }       
 }
 
-  return (
+  return load ? (<Loading/>) : (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity style={styles.picture} onPress={() => navigation.navigate('ProfileScreen')} >
         <Picture/>
