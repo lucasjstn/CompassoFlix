@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import {View, Image, TouchableOpacity} from 'react-native';
-import {TextSemiBold} from '../../../../components/Text';
+import {View, Image, TouchableOpacity, Text} from 'react-native';
+import {TextRegular, TextSemiBold} from '../../../../components/Text';
 import styles from './style';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {apiImage} from '../../../../service/api';
@@ -26,12 +26,14 @@ export default function TopFiveMovies({
     return setToggleUserFavorites(!toggleUserFavorites);
   };
 
-  function navigateToDetails() {
-    navigation.navigate(isSerie ? 'SeriesScreen' : 'TelasFilmes', {
-      screen: isSerie ? 'SeriesDetails' : 'Details',
-      params: {id: moviesList?.id},
-    });
-  }
+  console.log(isSerie, Object.keys(moviesList));
+
+  // function navigateToDetails(id) {
+  //   navigation.navigate(isSerie ? 'SeriesScreen' : 'MoviesStack', {
+  //     screen: isSerie ? 'SeriesDetails' : 'Details',
+  //     params: {id: 1231},
+  //   });
+  // }
 
   return (
     <>
@@ -45,7 +47,7 @@ export default function TopFiveMovies({
         username={username}
         baseUrl={baseUrl}
         setToggleUserFavorites={setToggleUserFavorites}
-        navigationHandler={() => navigateToDetails()}
+        navigationHandler={() => console.log('asdkkad')}
         isSerie={isSerie}
       />
 
@@ -61,7 +63,7 @@ export default function TopFiveMovies({
           </TextSemiBold>
           <TouchableOpacity
             style={styles.seeAllButton}
-            navigationHandler={() => navigateToDetails()}
+            navigationHandler={() => console.log('asdkkada')}
             onPress={() => setToggleUserFavorites(true)}>
             <TextSemiBold style={styles.seeAll}>Ver tudo</TextSemiBold>
           </TouchableOpacity>
@@ -75,13 +77,19 @@ export default function TopFiveMovies({
               return (
                 <TouchableOpacity
                   key={index}
-                  onPress={() => navigateToDetails()}>
+                  onPress={() =>
+                    navigation.navigate(
+                      isSerie ? 'SeriesDetails' : 'MovieDetails',
+                      {id: item.id},
+                    )
+                  }>
                   <View style={styles.moviesWrapper}>
                     <Image
                       testID="capa do filme"
                       source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                       style={styles.imgWrapper}
                     />
+
                     <View
                       style={[
                         styles.ratedWrapper,

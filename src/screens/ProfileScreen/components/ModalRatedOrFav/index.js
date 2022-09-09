@@ -69,13 +69,16 @@ export default function ModalRatedOrFav({
                 style={null}
                 key={index}
                 onPress={() => {
-                  navigation.navigate(
-                    isSerie ? 'SeriesScreen' : 'TelasFilmes',
-                    {
-                      screen: isSerie ? 'SeriesDetails' : 'Details',
-                      params: {id: item?.id},
-                    },
-                  );
+                  !toggleUserFavorites;
+                  navigation.reset({
+                    index: 1,
+                    routes: [
+                      {
+                        name: isSerie ? 'SeriesDetails' : 'MovieDetails',
+                        params: {id: item.id},
+                      },
+                    ],
+                  });
                 }}>
                 <Image
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}

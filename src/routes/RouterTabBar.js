@@ -15,6 +15,7 @@ export default function TabBar() {
   return (
     <Tab.Navigator
       initialRouteName="MovieScreen"
+      backBehavior="history"
       screenOptions={{
         unmountOnBlur: true,
         tabBarShowLabel: false,
