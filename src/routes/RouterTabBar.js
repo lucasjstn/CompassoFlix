@@ -21,7 +21,7 @@ export default function TabBar() {
         tabBarActiveTintColor: 'white',
         headerShown: false,
         tabBarStyle: {
-          height: Math.round(height * tabBarHeight),
+          height: '8%',
           backgroundColor: '#454545',
           borderTopColor: 'transparent',
         }
@@ -45,7 +45,11 @@ export default function TabBar() {
         options={{
           tabBarLabel: 'Filmes',
           tabBarIcon: ({focused, color}) => (
-            <View style={[styles.container, {backgroundColor: focused ? '#E9A6A6' : null} ]}>
+            <View
+              style={[
+                styles.container,
+                {backgroundColor: focused ? '#E9A6A6' : null},
+              ]}>
               <Icon name="popcorn" size={30} color={color} />
             </View>
           ),
@@ -57,7 +61,11 @@ export default function TabBar() {
         options={{
           tabBarLabel: 'Perfil',
           tabBarIcon: ({focused, color}) => (
-            <View style={[styles.container, {backgroundColor: focused ? '#E9A6A6' : null} ]}>
+            <View
+              style={[
+                styles.container,
+                {backgroundColor: focused ? '#E9A6A6' : null},
+              ]}>
               <Icon name="account-circle-outline" size={30} color={color} />
             </View>
           ),

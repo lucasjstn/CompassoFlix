@@ -8,7 +8,7 @@ import CreateList from './components/CreateList';
 import {api} from '../../service/api';
 import {AuthContext} from '../../context/AuthContext';
 
-export default function ListScreen() {
+export default function ListScreen({navigation}) {
   const {listUpdate, setListUpdate} = useContext(AuthContext);
   const [modalActive, setModalActive] = useState(false);
   const [meta, setMeta] = useState({});
@@ -55,7 +55,12 @@ export default function ListScreen() {
           renderItem={({item}) => {
             return (
               <View style={styles.card}>
-                <TouchableOpacity style={styles.btnList} activeOpacity={0.8}>
+                <TouchableOpacity
+                  style={styles.btnList}
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    navigation.navigate('ListMovies', {meta: meta?.results});
+                  }}>
                   <TextRegular style={styles.listTitle}>
                     {item?.name}
                   </TextRegular>

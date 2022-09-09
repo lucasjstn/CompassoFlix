@@ -1,9 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  ActivityIndicator,
-  TouchableOpacity,
-} from 'react-native';
+import {View, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {TextBold, TextRegular} from '../../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {api, apiImage} from '../../../service/api';
@@ -11,7 +7,7 @@ import {Avatar} from '@react-native-material/core';
 import styles from './style';
 import Icon from 'react-native-vector-icons/Ionicons';
 import LeaveMdl from './leavemodalComponent';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function SupProfile() {
   const navigation = useNavigation();
@@ -104,12 +100,9 @@ export default function SupProfile() {
       <TouchableOpacity
         style={styles.btnList}
         onPress={() => {
-          navigation.navigate("List");
-        }}
-        >
-        <TextRegular style={styles.listText}>
-          Ver listas de filmes
-        </TextRegular>
+          navigation.navigate('List');
+        }}>
+        <TextRegular style={styles.listText}>Ver listas de filmes</TextRegular>
       </TouchableOpacity>
 
       <View style={styles.ratedWrapper}>
