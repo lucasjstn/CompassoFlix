@@ -4,6 +4,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import ListScreen from '../screens/ListScreen';
 import FilmsDetails from '../screens/FilmsDetails';
 import SeriesDetails from '../screens/SeriesDetails';
+import ListMovies from '../screens/ListMovies';
 
 const TelaStack = createNativeStackNavigator();
 
@@ -18,6 +19,8 @@ export default function ProfileStack() {
       <TelaStack.Screen name="List" component={ListScreen} />
       <TelaStack.Screen name="MovieDetails" component={FilmsDetails} />
       <TelaStack.Screen name="SeriesDetails" component={SeriesDetails} />
+      <TelaStack.Screen name="ListMovies" component={ListMovies} />
+
     </TelaStack.Navigator>
   );
 }

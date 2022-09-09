@@ -22,7 +22,7 @@ export default function TabBar() {
         tabBarActiveTintColor: 'white',
         headerShown: false,
         tabBarStyle: {
-          height: Math.round(height * tabBarHeight),
+          height: '8%',
           backgroundColor: '#454545',
           borderTopColor: 'transparent',
         },
