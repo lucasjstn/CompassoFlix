@@ -49,7 +49,7 @@ export default function ModalRating({
   }, [status, cancel]);
 
   function validateRate(rate) {
-    let regex = /^[0-9]*[\.]?[0-9]*$/;
+    let regex = /^[0-9]*[\.\,]?[0-9]*$/;
     if (rate.match(regex)) {
       return true;
     } else {
@@ -166,6 +166,7 @@ export default function ModalRating({
               <View style={styles.ratingResourcer}>
                 <View style={styles.ratingInputContainer}>
                   <TextInput
+                    keyboardType="decimal-pad"
                     // editable={disabled
                     value={rating}
                     onChangeText={text => setRating(text)}
@@ -201,10 +202,16 @@ export default function ModalRating({
                   onPress={status <= 12 ? () => sendRating(rating) : null}
                   style={[
                     styles.cancelOkButtons,
-                    {backgroundColor: status <= 12 ? 'black' : 'grey'},
+                    {
+                      backgroundColor: status <= 12 ? 'black' : '#C4C4C4',
+                      borderWidth: 0,
+                    },
                   ]}>
                   <TextBold
-                    style={[styles.cancelOkButtonsText, {color: 'white'}]}>
+                    style={[
+                      styles.cancelOkButtonsText,
+                      {color: status <= 12 ? 'white' : '#8E8E8E'},
+                    ]}>
                     OK
                   </TextBold>
                 </TouchableOpacity>

@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   staticInput: {fontSize: 23, color: 'black'},
   textInput: {
+    color: 'black',
     width: 74,
     padding: 0,
     fontSize: 19,
