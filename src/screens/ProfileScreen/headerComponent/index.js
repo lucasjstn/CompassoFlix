@@ -108,16 +108,13 @@ export default function SupProfile() {
       </TouchableOpacity>
 
       <View style={styles.ratedWrapper}>
-        {false ? (
-          <ActivityIndicator color={'red'} />
-        ) : (
+        
           <View style={{alignItems: 'center'}}>
             <TextBold style={styles.numberRated}>
               {ratedseries + ratedmovie || ''}
             </TextBold>
             <TextRegular style={styles.ratedText}>Avaliações</TextRegular>
           </View>
-        )}
       </View>
     </View>
   );

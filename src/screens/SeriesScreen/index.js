@@ -6,9 +6,10 @@ import {getContent} from '../../service/requests/ContentRequest/MoviesRequest';
 import {FilmesHeader} from '../HomeScreen/components/HeaderFilms/HeaderCP';
 import {KeepToken} from '../../service/storage';
 import {api} from '../../service/api';
-import {Avatar} from '@react-native-material/core';
-import {apiImage} from '../../service/api';
-import {useNavigation} from '@react-navigation/native';
+import { Avatar } from '@react-native-material/core'
+import { apiImage } from '../../service/api';
+import { useNavigation } from '@react-navigation/native';
+import Loading from '../../components/Loading';
 
 const SeriesScreen = () => {
   const navigation = useNavigation();
@@ -72,7 +73,7 @@ const SeriesScreen = () => {
     }
   }
 
-  return (
+  return load ? (<Loading/>) : (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <TouchableOpacity

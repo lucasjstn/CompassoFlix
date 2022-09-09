@@ -7,6 +7,7 @@ import SupProfile from './headerComponent';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator} from '@react-native-material/core';
+import LoadingProfile from './components/ProfileLoading';
 
 const ProfileScreen = () => {
   const [isserie, setIsserie] = useState(false);
@@ -14,6 +15,7 @@ const ProfileScreen = () => {
   const [focused, setIsFocused] = useState(false);
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
+  const [load, setLoad] = useState(true);
   const {data: filmsFavorite, isLoad: favoriteLoad} = getMovies(
     `/account/13768649/favorite/movies?&session_id=`,
   );
@@ -35,6 +37,7 @@ const ProfileScreen = () => {
       if (userNameResult !== null) {
         setUsername(userNameResult);
         setName(nameResult);
+        setTimeout(() => setLoad(false), 2000)
       }
     } catch (error) {}
   }
@@ -42,7 +45,7 @@ const ProfileScreen = () => {
     getAllKeys();
   }, [username, name, filmsFavorite]);
 
-  return (
+  return load ? (<LoadingProfile/>) : (
     <>
       <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <SafeAreaView style={styles.container}>
@@ -77,32 +80,26 @@ const ProfileScreen = () => {
             </View>
             <View style={styles.lineDown}></View>
 
-            <TopFiveMovies
-              moviesList={
-                results
-                  ? seriesFavorite?.results.reverse()
-                  : filmsFavorite?.results.reverse()
-              }
-              isSerie={isserie}
-              isLoad={favoriteLoad}
-              favoriteMovies={true}
-              username={username}
-              name={name}
-            />
-            <View style={styles.line} />
-            <TopFiveMovies
-              moviesList={results ? seriesRated?.results : filmsRated?.results}
-              isRated={true}
-              isSerie={isserie}
-              isLoad={ratedLoad}
-              username={username}
-              favoriteMovies={false}
-              name={name}
-            />
-          </>
-        ) : (
-          <ActivityIndicator color={'red'} size={44} />
-        )}
+        <TopFiveMovies
+          moviesList={
+            results ? seriesFavorite?.results : filmsFavorite?.results
+          }
+          isSerie={isserie}
+          isLoad={favoriteLoad}
+          favoriteMovies={true}
+          username={username}
+          name={name}
+        />
+        <View style={styles.line} />
+        <TopFiveMovies
+          moviesList={results ? seriesRated?.results : filmsRated?.results}
+          isRated={true}
+          isSerie={isserie}
+          isLoad={ratedLoad}
+          username={username}
+          favoriteMovies={false}
+          name={name}
+        />
       </SafeAreaView>
     </>
   );

@@ -43,6 +43,21 @@ const mockCreatAt = [
 
 describe('HeaderDetails', () => {
   describe('Componente renderizado', () => {
+    it('Deve mostrar o icone plus', () => {
+      const {getByTestId} = render(<HeaderDetails/>)
+
+      expect(getByTestId('plus')).toBeTruthy()
+    })
+    it('Deve mostrar o Adicionar a uma lista', () => {
+      const {getByText} = render(<HeaderDetails/>)
+
+      expect(getByText('Adicionar a uma lista')).toBeTruthy()
+    })
+  })
+})
+
+describe('HeaderDetails', () => {
+  describe('Componente renderizado', () => {
     describe('imagens do filme ou série', () => {
       it('Deve retornar a imagem do background se a url estiver correta', () => {
         const {getByA11yHint} = render(

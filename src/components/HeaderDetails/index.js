@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect, useReducer} from 'react';
-import {View, Image, TouchableOpacity, Modal} from 'react-native';
+import {View, Image, TouchableOpacity, Modal, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from './style';
 import {api, apiImage} from '../../service/api';
@@ -8,7 +8,11 @@ import transformInAround from './tansformInAround';
 import ImgWindow from './ImgWindow';
 import {TextBold, TextRegular} from '../Text';
 import {pressLongTitle, min} from '../../mocks/Details';
-import ModalRating from '../../components/ModalRating';
+import ModalRating from '../../components/ModalRating'
+import Icone from 'react-native-vector-icons/AntDesign'
+import ModalLists from './Modal\'s/ModalList';
+import ModalConfirmedAdd from './Modal\'s/ModalConfirmedAdd';
+import { AddFilmInListWrapper, TxtFilminList } from './style';
 const baseUrl = apiImage.defaults.baseURL;
 
 export default HeaderDetails = ({
@@ -33,6 +37,8 @@ export default HeaderDetails = ({
     modalVisible => !modalVisible,
     false,
   );
+  const [selectListModal, setSelectListModal] = useState(false);
+  const [modalConfirmedAdd, setModalConfirmedAdd] = useState(false);
 
   const getUpdate = async () => {
     await api
@@ -78,6 +84,12 @@ export default HeaderDetails = ({
           source={{uri: `${baseUrl}/w780${backdrop_path}`}}
           style={styles.poster}
         />
+        <>
+        <ModalLists selectListModal={selectListModal} setSelectListModal={setSelectListModal} movie_id={id} setModalConfirmedAdd={setModalConfirmedAdd}/>
+        </>
+        <>
+        <ModalConfirmedAdd setModalConfirmedAdd={setModalConfirmedAdd} modalConfirmedAdd={modalConfirmedAdd} setSelectListModal={setSelectListModal}/>
+        </>
         {/* <View> */}
         <TouchableOpacity
           accessibilityHint="poster com botao"
@@ -180,6 +192,16 @@ export default HeaderDetails = ({
             <TextRegular style={styles.rating}>
               {vote_average?.toFixed(1)}/10
             </TextRegular>
+            {isSerie ? <></> :
+                  <AddFilmInListWrapper>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => setSelectListModal(true)}>
+                      <View style={styles.iconFilmInList}>
+                        <Icone testID='plus' name='plus' style={{color:'black'}}/>
+                      </View>
+                        <TxtFilminList>Adicionar a uma lista</TxtFilminList>
+                    </TouchableOpacity>
+                  </AddFilmInListWrapper>
+                }
 
             <View style={styles.votesWrapper}>
               <Icon name="favorite" size={30} color="red" />
