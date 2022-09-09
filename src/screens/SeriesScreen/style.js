@@ -4,9 +4,11 @@ const {width, height} = Dimensions.get('screen');
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'black',
     flex: 1,
-    color: 'white',
+    backgroundColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   picture:{
     top: 1,

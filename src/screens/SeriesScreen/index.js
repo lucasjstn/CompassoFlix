@@ -1,16 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, View, TouchableOpacity, StatusBar} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  TouchableOpacity,
+  StatusBar,
+  Dimensions,
+} from 'react-native';
 import styles from './style';
 import ContentList from '../../components/ContentList';
 import {getContent} from '../../service/requests/ContentRequest/MoviesRequest';
 import {FilmesHeader} from '../HomeScreen/components/HeaderFilms/HeaderCP';
 import {KeepToken} from '../../service/storage';
 import {api} from '../../service/api';
-import { Avatar } from '@react-native-material/core'
-import { apiImage } from '../../service/api';
-import { useNavigation } from '@react-navigation/native';
+import {Avatar} from '@react-native-material/core';
+import {apiImage} from '../../service/api';
+import {useNavigation} from '@react-navigation/native';
 import Loading from '../../components/Loading';
-
+const {width, height} = Dimensions.get('screen')
 const SeriesScreen = () => {
   const navigation = useNavigation();
   const [tv, setTV] = useState('');
@@ -73,7 +80,9 @@ const SeriesScreen = () => {
     }
   }
 
-  return load ? (<Loading/>) : (
+  return load ? (
+    <Loading />
+  ) : (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
       <TouchableOpacity
@@ -86,7 +95,15 @@ const SeriesScreen = () => {
         name={metaNames.name}
         userName={metaNames.username}
       />
-      <View style={{top: 150}}>
+      <View
+        style={{
+          width: width / 0.84,
+          height: 570,
+          position: 'absolute',
+          justifyContent: 'center',
+          alignItems: 'center',
+          top: 150,
+        }}>
         <ContentList
           content={tv}
           endProp={scrollLoad}
