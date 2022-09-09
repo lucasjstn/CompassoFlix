@@ -15,6 +15,7 @@ export default function ModalLists({selectListModal, setSelectListModal, movie_i
     const [listas, setListas] = useState();
     const [isSelected, setIsSelected] = useState();
     const [status, setStatus] = useState();
+    const [verify, setVerify] = useState(false);
 
     const getUsuario = async () => {
         try {
@@ -57,7 +58,7 @@ export default function ModalLists({selectListModal, setSelectListModal, movie_i
       useEffect(() => {
         getList();
         getUsuario();
-      }, []);
+      }, [list]);
 
       function SelectList(){
         if(listas == undefined){
@@ -82,7 +83,15 @@ export default function ModalLists({selectListModal, setSelectListModal, movie_i
             
       useEffect(() => {
       getFilmStatus();
-      });
+      }, [verify, selectListModal]);
+
+      function Verify(){
+        if(verify == false){
+          return setVerify(true)
+        } else if(verify == true){
+          return setVerify(false)
+        }
+      }
 
   return (
     <Modal
@@ -105,7 +114,7 @@ export default function ModalLists({selectListModal, setSelectListModal, movie_i
                       <View style={{marginBottom: 15}}>
                         <ListConteiner>
                           <Text style={{color: 'black',}}>{item.name}</Text>
-                          <SelectListButton onPress={() => {setAtivo(item.id), setListas(item.id)}}>
+                          <SelectListButton onPress={() => {setAtivo(item.id), setListas(item.id), Verify()}}>
                             {ativo === item.id ? <View style={{backgroundColor: 'black', height: 15, width: 15, borderRadius: 50}}></View> : <></>}
                           </SelectListButton>
                       </ListConteiner>
