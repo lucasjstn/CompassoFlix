@@ -27,6 +27,7 @@ import styles from '../LoginScreen/styles';
 import Banner from './components/Banner/index';
 import InputGrey from './components/InputGrey';
 import {height, width} from './consts';
+import Loading from '../../components/Loading';
 const LoginScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [color, setColor] = useState(false);
@@ -114,10 +115,7 @@ const LoginScreen = () => {
         <Banner loading={isLoading} />
 
         {isLoading ? (
-          <ActivityIndicator
-            style={styles.loadingIndicator}
-            size={40}
-            color={color ? 'blue' : 'red'}
+          <Loading
           />
         ) : (
           <>

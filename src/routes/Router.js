@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Banner from '../screens/LoginScreen/components/Banner';
 // eslint-disable-next-line no-unused-vars
 import {ClearToken} from '../service/storage';
+import Loading from '../components/Loading';
 
 const Router = () => {
   const {isLogged, setIsLogged, color, setColor} = useContext(AuthContext);
@@ -46,11 +47,7 @@ const Router = () => {
     return (
       <View style={{flex: 1, backgroundColor: 'black'}}>
         <Banner loading={isLoading} />
-        <ActivityIndicator
-          style={{top: '15%'}}
-          size={40}
-          color={color ? 'red' : 'blue'}
-        />
+        <Loading/>
       </View>
     );
   }

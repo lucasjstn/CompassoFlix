@@ -54,8 +54,6 @@ export default HeaderDetails = ({
 
   useEffect(() => {
     getUpdate();
-    console.log(rated);
-    console.log('é serie: ', isSerie);
   }, []);
 
   const searchPeople = array => {
