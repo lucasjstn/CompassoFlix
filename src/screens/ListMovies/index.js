@@ -102,9 +102,11 @@ export default function ListMovies({route}) {
           />
         </View>
         <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
-        <TextRegular style={styles.descriptionList}>
-          {meta[0].description}
-        </TextRegular>
+        <View style={{width: '95%', alignSelf: 'center'}}>
+          <TextRegular style={styles.descriptionList}>
+            {meta[0].description}
+          </TextRegular>
+        </View>
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
             {data.map((item, index) => (

@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
   },
   touchableWrapper: {
     width: '100%',
+    height: '100%',
+    marginBottom: height * 0.2,
     minHeight: height,
   },
   greetingContainer: {
@@ -24,17 +26,20 @@ const styles = StyleSheet.create({
     textAlign: 'justify',
     alignSelf: 'center',
     flexDirection: 'row',
+    width: '90%',
   },
   greetingContainerRated: {
     position: 'absolute',
     top: relativeHeight(80),
-    textAlign: 'justify',
+    // textAlign: 'center',
     alignSelf: 'center',
     flexDirection: 'row',
-    width: '80%',
+    // width: '80%',
+    width: '90%',
   },
   greetingText: {
     color: 'white',
+    textAlign: 'center',
     fontSize: relativeHeight(20),
     lineHeight: relativeHeight(27),
   },

@@ -1,11 +1,20 @@
 import React from 'react';
 import RatingStarAndAverage from '../../../../components/ContentList/FlatlistComponent/RatingStarAndAverage';
 import BtnGoBack from '../../../../components/BtnGoBack';
-import {Modal, View, ScrollView, TouchableOpacity, Image} from 'react-native';
+import {
+  Modal,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  Text,
+} from 'react-native';
 import {TextBold} from '../../../../components/Text';
 import styles from './style';
 import {useNavigation} from '@react-navigation/native';
+import {Dimensions} from 'react-native';
 
+const {width, height} = Dimensions.get('screen');
 export default function ModalRatedOrFav({
   isSerie,
   toggleUserFavorites,
@@ -38,7 +47,9 @@ export default function ModalRatedOrFav({
             <TextBold style={styles.greetingText}>
               {favoriteMovies
                 ? [
-                    'Filmes favoritos de  ',
+                    `${isSerie ? 'Séries' : 'Filmes'} favorit${
+                      isSerie ? 'a' : 'o'
+                    }s de  `,
                     <TextBold
                       key={'greeting'}
                       style={styles.greetingTextUserName}>
@@ -49,7 +60,9 @@ export default function ModalRatedOrFav({
                     </TextBold>,
                   ]
                 : [
-                    'Avaliações de filmes recentes de ',
+                    `Avaliações de ${
+                      isSerie ? 'séries' : 'filmes'
+                    } recentes de `,
                     <TextBold
                       key={'greetingRate'}
                       style={styles.greetingTextUserName}>
@@ -79,6 +92,7 @@ export default function ModalRatedOrFav({
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}
                   style={styles.favoriteImageWrapper}
                 />
+
                 {isRated ? (
                   <RatingStarAndAverage
                     vote_average={Number(item.rating) === 10 ? 10 : item.rating}
@@ -87,6 +101,7 @@ export default function ModalRatedOrFav({
               </TouchableOpacity>
             ))}
           </View>
+          {/* <Text style={{flexGrow: 1}}></Text> */}
         </ScrollView>
       </View>
     </Modal>

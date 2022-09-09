@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
     marginBottom: 26,
   },
   descriptionList: {
-    width: '90%',
+    // minWidth: '50%',
     marginVertical: 13,
     fontSize: 13,
     lineHeight: 14,
     alignSelf: 'center',
-    textAlign: 'left',
+    // textAlign: 'left',
     color: '#FFFFFF',
   },
   return: {
