@@ -57,9 +57,7 @@ export default function ListMovies({route}) {
       .post(`/list/${meta[0].id}/remove_item?&session_id=${sessionId}`, {
         media_id: id,
       })
-      .catch(error =>
-        console.log(error.response.data, Object.keys(error?.response)),
-      );
+      .catch(error => error);
     getListOfAddedItems();
   };
 
@@ -106,10 +104,7 @@ export default function ListMovies({route}) {
         <TextBold style={styles.nameList}>{meta[0].name}</TextBold>
         {/* {apaga essa descricao gigante qnd terminar} */}
         <TextRegular style={styles.descriptionList}>
-          {meta[0].description} asdsdasdasdasdasdasd asdsdasdasdasdasdasd
-          asdsdasdasdasdasdasd asdsdasdasdasdasdasd asdsdasdasdasdasdasd
-          asdsdasdasdasdasdasd asdsdasdasdasdasdasd asdsdasdasdasdasdasd
-          asdsdasdasdasdasdasd asdsdasdasdasdasdasd
+          {meta[0].description}
         </TextRegular>
         {data ? (
           <View style={styles.favoriteMoviesWrapper}>
