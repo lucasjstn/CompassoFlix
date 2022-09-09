@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacity,
   ActivityIndicator,
+  StatusBar,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {TextBold, TextRegular} from '../../components/Text';
@@ -112,11 +113,11 @@ const LoginScreen = () => {
       keyboardShouldPersistTaps="handled"
       behavior="height">
       <View style={[styles.container, {width: width, height: height}]}>
+        <StatusBar barStyle={'dark-content'} backgroundColor={'white'} />
         <Banner loading={isLoading} />
 
         {isLoading ? (
-          <Loading
-          />
+          <Loading />
         ) : (
           <>
             <View style={{opacity: view}}>

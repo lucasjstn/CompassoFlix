@@ -21,7 +21,7 @@ const InputGrey = ({errorMessage, isPassword, value, onChangeText}) => {
           secureTextEntry={isPassword ? true : false}
         />
         <EvilIcons
-          style={{position: 'absolute', left: 100}}
+          style={{position: 'absolute', left: 80}}
           name={isPassword ? 'lock' : 'user'}
           size={20}
           color={!errorMessage ? '#ffffff80' : '#EC2626'}
