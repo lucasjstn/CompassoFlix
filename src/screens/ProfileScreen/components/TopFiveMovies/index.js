@@ -78,7 +78,7 @@ export default function TopFiveMovies({
                 <TouchableOpacity
                   key={index}
                   onPress={() =>
-                    navigation.navigate(
+                    navigation.replace(
                       isSerie ? 'SeriesDetails' : 'MovieDetails',
                       {id: item.id},
                     )

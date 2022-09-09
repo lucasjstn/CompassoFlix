@@ -70,15 +70,10 @@ export default function ModalRatedOrFav({
                 key={index}
                 onPress={() => {
                   !toggleUserFavorites;
-                  navigation.reset({
-                    index: 1,
-                    routes: [
-                      {
-                        name: isSerie ? 'SeriesDetails' : 'MovieDetails',
-                        params: {id: item.id},
-                      },
-                    ],
-                  });
+                  navigation.replace(
+                    isSerie ? 'SeriesDetails' : 'MovieDetails',
+                    {id: item.id},
+                  );
                 }}>
                 <Image
                   source={{uri: `${baseUrl}/w185${item.poster_path}`}}
