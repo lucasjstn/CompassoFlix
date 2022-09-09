@@ -67,7 +67,7 @@ export default function ListScreen({navigation}) {
                     {item?.name}
                   </TextRegular>
                   <TextBold style={styles.totalFilms}>
-                    {item?.item_count} Filmes
+                    {item?.item_count} {item?.item_count == 1 ? 'Filme' : 'Filmes'}
                   </TextBold>
                 </TouchableOpacity>
                 <TouchableOpacity

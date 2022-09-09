@@ -8,6 +8,7 @@ export default function CreateList({modalActive, setModalActive}) {
   const {setListUpdate} = useContext(AuthContext);
   const [titleList, setTitleList] = useState('');
   const [descriptionList, setDescriptionList] = useState('');
+  const [teste, setTeste] = useState(false)
   const postNewList = async () => {
     try {
       const response = await api.post('/list', {
@@ -36,6 +37,8 @@ export default function CreateList({modalActive, setModalActive}) {
       visible={modalActive}
       onRequestClose={() => {
         setModalActive(false);
+        setTitleList(''); 
+        setDescriptionList('')
       }}>
       <View style={styles.container}>
         <TextBold style={styles.newList}>Nova lista</TextBold>
@@ -54,7 +57,7 @@ export default function CreateList({modalActive, setModalActive}) {
         />
         <View style={styles.btnWrapper}>
           <TouchableOpacity
-            onPress={() => setModalActive(false)}
+            onPress={() => {setModalActive(false), setTitleList(''), setDescriptionList('')}}
             style={[styles.btnSave, styles.btnCancel]}>
             <TextBold style={[styles.btnSaveText, styles.btnCancelText]}>
               Cancelar
@@ -67,18 +70,18 @@ export default function CreateList({modalActive, setModalActive}) {
                 postNewList();
                 setTitleList('');
                 setDescriptionList('');
+                setModalActive(false);
               } else {
               }
-              if (titleList) {
-                setModalActive(false);
-                setTitleList('');
-                setDescriptionList('');
+              if (titleList == '') {
+                return setTeste(true), setTimeout(() => setTeste(false), 2000)
               }
             }}
             style={styles.btnSave}>
             <TextBold style={styles.btnSaveText}>Salvar</TextBold>
           </TouchableOpacity>
         </View>
+        {titleList == '' && teste == true ? <TextBold style={{color: 'red', fontSize: 10}}>Lembre-se de escolher pelo menos o nome da lista!</TextBold> : <></>}
       </View>
     </Modal>
   );
