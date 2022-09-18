@@ -18,7 +18,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "compassflix02";
+    return "CompassoFlix";
   }
 
   /**
