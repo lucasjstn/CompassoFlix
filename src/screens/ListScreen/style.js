@@ -57,6 +57,48 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+    containerModal: {
+    backgroundColor: 'white',
+    width: '85%',
+    alignSelf: 'center',
+    height: 200,
+    marginTop: '74%',
+    borderRadius: 25,
+    paddingVertical: 17,
+    alignItems: 'center',
+  },
+  txtModal: {
+    color: 'black',
+    marginTop: 40,
+  },
+  btnWrapper: {
+    flexDirection:'row',
+    width:'60%',
+    justifyContent:'space-between',
+    marginTop: 50
+  },
+  btnSave: {
+    backgroundColor: 'black',
+    paddingVertical:4,
+    width:83,
+    borderRadius: 5,
+    justifyContent:'center', 
+    alignItems:'center'
+  },
+  btnCancel: {
+    backgroundColor:'white',
+    borderWidth:2,
+    borderColor:'black'
+  },
+  btnSaveText: {
+    color: 'white',
+    fontSize: 10,
+    fontHeight: 15,
+    textTransform: 'uppercase',
+  },
+  btnCancelText: {
+    color: 'black',
+  }
 });
 
 export default styles;

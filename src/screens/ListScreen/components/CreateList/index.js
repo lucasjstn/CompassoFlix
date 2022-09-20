@@ -81,7 +81,7 @@ export default function CreateList({modalActive, setModalActive}) {
             <TextBold style={styles.btnSaveText}>Salvar</TextBold>
           </TouchableOpacity>
         </View>
-        {titleList == '' && teste == true ? <TextBold style={{color: 'red', fontSize: 10}}>Lembre-se de escolher pelo menos o nome da lista!</TextBold> : <></>}
+        {titleList == '' && teste == true ? <TextBold style={{color: 'red', fontSize: 10}}>Lembre-se de por o nome da lista!</TextBold> : <></>}
       </View>
     </Modal>
   );

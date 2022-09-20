@@ -88,7 +88,7 @@ export default function SupProfile() {
         <TouchableOpacity
           style={styles.btnLeave}
           onPress={() => setModalActive(true)}>
-          <Icon name="md-exit-outline" color={'black'} />
+          <Icon testID='leave' name="md-exit-outline" color={'black'} />
           <TextRegular style={styles.leaveText}>Sair</TextRegular>
         </TouchableOpacity>
       </View>
@@ -96,7 +96,7 @@ export default function SupProfile() {
         <Picture />
       </View>
       <TextBold style={styles.name}>
-        {nomes.name || nomes.username || ''}
+        {nomes.name || nomes.username || 'Usuário'}
       </TextBold>
 
       <TouchableOpacity

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "compassflix02.app"
-               BlueprintName = "compassflix02"
-               ReferencedContainer = "container:compassflix02.xcodeproj">
+               BuildableName = "CompassoFlix.app"
+               BlueprintName = "CompassoFlix"
+               ReferencedContainer = "container:CompassoFlix.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "compassflix02Tests.xctest"
-               BlueprintName = "compassflix02Tests"
-               ReferencedContainer = "container:compassflix02.xcodeproj">
+               BuildableName = "CompassoFlixTests.xctest"
+               BlueprintName = "CompassoFlixTests"
+               ReferencedContainer = "container:CompassoFlix.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "compassflix02.app"
-            BlueprintName = "compassflix02"
-            ReferencedContainer = "container:compassflix02.xcodeproj">
+            BuildableName = "CompassoFlix.app"
+            BlueprintName = "CompassoFlix"
+            ReferencedContainer = "container:CompassoFlix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "compassflix02.app"
-            BlueprintName = "compassflix02"
-            ReferencedContainer = "container:compassflix02.xcodeproj">
+            BuildableName = "CompassoFlix.app"
+            BlueprintName = "CompassoFlix"
+            ReferencedContainer = "container:CompassoFlix.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

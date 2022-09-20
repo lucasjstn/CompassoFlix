@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {SafeAreaView, FlatList, TouchableOpacity, View} from 'react-native';
+import {SafeAreaView, FlatList, TouchableOpacity, View, Modal} from 'react-native';
 import {TextBold, TextRegular} from '../../components/Text';
 import BtnGoBack from '../../components/BtnGoBack';
 import styles from './style';
@@ -13,6 +13,8 @@ export default function ListScreen({navigation}) {
   const [modalActive, setModalActive] = useState(false);
   const [meta, setMeta] = useState({});
   const [firstRender, setFirstRender] = useState(true);
+  const [deletelistModal, setDeleteListModal] = useState(false)
+  const [listId , setListId] = useState()
 
   const getList = async () => {
     try {
@@ -72,8 +74,8 @@ export default function ListScreen({navigation}) {
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
-                    getList();
-                    deleteList(item?.id);
+                    setDeleteListModal(true);
+                    setListId(item.id)
                   }}
                   activeOpacity={0.8}
                   style={styles.btnDelete}>
@@ -83,6 +85,35 @@ export default function ListScreen({navigation}) {
                     color="rgba(236, 38, 38, 0.61)"
                   />
                 </TouchableOpacity>
+                <Modal
+                  animationType="fade"
+                  transparent={true}
+                  visible={deletelistModal}
+                  onRequestClose={() => {
+                    setModalActive(false);
+                  }}>
+                  <View style={styles.containerModal}>
+                    <TextBold style={styles.txtModal}>Deseja mesmo excluir essa lista?</TextBold>
+                    <View style={styles.btnWrapper}>
+                      <TouchableOpacity
+                        onPress={() => {setDeleteListModal(false)}}
+                        style={[styles.btnSave, styles.btnCancel]}>
+                        <TextBold style={[styles.btnSaveText, styles.btnCancelText]}>
+                          Cancelar
+                        </TextBold>
+                      </TouchableOpacity>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setDeleteListModal(false);
+                          deleteList(listId);
+                          getList();
+                        }}
+                        style={styles.btnSave}>
+                        <TextBold style={styles.btnSaveText}>EXCLUIR!</TextBold>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </Modal>
               </View>
             );
           }}
