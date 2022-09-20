@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CreateList from './components/CreateList';
 import {api} from '../../service/api';
 import {AuthContext} from '../../context/AuthContext';
-import styles2 from './components/DeleteList/style';
 
 export default function ListScreen({navigation}) {
   const {listUpdate, setListUpdate} = useContext(AuthContext);
@@ -15,7 +14,7 @@ export default function ListScreen({navigation}) {
   const [meta, setMeta] = useState({});
   const [firstRender, setFirstRender] = useState(true);
   const [deletelistModal, setDeleteListModal] = useState(false)
-  const [teste , setTeste] = useState()
+  const [listId , setListId] = useState()
 
   const getList = async () => {
     try {
@@ -76,7 +75,7 @@ export default function ListScreen({navigation}) {
                 <TouchableOpacity
                   onPress={() => {
                     setDeleteListModal(true);
-                    setTeste(item.id)
+                    setListId(item.id)
                   }}
                   activeOpacity={0.8}
                   style={styles.btnDelete}>
@@ -104,9 +103,9 @@ export default function ListScreen({navigation}) {
                         </TextBold>
                       </TouchableOpacity>
                       <TouchableOpacity
-                        onPress={() => {;
+                        onPress={() => {
                           setDeleteListModal(false);
-                          deleteList(teste);
+                          deleteList(listId);
                           getList();
                         }}
                         style={styles.btnSave}>

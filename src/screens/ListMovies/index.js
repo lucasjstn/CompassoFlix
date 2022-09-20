@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity, Image, ScrollView, Modal} from 'react-native';
 import styles from './styles';
 import IconReturn from 'react-native-vector-icons/AntDesign';
 import Toggle from 'react-native-toggle-element';
@@ -33,6 +33,8 @@ export default function ListMovies({route}) {
   const [setModal] = useState(false);
   const [sessionId, setSessionId] = useState();
   const [data, setData] = useState([]);
+  const [deleteFilmModal, setDeleteFilmModal] = useState(false)
+  const [filmId, setFilmId] = useState()
 
   useEffect(() => {
     getListOfAddedItems();
@@ -130,7 +132,8 @@ export default function ListMovies({route}) {
                     key={index.toString() + 'b'}
                     style={styles.deleteButtton}
                     onPress={() => {
-                      removeItemFromAddedList(item.id);
+                      setDeleteFilmModal(true)
+                      setFilmId(item.id)
                     }}>
                     <Icon name={'horizontal-rule'} size={6} color={'red'} />
                   </TouchableOpacity>
@@ -143,6 +146,34 @@ export default function ListMovies({route}) {
         )}
         <Text style={{height: height * 0.2}}></Text>
       </ScrollView>
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={deleteFilmModal}
+            onRequestClose={() => {
+            setDeleteFilmModal(false);
+            }}>
+            <View style={styles.containerModal}>
+              <TextBold style={styles.txtModal}>Deseja mesmo excluir esse filme?</TextBold>
+              <View style={styles.btnWrapper}>
+                <TouchableOpacity
+                    onPress={() => {setDeleteFilmModal(false)}}
+                    style={[styles.btnSave, styles.btnCancel]}>
+                      <TextBold style={[styles.btnSaveText, styles.btnCancelText]}>
+                        Cancelar
+                      </TextBold>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                      removeItemFromAddedList(filmId);
+                      setDeleteFilmModal(false);
+                    }}
+                    style={styles.btnSave}>
+                    <TextBold style={styles.btnSaveText}>EXCLUIR!</TextBold>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Modal>
     </View>
   );
 }
